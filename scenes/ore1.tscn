@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://di3m6gl5yyflj"]
+
+[ext_resource type="Texture2D" uid="uid://b8ssmqgnutnge" path="res://sprites/tilesets/ores.png" id="1_pfe2x"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_pfe2x")
+metadata/value = 1.0

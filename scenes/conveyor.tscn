@@ -144,7 +144,8 @@ script = ExtResource("1_dxdki")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7mg20")
-frame_progress = 0.145387
+frame = 4
+frame_progress = 0.411811
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_k4ei5")

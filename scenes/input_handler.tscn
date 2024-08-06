@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cadm5wekokr3h"]
+
+[ext_resource type="Script" path="res://scripts/input_handler.gd" id="1_8lpij"]
+[ext_resource type="PackedScene" uid="uid://cviq7kt3r4xhk" path="res://scenes/item_placement.tscn" id="2_cw0v0"]
+
+[node name="InputHandler" type="Node2D"]
+script = ExtResource("1_8lpij")
+
+[node name="ItemPlacement" parent="." instance=ExtResource("2_cw0v0")]

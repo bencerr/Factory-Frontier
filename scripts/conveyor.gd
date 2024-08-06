@@ -7,6 +7,9 @@ func _ready() -> void:
 	item_holder = $ItemHolder
 	detector = $Detector
 	$AnimatedSprite2D.play()
+	var current_frame = get_node("/root/Main/ConveyorAnimationSync").get_frame()
+	var current_progress = get_node("/root/Main/ConveyorAnimationSync").get_frame_progress()
+	$AnimatedSprite2D.set_frame_and_progress(current_frame, current_progress)
 
 func can_recieve_item() -> bool:
 	return item_holder.get_child_count() == 0

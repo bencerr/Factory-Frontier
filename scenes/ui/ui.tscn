@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://5qesdudrl5ii"]
+[gd_scene load_steps=12 format=3 uid="uid://5qesdudrl5ii"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_hq2yj"]
 [ext_resource type="Texture2D" uid="uid://3hytavl1qmkd" path="res://sprites/store.png" id="1_lyyx3"]
 [ext_resource type="Texture2D" uid="uid://rdrht2vges1e" path="res://sprites/backpack.png" id="2_862wk"]
+[ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="4_ptkkj"]
+[ext_resource type="Script" path="res://scripts/ui/item_placement_control.gd" id="4_ptp1v"]
+[ext_resource type="Texture2D" uid="uid://0p2yiuo1np6" path="res://sprites/tilesets/icons.png" id="5_r4jy6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0l1qm"]
 bg_color = Color(0.815686, 0.815686, 0.815686, 1)
@@ -10,7 +13,20 @@ bg_color = Color(0.815686, 0.815686, 0.815686, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_otks1"]
 bg_color = Color(0, 0, 0, 0.180392)
 
-[node name="UI" type="Control" node_paths=PackedStringArray("shop_panel", "inv_panel")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8sylg"]
+bg_color = Color(0, 0, 0, 0.0784314)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3uxkx"]
+font = ExtResource("4_ptkkj")
+font_size = 32
+shadow_color = Color(0, 0, 0, 0.443137)
+shadow_offset = Vector2(2.08165e-12, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ie8w2"]
+atlas = ExtResource("5_r4jy6")
+region = Rect2(2.08165e-12, 2.08165e-12, 16, 16)
+
+[node name="UI" type="Control" node_paths=PackedStringArray("shop_panel", "inv_panel", "inv_container", "placement_control")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,16 +34,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hq2yj")
-shop_panel = NodePath("ShopPanel")
-inv_panel = NodePath("InventoryPanel")
+shop_panel = NodePath("ShopControl")
+inv_panel = NodePath("InventoryControl")
+inv_container = NodePath("InventoryControl/MarginContainer/ScrollContainer/GridContainer")
+placement_control = NodePath("ItemPlacementControl")
 
 [node name="TabControl" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchor_top = 0.886
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -146.0
+offset_top = -0.0800476
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -70,17 +87,18 @@ texture_normal = ExtResource("2_862wk")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="InventoryPanel" type="Control" parent="."]
+[node name="InventoryControl" type="Control" parent="."]
+visible = false
 layout_mode = 1
-anchor_top = 0.417
+anchor_top = 0.406
 anchor_right = 1.0
 anchor_bottom = 0.886
-offset_top = -13.76
-offset_bottom = -0.0800476
+offset_top = 0.319977
+offset_bottom = -0.0801697
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Panel" type="Panel" parent="InventoryPanel"]
+[node name="Panel" type="Panel" parent="InventoryControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -89,23 +107,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_otks1")
 
-[node name="Label" type="Label" parent="InventoryPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="InventoryControl"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -37.5
-offset_top = -11.5
-offset_right = 37.5
-offset_bottom = 11.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "inventory
-"
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="ShopPanel" type="Control" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryControl/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="InventoryControl/MarginContainer/ScrollContainer"]
+layout_mode = 2
+columns = 7
+
+[node name="ShopControl" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchor_top = 0.417
@@ -116,7 +137,7 @@ offset_bottom = -0.0800476
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Panel" type="Panel" parent="ShopPanel"]
+[node name="Panel" type="Panel" parent="ShopControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -125,20 +146,66 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_otks1")
 
-[node name="Label" type="Label" parent="ShopPanel"]
+[node name="ItemPlacementControl" type="Control" parent="." node_paths=PackedStringArray("name_label", "quantity_label", "item_image")]
+visible = false
+layout_mode = 1
+anchor_top = 0.776
+anchor_right = 1.0
+anchor_bottom = 0.886
+offset_top = -0.280029
+offset_bottom = -0.0799713
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("4_ptp1v")
+name_label = NodePath("VBoxContainer/NameLabel")
+quantity_label = NodePath("VBoxContainer/Quantity")
+item_image = NodePath("ItemImage")
+
+[node name="Panel" type="Panel" parent="ItemPlacementControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8sylg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemPlacementControl"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 151.0
+offset_top = -63.5
+offset_right = 697.0
+offset_bottom = 63.5
+grow_vertical = 2
+alignment = 1
+
+[node name="NameLabel" type="Label" parent="ItemPlacementControl/VBoxContainer"]
+layout_mode = 2
+text = "item_name"
+label_settings = SubResource("LabelSettings_3uxkx")
+
+[node name="Quantity" type="Label" parent="ItemPlacementControl/VBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_3uxkx")
+
+[node name="ItemImage" type="TextureRect" parent="ItemPlacementControl"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -37.5
-offset_top = -11.5
-offset_right = 37.5
-offset_bottom = 11.5
+offset_left = -347.0
+offset_top = -60.5
+offset_right = -225.0
+offset_bottom = 61.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "shop"
+texture = SubResource("AtlasTexture_ie8w2")
 
 [connection signal="pressed" from="TabControl/HFlowContainer/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="TabControl/HFlowContainer/InventoryButton" to="." method="_on_inventory_button_pressed"]

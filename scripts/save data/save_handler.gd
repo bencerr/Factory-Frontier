@@ -1,15 +1,6 @@
 extends Node
-signal money_changed(change: float)
 
 const save_path: String = "user://Factory_Frontier.res"
-var player_data: PlayerData
-
-func add_money(amount: float) -> void:
-	player_data.money += amount
-	money_changed.emit(amount)
-
-func money_display(_money: float) -> void:
-	print(player_data.money)
 
 func load_data() -> Resource:
 	if ResourceLoader.exists(save_path):
@@ -17,7 +8,7 @@ func load_data() -> Resource:
 	
 	print("new save file")
 	var data: PlayerData = PlayerData.new()
-	data.inventory = PlayerInventory.new()
+	data.inventory = []
 	return data
 
 func save_data(data) -> void:
@@ -28,11 +19,11 @@ func save_data(data) -> void:
 func _ready() -> void:
 	var data: Resource = load_data()
 	if data is PlayerData:
-		player_data = data
-	money_changed.connect(money_display)
-	print(player_data.inventory)
+		Player.data = data
+	else:
+		print_debug("Error loading data")
 
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST or what == NOTIFICATION_WM_GO_BACK_REQUEST:
-		save_data(player_data)
+		save_data(Player.data)
 		get_tree().quit()

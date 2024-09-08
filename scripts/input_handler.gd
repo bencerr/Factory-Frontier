@@ -2,7 +2,8 @@ extends Node2D
 class_name InputHandler
 enum INPUT_TYPE {
 	CAMERA,
-	PLACEMENT
+	PLACEMENT,
+	DELETE
 }
 
 signal input_type_changed(change: INPUT_TYPE)
@@ -18,16 +19,24 @@ func _on_item_placed(item: ItemData) -> void:
 		Player.ui.switch_tab(Player.ui.UI_TAB.INVENTORY)
 		disable_placing()
 
+func enable_deleting() -> void:
+	current_input_type = INPUT_TYPE.DELETE
+	$ItemPlacement/GridLines.visible = true
+
+func disable_deleting() -> void:
+	current_input_type = INPUT_TYPE.CAMERA
+	$ItemPlacement/GridLines.visible = false
+
 func enable_placing(inv_index: int) -> void:
 	item_placement.inv_index = inv_index
-	item_placement.enabled = true
 	current_input_type = INPUT_TYPE.PLACEMENT
 	input_type_changed.emit(current_input_type)
+	$ItemPlacement/GridLines.visible = true
 
 func disable_placing() -> void:
-	$ItemPlacement.enabled = false
 	current_input_type = INPUT_TYPE.CAMERA
 	input_type_changed.emit(current_input_type)
+	$ItemPlacement/GridLines.visible = false	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action("move_camera") && current_input_type == INPUT_TYPE.CAMERA:

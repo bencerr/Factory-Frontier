@@ -168,3 +168,5 @@ layer_0/tile_data = PackedInt32Array(-65541, 0, 0, -5, 0, 0, 65531, 0, 0, 131067
 
 [node name="InputHandler" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("5_3klxr")]
 cam = NodePath("../Camera2D")
+
+[node name="PlacedItems" type="Node2D" parent="."]

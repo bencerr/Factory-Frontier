@@ -1,6 +1,6 @@
 extends Node
 
-const save_path: String = "user://Factory_Frontier.res"
+const save_path: String = "user://Factory_Frontier.tres"
 
 func load_data() -> Resource:
 	if ResourceLoader.exists(save_path):
@@ -9,6 +9,7 @@ func load_data() -> Resource:
 	print("new save file")
 	var data: PlayerData = PlayerData.new()
 	data.inventory = []
+	data.placed_items = []
 	return data
 
 func save_data(data) -> void:

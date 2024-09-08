@@ -11,6 +11,7 @@ enum UI_TAB {
 @export var inv_container: Control
 @export var placement_control: Control
 
+@onready var input_handler: InputHandler = Player.input_handler
 var current_tab: UI_TAB = UI_TAB.NONE
 
 func _on_input_type_changed(input_typ: InputHandler.INPUT_TYPE) -> void:
@@ -41,9 +42,11 @@ func switch_tab(tab: UI_TAB) -> void:
 		UI_TAB.SHOP:
 			shop_panel.visible = true
 			inv_panel.visible = false
+			input_handler.disable_placing()
 		UI_TAB.INVENTORY:
 			shop_panel.visible = false
 			inv_panel.visible = true
+			input_handler.disable_placing()
 
 func _on_inventory_button_pressed() -> void:
 	switch_tab(UI_TAB.INVENTORY)
@@ -54,3 +57,10 @@ func _on_shop_button_pressed() -> void:
 func _ready() -> void:
 	Player.input_handler.input_type_changed.connect(_on_input_type_changed)
 	refresh_inventory()
+
+func _on_delete_button_pressed() -> void:
+	if Player.input_handler.current_input_type == InputHandler.INPUT_TYPE.DELETE:
+		input_handler.disable_deleting()
+	else:
+		input_handler.enable_deleting()
+		placement_control.visible = false

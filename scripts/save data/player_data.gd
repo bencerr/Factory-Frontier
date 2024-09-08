@@ -3,3 +3,4 @@ class_name PlayerData
 
 @export var money: float
 @export var inventory: Array[ItemData]
+@export var placed_items: Array[PlacedItemData] # Dictionary<Vec2i, PlacedItemData>

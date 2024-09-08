@@ -1,8 +1,10 @@
 extends Node
 
-var items: Array = [
-	create_item("Conveyor", Vector2i(0,0), "res://scenes/items/conveyor.tscn")
-]
+var items: Dictionary = {
+	0: create_item("Conveyor", Vector2i(0,0), "res://scenes/items/conveyor.tscn"),
+	1: create_item("Dropper", Vector2i(1,0), "res://scenes/items/dropper.tscn"),
+	2: create_item("Furnace", Vector2i(2,0), "res://scenes/items/furnace.tscn")
+}
 
 const grid_size: int = 16
 var item_id_counter: int = 0

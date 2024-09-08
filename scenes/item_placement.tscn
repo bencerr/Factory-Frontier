@@ -1,13 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cviq7kt3r4xhk"]
+[gd_scene load_steps=3 format=3 uid="uid://cviq7kt3r4xhk"]
 
 [ext_resource type="Script" path="res://scripts/item_placement.gd" id="1_bncsx"]
-[ext_resource type="PackedScene" uid="uid://buiikly52efer" path="res://scenes/items/conveyor.tscn" id="2_t21ii"]
 [ext_resource type="PackedScene" uid="uid://kk7fsdl0e5y1" path="res://scenes/grid_lines.tscn" id="3_a0a36"]
 
 [node name="ItemPlacement" type="Node2D"]
 script = ExtResource("1_bncsx")
-scene_to_place = ExtResource("2_t21ii")
 
 [node name="GridLines" parent="." instance=ExtResource("3_a0a36")]
-
-[node name="PlacedItems" type="Node2D" parent="."]
+visible = false

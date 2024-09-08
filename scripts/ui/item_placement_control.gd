@@ -15,3 +15,10 @@ func _on_item_placed(_item: ItemData) -> void:
 
 func _ready() -> void:
 	Player.item_placement.item_placed.connect(_on_item_placed)
+
+func _on_rotate_button_pressed() -> void:
+	item_image.rotation -= PI/2
+	Player.item_rotation = item_image.rotation
+
+func _on_exit_button_pressed() -> void:
+	Player.input_handler.disable_placing()

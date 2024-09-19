@@ -14,7 +14,7 @@ var current_input_type: INPUT_TYPE = INPUT_TYPE.CAMERA
 var mouse_origin_pos: Vector2
 var moving_camera: bool
 
-func _on_item_placed(item: ItemData) -> void:
+func _on_item_placed(item: PlayerItemInfo) -> void:
 	if item.quantity <= 0:
 		Player.ui.switch_tab(Player.ui.UI_TAB.INVENTORY)
 		disable_placing()

@@ -1,85 +1,85 @@
-[gd_scene load_steps=27 format=3 uid="uid://buiikly52efer"]
+[gd_scene load_steps=28 format=3 uid="uid://dfdd7hxh05ym"]
 
-[ext_resource type="Script" path="res://scripts/conveyor.gd" id="1_dxdki"]
-[ext_resource type="Texture2D" uid="uid://p33b3al8i42" path="res://sprites/tilesets/ground.png" id="2_wvuc8"]
-[ext_resource type="Script" path="res://scripts/item_holder.gd" id="3_6wrjk"]
-[ext_resource type="Script" path="res://scripts/item_data.gd" id="3_d5867"]
-[ext_resource type="Texture2D" uid="uid://dsvowh2gxsb40" path="res://sprites/tilesets/conveyor.png" id="4_sboh1"]
-[ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="4_ygy86"]
+[ext_resource type="Script" path="res://scripts/upgrader.gd" id="1_w3doi"]
+[ext_resource type="Texture2D" uid="uid://dsvowh2gxsb40" path="res://sprites/tilesets/conveyor.png" id="2_7t0qs"]
+[ext_resource type="Script" path="res://scripts/item_data.gd" id="2_sagyh"]
+[ext_resource type="Texture2D" uid="uid://0p2yiuo1np6" path="res://sprites/tilesets/icons.png" id="2_vwhg8"]
+[ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="3_1va5j"]
+[ext_resource type="Script" path="res://scripts/item_holder.gd" id="4_r3pwh"]
 
-[sub_resource type="Resource" id="Resource_x48ks"]
-script = ExtResource("3_d5867")
-item_name = "Basic Conveyor"
-item_type = 1
-icon = ExtResource("2_wvuc8")
-id = 0
+[sub_resource type="Resource" id="Resource_05dkw"]
+script = ExtResource("2_sagyh")
+item_name = "Basic Upgrader"
+item_type = 2
+icon = ExtResource("2_vwhg8")
+id = 3
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dd884"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("2_7t0qs")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xnmbf"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("2_7t0qs")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tbcrs"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("2_7t0qs")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qmi8x"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("2_7t0qs")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2ogq"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("2_7t0qs")
 region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wlr5o"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("2_7t0qs")
 region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a70ui"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("2_7t0qs")
 region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p71fy"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("2_7t0qs")
 region = Rect2(112, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3kkbt"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("2_7t0qs")
 region = Rect2(128, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lh5km"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("2_7t0qs")
 region = Rect2(144, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8qra"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("2_7t0qs")
 region = Rect2(160, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahtt6"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("2_7t0qs")
 region = Rect2(176, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5v3ms"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("2_7t0qs")
 region = Rect2(192, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6yfpb"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("2_7t0qs")
 region = Rect2(208, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_02hdd"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("2_7t0qs")
 region = Rect2(224, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q75op"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("2_7t0qs")
 region = Rect2(240, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_io158"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("2_7t0qs")
 region = Rect2(256, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7mg20"]
@@ -144,13 +144,19 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k4ei5"]
 size = Vector2(16, 16)
 
-[node name="Conveyor" type="Area2D"]
+[sub_resource type="Gradient" id="Gradient_0n4y2"]
+colors = PackedColorArray(0, 1, 1, 1, 0, 1, 1, 0)
+
+[node name="Upgrader 1" type="Area2D" node_paths=PackedStringArray("item_holder", "detector")]
 position = Vector2(2.08165e-12, 2.08165e-12)
 gravity_point_center = Vector2(2.08165e-12, -10)
 gravity_direction = Vector2(2.08165e-12, -10)
 gravity = 8.52651e-14
-script = ExtResource("1_dxdki")
-item_data = SubResource("Resource_x48ks")
+script = ExtResource("1_w3doi")
+item_holder = NodePath("ItemHolder")
+detector = NodePath("Detector")
+multiplier = 1000.0
+item_data = SubResource("Resource_05dkw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7mg20")
@@ -160,10 +166,17 @@ frame_progress = 0.411811
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_k4ei5")
 
-[node name="Detector" parent="." instance=ExtResource("4_ygy86")]
+[node name="Detector" parent="." instance=ExtResource("3_1va5j")]
 
 [node name="ItemHolder" type="Node2D" parent="."]
-script = ExtResource("3_6wrjk")
+script = ExtResource("4_r3pwh")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emission_shape = 3
+emission_rect_extents = Vector2(2.08165e-12, 8)
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_0n4y2")
 
 [connection signal="belt_detected" from="Detector" to="." method="_on_detector_belt_detected"]
 [connection signal="item_held" from="ItemHolder" to="." method="_on_item_holder_item_held"]

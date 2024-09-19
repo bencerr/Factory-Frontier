@@ -10,6 +10,7 @@ enum UI_TAB {
 @export var inv_panel: Control
 @export var inv_container: Control
 @export var placement_control: Control
+@export var money_label: Label
 
 @onready var input_handler: InputHandler = Player.input_handler
 var current_tab: UI_TAB = UI_TAB.NONE
@@ -24,9 +25,9 @@ func _on_input_type_changed(input_typ: InputHandler.INPUT_TYPE) -> void:
 
 func refresh_inventory() -> void:
 	var template: PackedScene = load("res://scenes/ui/item.tscn")
-	for item_data in Player.data.inventory:
+	for key in Player.data.inventory.keys():
 		var control: UI_Item = template.instantiate()
-		control.item_name = item_data.item_name
+		control.item_id = key
 		inv_container.add_child(control)
  
 func switch_tab(tab: UI_TAB) -> void:
@@ -57,10 +58,15 @@ func _on_shop_button_pressed() -> void:
 func _ready() -> void:
 	Player.input_handler.input_type_changed.connect(_on_input_type_changed)
 	refresh_inventory()
+	Player.money_changed.connect(_on_money_change)
+	_on_money_change(0)
+
+func _on_money_change(value: float) -> void:
+	money_label.text = "$" + str(Player.data.money)
 
 func _on_delete_button_pressed() -> void:
 	if Player.input_handler.current_input_type == InputHandler.INPUT_TYPE.DELETE:
 		input_handler.disable_deleting()
 	else:
 		input_handler.enable_deleting()
-		placement_control.visible = false
+		switch_tab(UI_TAB.NONE)

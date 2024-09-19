@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://5qesdudrl5ii"]
+[gd_scene load_steps=14 format=3 uid="uid://5qesdudrl5ii"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_hq2yj"]
 [ext_resource type="Texture2D" uid="uid://3hytavl1qmkd" path="res://sprites/store.png" id="1_lyyx3"]
@@ -9,7 +9,13 @@
 [ext_resource type="Texture2D" uid="uid://0p2yiuo1np6" path="res://sprites/tilesets/icons.png" id="5_r4jy6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0l1qm"]
-bg_color = Color(0.815686, 0.815686, 0.815686, 1)
+bg_color = Color(0.776471, 0.796078, 0.788235, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tvv45"]
+font = ExtResource("4_ptkkj")
+font_size = 32
+font_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+shadow_size = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_otks1"]
 bg_color = Color(0, 0, 0, 0.180392)
@@ -27,7 +33,7 @@ shadow_offset = Vector2(2.08165e-12, 1)
 atlas = ExtResource("5_r4jy6")
 region = Rect2(2.08165e-12, 2.08165e-12, 16, 16)
 
-[node name="UI" type="Control" node_paths=PackedStringArray("shop_panel", "inv_panel", "inv_container", "placement_control")]
+[node name="UI" type="Control" node_paths=PackedStringArray("shop_panel", "inv_panel", "inv_container", "placement_control", "money_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,6 +46,7 @@ shop_panel = NodePath("ShopControl")
 inv_panel = NodePath("InventoryControl")
 inv_container = NodePath("InventoryControl/MarginContainer/ScrollContainer/GridContainer")
 placement_control = NodePath("ItemPlacementControl")
+money_label = NodePath("TabControl2/MarginContainer/VBoxContainer/MoneyLabel")
 
 [node name="TabControl" type="Control" parent="."]
 layout_mode = 1
@@ -97,6 +104,45 @@ size_flags_vertical = 4
 texture_normal = ExtResource("4_50lk6")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="TabControl2" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 146.0
+grow_horizontal = 2
+
+[node name="Panel" type="Panel" parent="TabControl2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0l1qm")
+
+[node name="MarginContainer" type="MarginContainer" parent="TabControl2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabControl2/MarginContainer"]
+layout_mode = 2
+
+[node name="MoneyLabel" type="Label" parent="TabControl2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "$$$$
+"
+label_settings = SubResource("LabelSettings_tvv45")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="InventoryControl" type="Control" parent="."]
 visible = false
@@ -158,6 +204,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_otks1")
 
 [node name="ItemPlacementControl" type="Control" parent="." node_paths=PackedStringArray("name_label", "quantity_label", "item_image")]
+visible = false
 layout_mode = 1
 anchor_top = 0.776
 anchor_right = 1.0

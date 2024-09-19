@@ -7,7 +7,14 @@ var speed: float = 16
 var moving_item: bool = false
 
 func recieve_item(item: Node2D) -> void:
-	item.reparent(self, true)
+	var old_pos: Vector2 = item.global_position
+	if item.get_parent():
+		item.get_parent().remove_child(item)
+
+	self.add_child(item)
+	item.global_position = old_pos
+	
+	#item.reparent(self, true)
 	moving_item = true
 
 func offload_item() -> Node2D:

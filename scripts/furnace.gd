@@ -1,8 +1,10 @@
 extends Area2D
 class_name Furnace
+@export var item_data: ItemData
 
 func process_item(item: Node2D) -> void:
     var ore_value: float = item.get_meta("value")
+    $AudioStreamPlayer2D.play()
     Player.add_money(ore_value)
     item.queue_free()
 

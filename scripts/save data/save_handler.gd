@@ -8,7 +8,7 @@ func load_data() -> Resource:
 	
 	print("new save file")
 	var data: PlayerData = PlayerData.new()
-	data.inventory = []
+	data.inventory = {}
 	data.placed_items = []
 	return data
 

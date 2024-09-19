@@ -1,18 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmx2kmvei158c"]
+[gd_scene load_steps=10 format=3 uid="uid://dmx2kmvei158c"]
 
 [ext_resource type="Script" path="res://scripts/furnace.gd" id="1_dm5co"]
 [ext_resource type="Texture2D" uid="uid://b3us48fbw44gk" path="res://sprites/tilesets/furnaces.png" id="2_lrnuy"]
+[ext_resource type="Script" path="res://scripts/item_data.gd" id="3_cgsqa"]
 [ext_resource type="Script" path="res://scripts/item_holder.gd" id="3_gkdcc"]
+[ext_resource type="AudioStream" uid="uid://c604nxr88w2w7" path="res://sfx/stop-13692.mp3" id="4_187n8"]
+
+[sub_resource type="Resource" id="Resource_a8nwt"]
+script = ExtResource("3_cgsqa")
+item_name = "Basic Furnace"
+item_type = 3
+icon = ExtResource("2_lrnuy")
+id = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unhhq"]
 size = Vector2(16, 16)
 
-[sub_resource type="Gradient" id="Gradient_4enns"]
+[sub_resource type="Gradient" id="Gradient_k1ju7"]
 offsets = PackedFloat32Array(0, 0.209003, 0.983923, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.0894309, 0.0894309, 0.0894309, 0.0894309, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ms6go"]
-gradient = SubResource("Gradient_4enns")
+gradient = SubResource("Gradient_k1ju7")
 width = 128
 height = 128
 fill = 1
@@ -21,6 +30,7 @@ fill_to = Vector2(0.5, 0.9)
 
 [node name="Furnace" type="Area2D"]
 script = ExtResource("1_dm5co")
+item_data = SubResource("Resource_a8nwt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_unhhq")
@@ -35,5 +45,8 @@ script = ExtResource("3_gkdcc")
 color = Color(1, 0, 0, 1)
 texture = SubResource("GradientTexture2D_ms6go")
 texture_scale = 0.25
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_187n8")
 
 [connection signal="item_held" from="ItemHolder" to="." method="_on_item_holder_item_held"]

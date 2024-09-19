@@ -2,6 +2,7 @@ extends Area2D
 class_name Conveyor
 var item_holder: ItemHolder
 var detector: Detector
+@export var item_data: ItemData
 
 func _ready() -> void:
 	item_holder = $ItemHolder
@@ -17,6 +18,8 @@ func can_recieve_item() -> bool:
 func recieve_item(item: Node2D) -> void:
 	item_holder.recieve_item(item)
 
+# Area is the next conveyor/furance/upgrader
+# this is emitted from the previous conveyor's detector
 func _on_detector_belt_detected(area: Area2D) -> void:
 	var item = item_holder.offload_item()
 	area.recieve_item(item)

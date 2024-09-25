@@ -27,6 +27,7 @@ autostart = true
 texture = ExtResource("3_iqqgr")
 
 [node name="Hold" type="Node2D" parent="."]
+position = Vector2(8, 0)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="belt_detected" from="Detector" to="." method="_on_detector_belt_detected"]

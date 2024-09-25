@@ -22,6 +22,7 @@ func _on_item_placed(item: PlayerItemInfo) -> void:
 func enable_deleting() -> void:
 	current_input_type = INPUT_TYPE.DELETE
 	$ItemPlacement/GridLines.visible = true
+	$ItemPlacement/GridLines.modulate = Color.RED
 
 func disable_deleting() -> void:
 	current_input_type = INPUT_TYPE.CAMERA
@@ -32,6 +33,7 @@ func enable_placing(inv_index: int) -> void:
 	current_input_type = INPUT_TYPE.PLACEMENT
 	input_type_changed.emit(current_input_type)
 	$ItemPlacement/GridLines.visible = true
+	$ItemPlacement/GridLines.modulate = Color.WHITE
 
 func disable_placing() -> void:
 	current_input_type = INPUT_TYPE.CAMERA

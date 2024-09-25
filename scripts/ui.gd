@@ -61,7 +61,7 @@ func _ready() -> void:
 	Player.money_changed.connect(_on_money_change)
 	_on_money_change(0)
 
-func _on_money_change(value: float) -> void:
+func _on_money_change(_value: float) -> void:
 	money_label.text = "$" + str(Player.data.money)
 
 func _on_delete_button_pressed() -> void:
@@ -69,4 +69,5 @@ func _on_delete_button_pressed() -> void:
 		input_handler.disable_deleting()
 	else:
 		input_handler.enable_deleting()
+		placement_control.visible = false
 		switch_tab(UI_TAB.NONE)

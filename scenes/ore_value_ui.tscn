@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://kaam8tiwss0t"]
+
+[ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="1_dhx6b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fs70q"]
+font = ExtResource("1_dhx6b")
+font_size = 18
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.192157)
+
+[node name="Ore Value" type="Control"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -40.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.825
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 304.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+text = "000"
+label_settings = SubResource("LabelSettings_fs70q")
+horizontal_alignment = 1
+vertical_alignment = 1

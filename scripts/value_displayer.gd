@@ -1,13 +1,19 @@
 extends Area2D
-class_name Upgrader
+class_name ValueDisplayer
 var item_holder: ItemHolder
 var detector: Detector
 @export var item_data: ItemData
-@export var multiplier: float
+@export var value_display_ui: PackedScene
 
-func upgrade(ore: Ore) -> void:
+func display_ore_data(ore: Ore) -> void:
 	var ore_value: float = ore.value
-	ore.value = (ore_value * multiplier)
+	var control: Control = value_display_ui.instantiate()
+	control.get_node("Label").text = str(ore_value)
+	ore.value_changed.connect(_update_ore_value_display.bind(control))
+	ore.add_child(control)
+
+func _update_ore_value_display(value: float, control: Control) -> void:
+	control.get_node("Label").text = str(value)
 
 func _ready() -> void:
 	item_holder = $ItemHolder
@@ -25,7 +31,7 @@ func recieve_item(ore: Ore) -> void:
 
 func _on_detector_belt_detected(area: Area2D) -> void:
 	var ore = item_holder.offload_item()
-	upgrade(ore)
+	display_ore_data(ore)
 	area.recieve_item(ore)
 
 func _on_item_holder_item_held() -> void:

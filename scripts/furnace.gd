@@ -2,17 +2,17 @@ extends Area2D
 class_name Furnace
 @export var item_data: ItemData
 
-func process_item(item: Node2D) -> void:
-    var ore_value: float = item.get_meta("value")
-    $AudioStreamPlayer2D.play()
-    Player.add_money(ore_value)
-    item.queue_free()
+func process_item(ore: Ore) -> void:
+	var ore_value: float = ore.value
+	$AudioStreamPlayer2D.play()
+	Player.add_money(ore_value)
+	ore.queue_free()
 
 func can_recieve_item():
-    return true
+	return true
 
-func recieve_item(item: Node2D) -> void:
-    $ItemHolder.recieve_item(item)
+func recieve_item(ore: Ore) -> void:
+	$ItemHolder.recieve_item(ore)
 
 func _on_item_holder_item_held() -> void:
-    process_item($ItemHolder.offload_item())
+	process_item($ItemHolder.offload_item())

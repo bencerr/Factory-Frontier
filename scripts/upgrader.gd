@@ -28,5 +28,5 @@ func _on_detector_belt_detected(area: Area2D) -> void:
 	upgrade(ore)
 	area.recieve_item(ore)
 
-func _on_item_holder_item_held() -> void:
+func _on_item_holder_item_held(_ore: Ore) -> void:
 	detector.detect()

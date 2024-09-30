@@ -1,17 +1,21 @@
-[gd_scene load_steps=27 format=3 uid="uid://buiikly52efer"]
+[gd_scene load_steps=28 format=3 uid="uid://buiikly52efer"]
 
 [ext_resource type="Script" path="res://scripts/conveyor.gd" id="1_dxdki"]
-[ext_resource type="Texture2D" uid="uid://p33b3al8i42" path="res://sprites/tilesets/ground.png" id="2_wvuc8"]
+[ext_resource type="Texture2D" uid="uid://0p2yiuo1np6" path="res://sprites/tilesets/icons.png" id="2_tso6s"]
 [ext_resource type="Script" path="res://scripts/item_holder.gd" id="3_6wrjk"]
 [ext_resource type="Script" path="res://scripts/item_data.gd" id="3_d5867"]
 [ext_resource type="Texture2D" uid="uid://dsvowh2gxsb40" path="res://sprites/tilesets/conveyor.png" id="4_sboh1"]
 [ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="4_ygy86"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xnyn"]
+atlas = ExtResource("2_tso6s")
+region = Rect2(2.08165e-12, 2.08165e-12, 16, 16)
+
 [sub_resource type="Resource" id="Resource_x48ks"]
 script = ExtResource("3_d5867")
 item_name = "Basic Conveyor"
 item_type = 1
-icon = ExtResource("2_wvuc8")
+icon = SubResource("AtlasTexture_3xnyn")
 id = 0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dd884"]

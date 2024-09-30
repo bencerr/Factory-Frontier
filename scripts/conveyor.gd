@@ -24,5 +24,5 @@ func _on_detector_belt_detected(area: Area2D) -> void:
 	var item = item_holder.offload_item()
 	area.recieve_item(item)
 
-func _on_item_holder_item_held() -> void:
+func _on_item_holder_item_held(_ore: Ore) -> void:
 	detector.detect()

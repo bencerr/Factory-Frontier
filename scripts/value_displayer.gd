@@ -8,6 +8,7 @@ var detector: Detector
 func display_ore_data(ore: Ore) -> void:
 	var ore_value: float = ore.value
 	var control: Control = value_display_ui.instantiate()
+	control.get_node("Label").position.y -= .5
 	control.get_node("Label").text = str(ore_value)
 	ore.value_changed.connect(_update_ore_value_display.bind(control))
 	ore.add_child(control)

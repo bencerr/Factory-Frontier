@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://42yso1ufnxkr"]
+
+[sub_resource type="Curve" id="Curve_mjvmr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_4ce5c"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+emitting = false
+amount = 4
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(2, 2)
+direction = Vector2(2.08165e-12, 2.08165e-12)
+spread = 180.0
+gravity = Vector2(2.08165e-12, 5)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_mjvmr")
+color_ramp = SubResource("Gradient_4ce5c")

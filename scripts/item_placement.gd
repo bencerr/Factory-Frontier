@@ -3,6 +3,7 @@ class_name ItemPlacement
 signal item_placed(item: PlayerItemInfo)
 
 @onready var tilemap: TileMap = get_node("/root/Main/TileMap")
+@onready var place_particles_scene = preload("res://scenes/particles/place_particles.tscn")
 
 var inv_index: int
 
@@ -35,6 +36,13 @@ func _unhandled_input(event: InputEvent) -> void:
 				pid.rotation = Player.item_rotation
 				pid.position = tile_pos
 				pid.instance = instance
+
+				var particles: CPUParticles2D = place_particles_scene.instantiate()
+				get_node("/root/Main").add_child(particles)
+				particles.position = tilemap.map_to_local(tile_pos)
+				particles.emitting = true
+				particles.finished.connect(particles.queue_free)
+
 				Player.data.placed_items.append(pid)
 				item_placed.emit(item_info)
 		InputHandler.INPUT_TYPE.DELETE:

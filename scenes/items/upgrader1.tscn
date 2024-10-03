@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dfdd7hxh05ym"]
+[gd_scene load_steps=32 format=3 uid="uid://dfdd7hxh05ym"]
 
 [ext_resource type="Script" path="res://scripts/upgrader.gd" id="1_w3doi"]
 [ext_resource type="Texture2D" uid="uid://dsvowh2gxsb40" path="res://sprites/tilesets/conveyor.png" id="2_7t0qs"]
@@ -6,12 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://0p2yiuo1np6" path="res://sprites/tilesets/icons.png" id="2_vwhg8"]
 [ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="3_1va5j"]
 [ext_resource type="Script" path="res://scripts/item_holder.gd" id="4_r3pwh"]
+[ext_resource type="Texture2D" uid="uid://dyqjq6hgr6m4n" path="res://sprites/tilesets/upgraders.png" id="7_iuhi1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fordw"]
+atlas = ExtResource("2_vwhg8")
+region = Rect2(48, 2.08165e-12, 16, 16)
 
 [sub_resource type="Resource" id="Resource_05dkw"]
 script = ExtResource("2_sagyh")
 item_name = "Basic Upgrader"
 item_type = 2
-icon = ExtResource("2_vwhg8")
+icon = SubResource("AtlasTexture_fordw")
 id = 3
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dd884"]
@@ -144,8 +149,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k4ei5"]
 size = Vector2(16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kmwv"]
+atlas = ExtResource("7_iuhi1")
+region = Rect2(16, 2.08165e-12, 16, 16)
+
 [sub_resource type="Gradient" id="Gradient_0n4y2"]
 colors = PackedColorArray(0, 1, 1, 1, 0, 1, 1, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxaig"]
+atlas = ExtResource("7_iuhi1")
+region = Rect2(2.08165e-12, 2.08165e-12, 16, 16)
 
 [node name="Upgrader 1" type="Area2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -169,12 +182,26 @@ shape = SubResource("RectangleShape2D_k4ei5")
 [node name="ItemHolder" type="Node2D" parent="."]
 script = ExtResource("4_r3pwh")
 
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(0.0156863, 1, 1, 0.435294)
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = SubResource("AtlasTexture_8kmwv")
+
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emission_shape = 3
 emission_rect_extents = Vector2(2.08165e-12, 8)
 gravity = Vector2(2.08165e-12, 2.08165e-12)
 scale_amount_max = 2.0
 color_ramp = SubResource("Gradient_0n4y2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.08165e-12, 8)
+texture = SubResource("AtlasTexture_dxaig")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, -8)
+rotation = 3.14159
+texture = SubResource("AtlasTexture_dxaig")
 
 [connection signal="belt_detected" from="Detector" to="." method="_on_detector_belt_detected"]
 [connection signal="item_held" from="ItemHolder" to="." method="_on_item_holder_item_held"]

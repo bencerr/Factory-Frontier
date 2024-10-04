@@ -10,6 +10,8 @@ func update() -> void:
 	$QuantityLabel.text = str(info.quantity)
 	if info.quantity <= 0:
 		visible = false
+	else:
+		visible = true
 
 func _ready() -> void:
 	update()

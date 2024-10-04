@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvjggw48viapp"]
+
+[ext_resource type="Script" path="res://scripts/ui/shop_ui_item.gd" id="1_yc4uk"]
+[ext_resource type="Texture2D" uid="uid://dsvowh2gxsb40" path="res://sprites/tilesets/conveyor.png" id="1_ysmcw"]
+[ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="2_a1c20"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hwa1r"]
+bg_color = Color(0.34902, 0.333333, 0.34902, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2ft2"]
+atlas = ExtResource("1_ysmcw")
+region = Rect2(130, 2.08165e-12, 16, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6h1s6"]
+font = ExtResource("2_a1c20")
+font_size = 18
+shadow_color = Color(0, 0, 0, 0.443137)
+shadow_offset = Vector2(2.08165e-12, 1)
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_yc4uk")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hwa1r")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -38.0
+offset_right = 38.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_e2ft2")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Price" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "#"
+label_settings = SubResource("LabelSettings_6h1s6")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

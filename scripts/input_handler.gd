@@ -40,7 +40,7 @@ func disable_placing() -> void:
 	input_type_changed.emit(current_input_type)
 	$ItemPlacement/GridLines.visible = false	
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action("move_camera") && current_input_type == INPUT_TYPE.CAMERA:
 		if event.is_pressed():
 			mouse_origin_pos = get_global_mouse_position()

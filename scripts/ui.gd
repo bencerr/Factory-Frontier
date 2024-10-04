@@ -11,6 +11,8 @@ enum UI_TAB {
 @export var inv_container: Control
 @export var placement_control: Control
 @export var money_label: Label
+@export var shop_container: Control
+
 
 @onready var input_handler: InputHandler = Player.input_handler
 var current_tab: UI_TAB = UI_TAB.NONE
@@ -29,6 +31,13 @@ func refresh_inventory() -> void:
 		var control: UI_Item = template.instantiate()
 		control.item_id = key
 		inv_container.add_child(control)
+
+func load_shop() -> void:
+	var template: PackedScene = load("res://scenes/ui/shop_item.tscn")
+	for key in GameData.items.keys():
+		var control: Shop_UI_Item = template.instantiate()
+		control.item_id = key
+		shop_container.add_child(control)
  
 func switch_tab(tab: UI_TAB) -> void:
 	if current_tab == tab:
@@ -60,6 +69,7 @@ func _ready() -> void:
 	refresh_inventory()
 	Player.money_changed.connect(_on_money_change)
 	_on_money_change(0)
+	load_shop()
 
 func _on_money_change(_value: float) -> void:
 	money_label.text = "$" + str(Player.data.money)

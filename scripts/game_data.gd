@@ -26,11 +26,16 @@ func dir_contents(path):
 	return scene_loads
 
 func load_items() -> void:
-	for res: Resource in dir_contents("res://scenes/items"):
-		#var res := load(file_path)
-		var itm: Node = res.instantiate()
-		items[itm.item_data.id] = itm
-		#print_debug(str(itm.item_data.id) + ": "+ itm.item_data.item_name)
+	var dirs := [
+		"res://scenes/items/conveyors",
+		"res://scenes/items/droppers",
+		"res://scenes/items/furnaces",
+		"res://scenes/items/upgraders"]
+
+	for dir in dirs:
+		for res: Resource in dir_contents(dir):
+			var itm: Node = res.instantiate()
+			items[itm.item_data.id] = itm
 
 func _ready() -> void:
 	load_items()

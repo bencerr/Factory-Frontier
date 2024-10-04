@@ -38,6 +38,13 @@ func load_shop() -> void:
 		var control: Shop_UI_Item = template.instantiate()
 		control.item_id = key
 		shop_container.add_child(control)
+
+func filter_shop(item_type: ItemData.ITEM_TYPE) -> void:
+	for shop_ui_itm: Shop_UI_Item in shop_container.get_children():
+		if GameData.items[shop_ui_itm.item_id].item_data.item_type == item_type:
+			shop_ui_itm.visible = true
+		else:
+			shop_ui_itm.visible = false
  
 func switch_tab(tab: UI_TAB) -> void:
 	if current_tab == tab:
@@ -81,3 +88,16 @@ func _on_delete_button_pressed() -> void:
 		input_handler.enable_deleting()
 		placement_control.visible = false
 		switch_tab(UI_TAB.NONE)
+
+
+func _on_button_4_pressed() -> void:
+	filter_shop(ItemData.ITEM_TYPE.UPGRADER)
+
+func _on_button_3_pressed() -> void:
+	filter_shop(ItemData.ITEM_TYPE.FURNACE)
+
+func _on_button_2_pressed() -> void:
+	filter_shop(ItemData.ITEM_TYPE.CONVEYOR)
+
+func _on_button_pressed() -> void:
+	filter_shop(ItemData.ITEM_TYPE.DROPPER)

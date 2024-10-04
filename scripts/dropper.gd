@@ -1,7 +1,7 @@
 extends Node2D
 class_name Dropper
 
-@export var sprite: Resource = preload("res://scenes/ore1.tscn")
+@export var sprite: Resource
 @export var item_data: ItemData
 
 func _on_timer_timeout() -> void:

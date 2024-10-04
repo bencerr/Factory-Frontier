@@ -2,6 +2,7 @@ extends Area2D
 class_name Furnace
 @export var item_data: ItemData
 @export var label_scene: PackedScene
+@export var mult: float = 1
 
 func money_vfx(value: float) -> void:
 	var control: Control = label_scene.instantiate()
@@ -19,8 +20,9 @@ func process_item(ore: Ore) -> void:
 	var ore_value: float = ore.value
 	$AudioStreamPlayer2D.play()
 	$CPUParticles2D.emitting = true
-	Player.add_money(ore_value)
-	money_vfx(ore_value)
+	var sell_value: float = ore_value * mult
+	Player.add_money(sell_value)
+	money_vfx(sell_value)
 	ore.queue_free()
 
 func can_recieve_item():

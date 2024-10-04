@@ -1,0 +1,90 @@
+[gd_scene load_steps=16 format=3 uid="uid://4dwfrnwe77qb"]
+
+[ext_resource type="Script" path="res://scripts/furnace.gd" id="1_52cl2"]
+[ext_resource type="Texture2D" uid="uid://0p2yiuo1np6" path="res://sprites/tilesets/icons.png" id="2_e7wnf"]
+[ext_resource type="Script" path="res://scripts/item_data.gd" id="3_82ls7"]
+[ext_resource type="PackedScene" uid="uid://kaam8tiwss0t" path="res://scenes/ore_value_ui.tscn" id="4_0otx7"]
+[ext_resource type="Texture2D" uid="uid://b3us48fbw44gk" path="res://sprites/tilesets/furnaces.png" id="5_c1lx2"]
+[ext_resource type="Script" path="res://scripts/item_holder.gd" id="6_1t3r4"]
+[ext_resource type="AudioStream" uid="uid://c604nxr88w2w7" path="res://sfx/stop-13692.mp3" id="7_ryshk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krq1y"]
+atlas = ExtResource("2_e7wnf")
+region = Rect2(32, 2.08165e-12, 16, 16)
+
+[sub_resource type="Resource" id="Resource_a8nwt"]
+script = ExtResource("3_82ls7")
+item_name = "Advanced Furnace"
+item_type = 3
+icon = SubResource("AtlasTexture_krq1y")
+id = 10
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unhhq"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmymp"]
+atlas = ExtResource("5_c1lx2")
+region = Rect2(16, 2.08165e-12, 16, 16)
+
+[sub_resource type="Gradient" id="Gradient_k1ju7"]
+offsets = PackedFloat32Array(0, 0.209003, 0.983923, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.0894309, 0.0894309, 0.0894309, 0.0894309, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ms6go"]
+gradient = SubResource("Gradient_k1ju7")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.9)
+
+[sub_resource type="Curve" id="Curve_5c8g6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_tns06"]
+offsets = PackedFloat32Array(0, 0.636964, 1)
+colors = PackedColorArray(1, 0.313726, 0.247059, 1, 1, 0.313726, 0.247059, 1, 0.929412, 0.0431373, 0, 0)
+
+[node name="Advanced Furnace" type="Area2D"]
+position = Vector2(27, 0)
+script = ExtResource("1_52cl2")
+item_data = SubResource("Resource_a8nwt")
+label_scene = ExtResource("4_0otx7")
+mult = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_unhhq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_mmymp")
+
+[node name="ItemHolder" type="Node2D" parent="."]
+script = ExtResource("6_1t3r4")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0, 0, 1)
+texture = SubResource("GradientTexture2D_ms6go")
+texture_scale = 0.25
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_ryshk")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(5, 5)
+direction = Vector2(2.08165e-12, 2.08165e-12)
+spread = 180.0
+gravity = Vector2(2.08165e-12, 5)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_5c8g6")
+color_ramp = SubResource("Gradient_tns06")
+
+[connection signal="item_held" from="ItemHolder" to="." method="_on_item_holder_item_held"]
+[connection signal="finished" from="CPUParticles2D" to="." method="_on_cpu_particles_2d_finished"]

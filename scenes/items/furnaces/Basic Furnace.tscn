@@ -1,19 +1,19 @@
-[gd_scene load_steps=15 format=3 uid="uid://dmx2kmvei158c"]
+[gd_scene load_steps=16 format=3 uid="uid://dmx2kmvei158c"]
 
-[ext_resource type="Script" path="res://scripts/furnace.gd" id="1_dm5co"]
-[ext_resource type="Texture2D" uid="uid://b3us48fbw44gk" path="res://sprites/tilesets/furnaces.png" id="2_lrnuy"]
-[ext_resource type="Texture2D" uid="uid://0p2yiuo1np6" path="res://sprites/tilesets/icons.png" id="2_m4gcs"]
-[ext_resource type="Script" path="res://scripts/item_data.gd" id="3_cgsqa"]
-[ext_resource type="Script" path="res://scripts/item_holder.gd" id="3_gkdcc"]
-[ext_resource type="AudioStream" uid="uid://c604nxr88w2w7" path="res://sfx/stop-13692.mp3" id="4_187n8"]
-[ext_resource type="PackedScene" uid="uid://kaam8tiwss0t" path="res://scenes/ore_value_ui.tscn" id="4_j5i7x"]
+[ext_resource type="Script" path="res://scripts/furnace.gd" id="1_h884u"]
+[ext_resource type="Texture2D" uid="uid://0p2yiuo1np6" path="res://sprites/tilesets/icons.png" id="2_8w4t6"]
+[ext_resource type="Script" path="res://scripts/item_data.gd" id="3_gx5mh"]
+[ext_resource type="PackedScene" uid="uid://kaam8tiwss0t" path="res://scenes/ore_value_ui.tscn" id="4_fay8k"]
+[ext_resource type="Texture2D" uid="uid://b3us48fbw44gk" path="res://sprites/tilesets/furnaces.png" id="5_ynl01"]
+[ext_resource type="Script" path="res://scripts/item_holder.gd" id="6_1op3p"]
+[ext_resource type="AudioStream" uid="uid://c604nxr88w2w7" path="res://sfx/stop-13692.mp3" id="7_igioc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_krq1y"]
-atlas = ExtResource("2_m4gcs")
+atlas = ExtResource("2_8w4t6")
 region = Rect2(32, 2.08165e-12, 16, 16)
 
 [sub_resource type="Resource" id="Resource_a8nwt"]
-script = ExtResource("3_cgsqa")
+script = ExtResource("3_gx5mh")
 item_name = "Basic Furnace"
 item_type = 3
 icon = SubResource("AtlasTexture_krq1y")
@@ -21,6 +21,10 @@ id = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unhhq"]
 size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmymp"]
+atlas = ExtResource("5_ynl01")
+region = Rect2(2.08165e-12, 2.08165e-12, 16, 16)
 
 [sub_resource type="Gradient" id="Gradient_k1ju7"]
 offsets = PackedFloat32Array(0, 0.209003, 0.983923, 1)
@@ -42,20 +46,20 @@ point_count = 2
 offsets = PackedFloat32Array(0, 0.636964, 1)
 colors = PackedColorArray(1, 0.313726, 0.247059, 1, 1, 0.313726, 0.247059, 1, 0.929412, 0.0431373, 0, 0)
 
-[node name="Furnace" type="Area2D"]
+[node name="Basic Furnace" type="Area2D"]
 position = Vector2(27, 0)
-script = ExtResource("1_dm5co")
+script = ExtResource("1_h884u")
 item_data = SubResource("Resource_a8nwt")
-label_scene = ExtResource("4_j5i7x")
+label_scene = ExtResource("4_fay8k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_unhhq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_lrnuy")
+texture = SubResource("AtlasTexture_mmymp")
 
 [node name="ItemHolder" type="Node2D" parent="."]
-script = ExtResource("3_gkdcc")
+script = ExtResource("6_1op3p")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(1, 0, 0, 1)
@@ -63,7 +67,7 @@ texture = SubResource("GradientTexture2D_ms6go")
 texture_scale = 0.25
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_187n8")
+stream = ExtResource("7_igioc")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://5qesdudrl5ii"]
+[gd_scene load_steps=22 format=3 uid="uid://5qesdudrl5ii"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_hq2yj"]
 [ext_resource type="Texture2D" uid="uid://3hytavl1qmkd" path="res://sprites/store.png" id="1_lyyx3"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="4_ptkkj"]
 [ext_resource type="Script" path="res://scripts/ui/item_placement_control.gd" id="4_ptp1v"]
 [ext_resource type="Texture2D" uid="uid://0p2yiuo1np6" path="res://sprites/tilesets/icons.png" id="5_r4jy6"]
+[ext_resource type="Texture2D" uid="uid://dsvowh2gxsb40" path="res://sprites/tilesets/conveyor.png" id="6_yt7yy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0l1qm"]
 bg_color = Color(0.776471, 0.796078, 0.788235, 1)
@@ -19,6 +20,31 @@ shadow_size = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_otks1"]
 bg_color = Color(0, 0, 0, 0.180392)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1p00f"]
+bg_color = Color(0.223529, 0.223529, 0.223529, 0.847059)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sx7tg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ngyo2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40qg0"]
+atlas = ExtResource("6_yt7yy")
+region = Rect2(130, 2.08165e-12, 16, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dcl5c"]
+font = ExtResource("4_ptkkj")
+font_size = 24
+shadow_color = Color(0, 0, 0, 0.443137)
+shadow_offset = Vector2(2.08165e-12, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cdv4q"]
+font = ExtResource("4_ptkkj")
+font_size = 18
+shadow_color = Color(0, 0, 0, 0.443137)
+shadow_offset = Vector2(2.08165e-12, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_reswu"]
 bg_color = Color(0, 0, 0, 0)
@@ -36,7 +62,7 @@ shadow_offset = Vector2(2.08165e-12, 1)
 atlas = ExtResource("5_r4jy6")
 region = Rect2(2.08165e-12, 2.08165e-12, 16, 16)
 
-[node name="UI" type="Control" node_paths=PackedStringArray("shop_panel", "inv_panel", "inv_container", "placement_control", "money_label", "shop_container")]
+[node name="UI" type="Control" node_paths=PackedStringArray("shop_panel", "inv_panel", "inv_container", "placement_control", "money_label", "shop_container", "buy_panel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,6 +77,7 @@ inv_container = NodePath("InventoryControl/MarginContainer/ScrollContainer/GridC
 placement_control = NodePath("ItemPlacementControl")
 money_label = NodePath("TabControl2/MarginContainer/VBoxContainer/MoneyLabel")
 shop_container = NodePath("ShopControl/Panel3/MarginContainer/ScrollContainer/GridContainer")
+buy_panel = NodePath("ShopControl/BuyPanel")
 
 [node name="TabControl" type="Control" parent="."]
 layout_mode = 1
@@ -205,18 +232,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_otks1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_1p00f")
 
 [node name="Panel3" type="Panel" parent="ShopControl"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_top = 0.116
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 71.0
-offset_bottom = 0.00012207
+anchor_bottom = 0.866
+offset_top = -0.223988
+offset_bottom = 0.276071
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_otks1")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_sx7tg")
 
 [node name="MarginContainer" type="MarginContainer" parent="ShopControl/Panel3"]
 layout_mode = 1
@@ -237,17 +265,117 @@ layout_mode = 2
 layout_mode = 2
 columns = 7
 
-[node name="Panel2" type="Panel" parent="ShopControl"]
+[node name="BuyPanel" type="Panel" parent="ShopControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -543.0
+offset_top = 532.0
+offset_bottom = 0.00012207
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ngyo2")
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopControl/BuyPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Panel" type="Panel" parent="ShopControl/BuyPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopControl/BuyPanel/MarginContainer/Panel"]
+custom_minimum_size = Vector2(64, 2.08165e-12)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -31.0
+offset_right = 69.0
+offset_bottom = 31.0
+grow_vertical = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_40qg0")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopControl/BuyPanel/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.081
+anchor_right = 0.619
+anchor_bottom = 0.919
+offset_left = -0.200001
+offset_top = 0.00599998
+offset_right = 0.271987
+offset_bottom = -0.00600219
+grow_vertical = 2
+alignment = 1
+
+[node name="ItemName" type="Label" parent="ShopControl/BuyPanel/MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Conveyor"
+label_settings = SubResource("LabelSettings_dcl5c")
+
+[node name="Price" type="Label" parent="ShopControl/BuyPanel/MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "$100
+"
+label_settings = SubResource("LabelSettings_cdv4q")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopControl/BuyPanel/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -261.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="Buy" type="Button" parent="ShopControl/BuyPanel/MarginContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("4_ptkkj")
+theme_override_font_sizes/font_size = 20
+text = "Buy"
+
+[node name="Cancel" type="Button" parent="ShopControl/BuyPanel/MarginContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("4_ptkkj")
+theme_override_font_sizes/font_size = 20
+text = "Cancel
+"
+
+[node name="SortPanel" type="Panel" parent="ShopControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.116
+offset_bottom = -0.22411
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_reswu")
 
-[node name="MarginContainer" type="MarginContainer" parent="ShopControl/Panel2"]
+[node name="MarginContainer" type="MarginContainer" parent="ShopControl/SortPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -259,12 +387,12 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ShopControl/Panel2/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopControl/SortPanel/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="Button" type="Button" parent="ShopControl/Panel2/MarginContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="ShopControl/SortPanel/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(125, 65)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -272,7 +400,7 @@ theme_override_fonts/font = ExtResource("4_ptkkj")
 theme_override_font_sizes/font_size = 20
 text = "Droppers"
 
-[node name="Button2" type="Button" parent="ShopControl/Panel2/MarginContainer/HBoxContainer"]
+[node name="Button2" type="Button" parent="ShopControl/SortPanel/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(125, 65)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -280,7 +408,7 @@ theme_override_fonts/font = ExtResource("4_ptkkj")
 theme_override_font_sizes/font_size = 20
 text = "Conveyors"
 
-[node name="Button3" type="Button" parent="ShopControl/Panel2/MarginContainer/HBoxContainer"]
+[node name="Button3" type="Button" parent="ShopControl/SortPanel/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(125, 65)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -288,7 +416,7 @@ theme_override_fonts/font = ExtResource("4_ptkkj")
 theme_override_font_sizes/font_size = 20
 text = "Furnaces"
 
-[node name="Button4" type="Button" parent="ShopControl/Panel2/MarginContainer/HBoxContainer"]
+[node name="Button4" type="Button" parent="ShopControl/SortPanel/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(125, 65)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -384,9 +512,11 @@ texture = SubResource("AtlasTexture_8bjoa")
 [connection signal="pressed" from="TabControl/HBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="TabControl/HBoxContainer/InventoryButton" to="." method="_on_inventory_button_pressed"]
 [connection signal="pressed" from="TabControl/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
-[connection signal="pressed" from="ShopControl/Panel2/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="ShopControl/Panel2/MarginContainer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="ShopControl/Panel2/MarginContainer/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]
-[connection signal="pressed" from="ShopControl/Panel2/MarginContainer/HBoxContainer/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="ShopControl/BuyPanel/MarginContainer/Panel/HBoxContainer/Buy" to="." method="_on_buy_pressed"]
+[connection signal="pressed" from="ShopControl/BuyPanel/MarginContainer/Panel/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="ShopControl/SortPanel/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ShopControl/SortPanel/MarginContainer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="ShopControl/SortPanel/MarginContainer/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="ShopControl/SortPanel/MarginContainer/HBoxContainer/Button4" to="." method="_on_button_4_pressed"]
 [connection signal="pressed" from="ItemPlacementControl/VBoxContainer2/ExitButton" to="ItemPlacementControl" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="ItemPlacementControl/VBoxContainer2/RotateButton" to="ItemPlacementControl" method="_on_rotate_button_pressed"]

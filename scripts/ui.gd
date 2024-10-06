@@ -6,13 +6,16 @@ enum UI_TAB {
 	INVENTORY
 }
 
+signal shop_selected_item_changed(item_id: int)
+var shop_item_id: int = -1
+
 @export var shop_panel: Control
 @export var inv_panel: Control
 @export var inv_container: Control
 @export var placement_control: Control
 @export var money_label: Label
 @export var shop_container: Control
-
+@export var buy_panel: Control
 
 @onready var input_handler: InputHandler = Player.input_handler
 var current_tab: UI_TAB = UI_TAB.NONE
@@ -75,6 +78,7 @@ func _ready() -> void:
 	Player.input_handler.input_type_changed.connect(_on_input_type_changed)
 	refresh_inventory()
 	Player.money_changed.connect(_on_money_change)
+	shop_selected_item_changed.connect(_on_shop_selected_item_changed)
 	_on_money_change(0)
 	load_shop()
 
@@ -89,7 +93,6 @@ func _on_delete_button_pressed() -> void:
 		placement_control.visible = false
 		switch_tab(UI_TAB.NONE)
 
-
 func _on_button_4_pressed() -> void:
 	filter_shop(ItemData.ITEM_TYPE.UPGRADER)
 
@@ -101,3 +104,22 @@ func _on_button_2_pressed() -> void:
 
 func _on_button_pressed() -> void:
 	filter_shop(ItemData.ITEM_TYPE.DROPPER)
+
+func _on_cancel_pressed() -> void:
+	buy_panel.visible = false
+
+func _on_shop_selected_item_changed(id: int) -> void:
+	shop_item_id = id
+	var item_data: ItemData = GameData.items[id].item_data
+	buy_panel.get_node("MarginContainer/Panel/TextureRect").texture = item_data.icon
+	buy_panel.get_node("MarginContainer/Panel/VBoxContainer/ItemName").text = item_data.item_name
+	buy_panel.get_node("MarginContainer/Panel/VBoxContainer/Price").text = "$" + str(item_data.price)
+	buy_panel.visible = true
+
+func _on_buy_pressed() -> void:
+	var data: ItemData = GameData.items[shop_item_id].item_data
+	if Player.data.money >= data.price:
+		var item_updated = Player.data.inventory[shop_item_id]
+		item_updated.quantity += 1
+		Player.update_inventory_item(shop_item_id, item_updated)
+		Player.data.money -= data.price

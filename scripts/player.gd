@@ -67,6 +67,6 @@ func _ready() -> void:
 			data.inventory[item_key].quantity = 0
 	
 	for key in data.inventory.keys():
-		data.inventory[key].quantity = 0
+		data.inventory[key].quantity = 1
 
 	load_placed_items()

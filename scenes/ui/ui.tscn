@@ -1,34 +1,41 @@
-[gd_scene load_steps=22 format=3 uid="uid://5qesdudrl5ii"]
+[gd_scene load_steps=25 format=3 uid="uid://5qesdudrl5ii"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_hq2yj"]
 [ext_resource type="Texture2D" uid="uid://3hytavl1qmkd" path="res://sprites/store.png" id="1_lyyx3"]
+[ext_resource type="StyleBox" uid="uid://ms2bw6my46sa" path="res://resources/stylebox_light_shadow.tres" id="2_6wbu6"]
 [ext_resource type="Texture2D" uid="uid://rdrht2vges1e" path="res://sprites/backpack.png" id="2_862wk"]
 [ext_resource type="Texture2D" uid="uid://b54wwcpqhhgj1" path="res://sprites/bin.png" id="4_50lk6"]
 [ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="4_ptkkj"]
 [ext_resource type="Script" path="res://scripts/ui/item_placement_control.gd" id="4_ptp1v"]
 [ext_resource type="Texture2D" uid="uid://0p2yiuo1np6" path="res://sprites/tilesets/icons.png" id="5_r4jy6"]
 [ext_resource type="Texture2D" uid="uid://dsvowh2gxsb40" path="res://sprites/tilesets/conveyor.png" id="6_yt7yy"]
+[ext_resource type="StyleBox" uid="uid://1mjmcishic3j" path="res://resources/stylebox_light_corner.tres" id="7_hssru"]
+[ext_resource type="StyleBox" uid="uid://bbexbscjlpdwu" path="res://resources/button_filled.tres" id="8_w3vcj"]
+[ext_resource type="StyleBox" uid="uid://dw5ntbfolxxn0" path="res://resources/button_filled_pressed.tres" id="9_nd335"]
+[ext_resource type="StyleBox" uid="uid://h3625wn475mf" path="res://resources/style_box_2.tres" id="12_6fc0u"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0l1qm"]
-bg_color = Color(0.776471, 0.796078, 0.788235, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f08t1"]
+bg_color = Color(0.768627, 0.823529, 0.866667, 1)
+shadow_color = Color(0.172549, 0.188235, 0.227451, 0.203922)
+shadow_size = 2
+shadow_offset = Vector2(2.08165e-12, -1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_tvv45"]
 font = ExtResource("4_ptkkj")
 font_size = 32
-font_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+font_color = Color(0.172549, 0.188235, 0.227451, 1)
 shadow_size = 0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_otks1"]
-bg_color = Color(0, 0, 0, 0.180392)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1p00f"]
-bg_color = Color(0.223529, 0.223529, 0.223529, 0.847059)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sx7tg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ngyo2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40pxr"]
+bg_color = Color(0.34902, 0.392157, 0.478431, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_40qg0"]
 atlas = ExtResource("6_yt7yy")
@@ -49,12 +56,9 @@ shadow_offset = Vector2(2.08165e-12, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_reswu"]
 bg_color = Color(0, 0, 0, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8sylg"]
-bg_color = Color(0, 0, 0, 0.0784314)
-
 [sub_resource type="LabelSettings" id="LabelSettings_3uxkx"]
 font = ExtResource("4_ptkkj")
-font_size = 32
+font_size = 26
 shadow_color = Color(0, 0, 0, 0.443137)
 shadow_offset = Vector2(2.08165e-12, 1)
 
@@ -95,7 +99,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_0l1qm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_f08t1")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabControl"]
 layout_mode = 1
@@ -141,7 +145,7 @@ stretch_mode = 5
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 146.0
+offset_bottom = 54.0
 grow_horizontal = 2
 
 [node name="Panel" type="Panel" parent="TabControl2"]
@@ -151,7 +155,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_0l1qm")
+theme_override_styles/panel = ExtResource("2_6wbu6")
 
 [node name="MarginContainer" type="MarginContainer" parent="TabControl2"]
 layout_mode = 1
@@ -177,13 +181,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InventoryControl" type="Control" parent="."]
-visible = false
 layout_mode = 1
-anchor_top = 0.406
+anchor_top = 0.522
 anchor_right = 1.0
 anchor_bottom = 0.886
-offset_top = 0.319977
-offset_bottom = -0.0801697
+offset_top = -0.160019
+offset_bottom = -0.0799713
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -194,7 +197,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_otks1")
+theme_override_styles/panel = ExtResource("7_hssru")
 
 [node name="MarginContainer" type="MarginContainer" parent="InventoryControl"]
 layout_mode = 1
@@ -217,11 +220,11 @@ columns = 7
 
 [node name="ShopControl" type="Control" parent="."]
 layout_mode = 1
-anchor_top = 0.417
+anchor_top = 0.522
 anchor_right = 1.0
 anchor_bottom = 0.886
-offset_top = -13.76
-offset_bottom = -0.0800476
+offset_top = -0.160019
+offset_bottom = -0.0799713
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -232,7 +235,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_1p00f")
+theme_override_styles/panel = ExtResource("7_hssru")
 
 [node name="Panel3" type="Panel" parent="ShopControl"]
 layout_mode = 1
@@ -240,8 +243,8 @@ anchors_preset = -1
 anchor_top = 0.116
 anchor_right = 1.0
 anchor_bottom = 0.866
-offset_top = -0.223988
-offset_bottom = 0.276071
+offset_top = 7.944
+offset_bottom = -11.556
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_sx7tg")
@@ -267,13 +270,13 @@ columns = 7
 
 [node name="BuyPanel" type="Panel" parent="ShopControl"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 532.0
-offset_bottom = 0.00012207
+offset_top = -79.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ngyo2")
 
 [node name="MarginContainer" type="MarginContainer" parent="ShopControl/BuyPanel"]
@@ -290,6 +293,7 @@ theme_override_constants/margin_bottom = 4
 
 [node name="Panel" type="Panel" parent="ShopControl/BuyPanel/MarginContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_40pxr")
 
 [node name="TextureRect" type="TextureRect" parent="ShopControl/BuyPanel/MarginContainer/Panel"]
 custom_minimum_size = Vector2(64, 2.08165e-12)
@@ -297,10 +301,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 5.0
-offset_top = -31.0
-offset_right = 69.0
-offset_bottom = 31.0
+offset_left = 13.0
+offset_top = -28.5
+offset_right = 77.0
+offset_bottom = 28.5
 grow_vertical = 2
 size_flags_horizontal = 0
 texture = SubResource("AtlasTexture_40qg0")
@@ -310,14 +314,14 @@ stretch_mode = 4
 [node name="VBoxContainer" type="VBoxContainer" parent="ShopControl/BuyPanel/MarginContainer/Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.1
+anchor_left = 0.117
 anchor_top = 0.081
 anchor_right = 0.619
-anchor_bottom = 0.919
-offset_left = -0.200001
-offset_top = 0.00599998
+anchor_bottom = 0.915
+offset_left = -0.304004
+offset_top = 0.249
 offset_right = 0.271987
-offset_bottom = -0.00600219
+offset_bottom = 0.0349985
 grow_vertical = 2
 alignment = 1
 
@@ -340,12 +344,13 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -261.0
-offset_top = 5.0
-offset_right = -5.0
-offset_bottom = -5.0
+offset_left = -265.0
+offset_top = 13.0
+offset_right = -9.0
+offset_bottom = -13.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_constants/separation = 10
 alignment = 1
 
 [node name="Buy" type="Button" parent="ShopControl/BuyPanel/MarginContainer/Panel/HBoxContainer"]
@@ -354,6 +359,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("4_ptkkj")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("8_w3vcj")
+theme_override_styles/hover = ExtResource("8_w3vcj")
+theme_override_styles/pressed = ExtResource("9_nd335")
+theme_override_styles/focus = ExtResource("8_w3vcj")
 text = "Buy"
 
 [node name="Cancel" type="Button" parent="ShopControl/BuyPanel/MarginContainer/Panel/HBoxContainer"]
@@ -362,15 +371,21 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("4_ptkkj")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("8_w3vcj")
+theme_override_styles/hover = ExtResource("8_w3vcj")
+theme_override_styles/pressed = ExtResource("9_nd335")
+theme_override_styles/focus = ExtResource("8_w3vcj")
 text = "Cancel
 "
 
 [node name="SortPanel" type="Panel" parent="ShopControl"]
 layout_mode = 1
 anchors_preset = -1
+anchor_top = 0.016
 anchor_right = 1.0
 anchor_bottom = 0.116
-offset_bottom = -0.22411
+offset_top = -0.456
+offset_bottom = 14.944
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_reswu")
@@ -382,55 +397,75 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 8
+theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 8
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ShopControl/SortPanel/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 20
 alignment = 1
 
 [node name="Button" type="Button" parent="ShopControl/SortPanel/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(125, 65)
+custom_minimum_size = Vector2(125, 30)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
 theme_override_fonts/font = ExtResource("4_ptkkj")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("8_w3vcj")
+theme_override_styles/hover = ExtResource("8_w3vcj")
+theme_override_styles/pressed = ExtResource("9_nd335")
+theme_override_styles/focus = ExtResource("8_w3vcj")
 text = "Droppers"
 
 [node name="Button2" type="Button" parent="ShopControl/SortPanel/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(125, 65)
+custom_minimum_size = Vector2(125, 30)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
 theme_override_fonts/font = ExtResource("4_ptkkj")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("8_w3vcj")
+theme_override_styles/hover = ExtResource("8_w3vcj")
+theme_override_styles/pressed = ExtResource("9_nd335")
+theme_override_styles/focus = ExtResource("8_w3vcj")
 text = "Conveyors"
 
 [node name="Button3" type="Button" parent="ShopControl/SortPanel/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(125, 65)
+custom_minimum_size = Vector2(125, 30)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
 theme_override_fonts/font = ExtResource("4_ptkkj")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("8_w3vcj")
+theme_override_styles/hover = ExtResource("8_w3vcj")
+theme_override_styles/pressed = ExtResource("9_nd335")
+theme_override_styles/focus = ExtResource("8_w3vcj")
 text = "Furnaces"
 
 [node name="Button4" type="Button" parent="ShopControl/SortPanel/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(125, 65)
+custom_minimum_size = Vector2(125, 30)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
 theme_override_fonts/font = ExtResource("4_ptkkj")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("8_w3vcj")
+theme_override_styles/hover = ExtResource("8_w3vcj")
+theme_override_styles/pressed = ExtResource("9_nd335")
+theme_override_styles/focus = ExtResource("8_w3vcj")
 text = "Upgraders"
 
 [node name="ItemPlacementControl" type="Control" parent="." node_paths=PackedStringArray("name_label", "quantity_label", "item_image")]
 visible = false
 layout_mode = 1
-anchor_top = 0.776
+anchor_top = 0.822
 anchor_right = 1.0
 anchor_bottom = 0.886
-offset_top = -0.280029
+offset_top = -0.160034
 offset_bottom = -0.0799713
 grow_horizontal = 2
 grow_vertical = 0
@@ -446,17 +481,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8sylg")
+theme_override_styles/panel = ExtResource("12_6fc0u")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ItemPlacementControl"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 151.0
-offset_top = -63.5
-offset_right = 510.0
-offset_bottom = 63.5
+offset_left = 77.0
+offset_top = -35.0
+offset_right = 442.0
+offset_bottom = 35.0
 grow_vertical = 2
 alignment = 1
 
@@ -470,28 +505,39 @@ layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_3uxkx")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="ItemPlacementControl"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ItemPlacementControl"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -193.0
-offset_top = -55.5
+offset_left = -265.0
+offset_top = -30.0
 offset_right = -15.0
-offset_bottom = 55.5
+offset_bottom = 30.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_constants/separation = 20
 alignment = 1
 
-[node name="ExitButton" type="Button" parent="ItemPlacementControl/VBoxContainer2"]
+[node name="RotateButton" type="Button" parent="ItemPlacementControl/HBoxContainer"]
 layout_mode = 2
-text = "Exit"
-
-[node name="RotateButton" type="Button" parent="ItemPlacementControl/VBoxContainer2"]
-layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("8_w3vcj")
+theme_override_styles/hover = ExtResource("8_w3vcj")
+theme_override_styles/pressed = ExtResource("9_nd335")
+theme_override_styles/focus = ExtResource("8_w3vcj")
 text = "Rotate"
+
+[node name="ExitButton" type="Button" parent="ItemPlacementControl/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("8_w3vcj")
+theme_override_styles/hover = ExtResource("8_w3vcj")
+theme_override_styles/pressed = ExtResource("9_nd335")
+theme_override_styles/focus = ExtResource("8_w3vcj")
+text = "Exit"
 
 [node name="ItemImage" type="TextureRect" parent="ItemPlacementControl"]
 layout_mode = 1
@@ -500,14 +546,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -347.0
-offset_top = -60.5
-offset_right = -225.0
-offset_bottom = 61.5
+offset_left = -344.0
+offset_top = -27.0
+offset_right = -288.0
+offset_bottom = 29.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(61, 61)
 texture = SubResource("AtlasTexture_8bjoa")
+expand_mode = 1
+stretch_mode = 4
 
 [connection signal="pressed" from="TabControl/HBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="TabControl/HBoxContainer/InventoryButton" to="." method="_on_inventory_button_pressed"]
@@ -518,5 +566,5 @@ texture = SubResource("AtlasTexture_8bjoa")
 [connection signal="pressed" from="ShopControl/SortPanel/MarginContainer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="ShopControl/SortPanel/MarginContainer/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="ShopControl/SortPanel/MarginContainer/HBoxContainer/Button4" to="." method="_on_button_4_pressed"]
-[connection signal="pressed" from="ItemPlacementControl/VBoxContainer2/ExitButton" to="ItemPlacementControl" method="_on_exit_button_pressed"]
-[connection signal="pressed" from="ItemPlacementControl/VBoxContainer2/RotateButton" to="ItemPlacementControl" method="_on_rotate_button_pressed"]
+[connection signal="pressed" from="ItemPlacementControl/HBoxContainer/RotateButton" to="ItemPlacementControl" method="_on_rotate_button_pressed"]
+[connection signal="pressed" from="ItemPlacementControl/HBoxContainer/ExitButton" to="ItemPlacementControl" method="_on_exit_button_pressed"]

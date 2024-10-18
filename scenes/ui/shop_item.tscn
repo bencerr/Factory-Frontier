@@ -1,9 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvjggw48viapp"]
+[gd_scene load_steps=8 format=3 uid="uid://bvjggw48viapp"]
 
 [ext_resource type="Script" path="res://scripts/ui/shop_ui_item.gd" id="1_yc4uk"]
 [ext_resource type="Texture2D" uid="uid://dsvowh2gxsb40" path="res://sprites/tilesets/conveyor.png" id="1_ysmcw"]
 [ext_resource type="StyleBox" uid="uid://bvvrmv7kheqhx" path="res://resources/ui_item_panel.tres" id="2_7m1nj"]
 [ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="2_a1c20"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bcqtj"]
+bg_color = Color(0.129412, 0.172549, 0.203922, 0)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_color = Color(1, 1, 1, 0.0235294)
+shadow_size = 4
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2ft2"]
 atlas = ExtResource("1_ysmcw")
@@ -31,6 +40,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_7m1nj")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = -7.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bcqtj")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

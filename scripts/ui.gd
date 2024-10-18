@@ -19,6 +19,8 @@ var shop_item_id: int = -1
 
 @onready var input_handler: InputHandler = Player.input_handler
 var current_tab: UI_TAB = UI_TAB.NONE
+var sort_button_style: Resource
+var sort_button_style_empty: Resource
 
 func _on_input_type_changed(input_typ: InputHandler.INPUT_TYPE) -> void:
 	match input_typ:
@@ -48,6 +50,13 @@ func filter_shop(item_type: ItemData.ITEM_TYPE) -> void:
 			shop_ui_itm.visible = true
 		else:
 			shop_ui_itm.visible = false
+
+func filter_inventory(item_type: ItemData.ITEM_TYPE) -> void:
+	for ui_item: UI_Item in inv_container.get_children():
+		if GameData.items[ui_item.item_id].item_data.item_type == item_type:
+			ui_item.visible = true
+		else:
+			ui_item.visible = false
  
 func switch_tab(tab: UI_TAB) -> void:
 	if current_tab == tab:
@@ -75,6 +84,8 @@ func _on_shop_button_pressed() -> void:
 	switch_tab(UI_TAB.SHOP)
 
 func _ready() -> void:
+	sort_button_style = load("res://resources/sort_button_selected.tres")
+	sort_button_style_empty = load("res://resources/empty_style_box.tres")
 	Player.input_handler.input_type_changed.connect(_on_input_type_changed)
 	refresh_inventory()
 	Player.money_changed.connect(_on_money_change)
@@ -94,16 +105,54 @@ func _on_delete_button_pressed() -> void:
 		switch_tab(UI_TAB.NONE)
 
 func _on_button_4_pressed() -> void:
-	filter_shop(ItemData.ITEM_TYPE.UPGRADER)
+	if current_tab == UI_TAB.SHOP:
+		deselect_shop_filters()
+		get_node("ShopControl/SortPanel/Panel/HBoxContainer/Button4").add_theme_stylebox_override("normal", sort_button_style)
+		filter_shop(ItemData.ITEM_TYPE.UPGRADER)
+	elif current_tab == UI_TAB.INVENTORY:
+		deselect_inv_filters()
+		get_node("InventoryControl/SortPanel/Panel/HBoxContainer/Button4").add_theme_stylebox_override("normal", sort_button_style)
+		filter_inventory(ItemData.ITEM_TYPE.UPGRADER)
 
 func _on_button_3_pressed() -> void:
-	filter_shop(ItemData.ITEM_TYPE.FURNACE)
+	if current_tab == UI_TAB.SHOP:
+		deselect_shop_filters()
+		get_node("ShopControl/SortPanel/Panel/HBoxContainer/Button3").add_theme_stylebox_override("normal", sort_button_style)
+		filter_shop(ItemData.ITEM_TYPE.FURNACE)
+	elif current_tab == UI_TAB.INVENTORY:
+		deselect_inv_filters()
+		get_node("InventoryControl/SortPanel/Panel/HBoxContainer/Button3").add_theme_stylebox_override("normal", sort_button_style)
+		filter_inventory(ItemData.ITEM_TYPE.FURNACE)
 
 func _on_button_2_pressed() -> void:
-	filter_shop(ItemData.ITEM_TYPE.CONVEYOR)
+	if current_tab == UI_TAB.SHOP:
+		deselect_shop_filters()
+		get_node("ShopControl/SortPanel/Panel/HBoxContainer/Button2").add_theme_stylebox_override("normal", sort_button_style)
+		filter_shop(ItemData.ITEM_TYPE.CONVEYOR)
+	elif current_tab == UI_TAB.INVENTORY:
+		deselect_inv_filters()
+		get_node("InventoryControl/SortPanel/Panel/HBoxContainer/Button2").add_theme_stylebox_override("normal", sort_button_style)
+		filter_inventory(ItemData.ITEM_TYPE.CONVEYOR)
 
 func _on_button_pressed() -> void:
-	filter_shop(ItemData.ITEM_TYPE.DROPPER)
+	if current_tab == UI_TAB.SHOP:
+		deselect_shop_filters()
+		get_node("ShopControl/SortPanel/Panel/HBoxContainer/Button").add_theme_stylebox_override("normal", sort_button_style)
+		filter_shop(ItemData.ITEM_TYPE.DROPPER)
+	elif current_tab == UI_TAB.INVENTORY:
+		deselect_inv_filters()
+		get_node("InventoryControl/SortPanel/Panel/HBoxContainer/Button").add_theme_stylebox_override("normal", sort_button_style)
+		filter_inventory(ItemData.ITEM_TYPE.DROPPER)
+
+func deselect_shop_filters() -> void:
+	for button in get_node("ShopControl/SortPanel/Panel/HBoxContainer").get_children():
+		if button is Button:
+			button.add_theme_stylebox_override("normal", sort_button_style_empty)
+
+func deselect_inv_filters() -> void:
+	for button in get_node("InventoryControl/SortPanel/Panel/HBoxContainer").get_children():
+		if button is Button:
+			button.add_theme_stylebox_override("normal", sort_button_style_empty)
 
 func _on_cancel_pressed() -> void:
 	buy_panel.visible = false

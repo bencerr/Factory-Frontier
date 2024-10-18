@@ -5,6 +5,12 @@ var items: Dictionary = {}
 const grid_size: int = 16
 var item_id_counter: int = 0
 
+func round_place(num,places):
+	return (round(num*pow(10,places))/pow(10,places))
+
+func float_to_string(n: float) -> String:
+	return str(round_place(n, 2))
+
 func dir_contents(path):
 	var scene_loads = []	
 

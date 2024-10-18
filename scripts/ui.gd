@@ -94,7 +94,7 @@ func _ready() -> void:
 	load_shop()
 
 func _on_money_change(_value: float) -> void:
-	money_label.text = "$" + str(Player.data.money)
+	money_label.text = "$" + GameData.float_to_string(Player.data.money)
 
 func _on_delete_button_pressed() -> void:
 	if Player.input_handler.current_input_type == InputHandler.INPUT_TYPE.DELETE:

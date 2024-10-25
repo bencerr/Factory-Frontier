@@ -44,6 +44,9 @@ func load_items() -> void:
 			items[itm.item_data.id] = itm
 			var r: int = (itm.item_data.id / 10)
 			var c: int = (itm.item_data.id % 10) 
+			print_debug(itm.item_data.item_name)
+			itm.item_data.icon = AtlasTexture.new()
+			itm.item_data.icon.atlas = load("res://sprites/tilesets/icons.png")
 			itm.item_data.icon.region = Rect2(c * grid_size, r * grid_size, grid_size, grid_size)
 
 func _ready() -> void:

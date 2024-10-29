@@ -11,9 +11,12 @@ func _physics_process(_delta: float) -> void:
 	if not detecting:
 		return
 	var areas = get_overlapping_areas()
-	for area in areas:
-		if area.can_recieve_item():
-			#print(self.get_parent().name + " -> " + area.name)
-			belt_detected.emit(area)
-			detecting = false
-			break
+
+	areas = areas.filter(func(area: Area2D): 
+		return area != get_parent()
+	)
+
+	if len(areas) == 1:
+		var area: Area2D = areas[0]
+		belt_detected.emit(area)
+		detecting = false

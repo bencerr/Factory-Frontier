@@ -13,7 +13,7 @@ func _ready() -> void:
 	$AnimatedSprite2D.set_frame_and_progress(current_frame, current_progress)
 
 func can_recieve_item() -> bool:
-	return item_holder.get_child_count() == 0
+	return true
 
 func recieve_item(item: Node2D) -> void:
 	item_holder.recieve_item(item)

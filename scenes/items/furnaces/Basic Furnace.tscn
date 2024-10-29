@@ -1,23 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://dmx2kmvei158c"]
+[gd_scene load_steps=14 format=3 uid="uid://dmx2kmvei158c"]
 
 [ext_resource type="Script" path="res://scripts/furnace.gd" id="1_h884u"]
-[ext_resource type="Texture2D" uid="uid://0p2yiuo1np6" path="res://sprites/tilesets/icons.png" id="2_8w4t6"]
 [ext_resource type="Script" path="res://scripts/item_data.gd" id="3_gx5mh"]
 [ext_resource type="PackedScene" uid="uid://kaam8tiwss0t" path="res://scenes/ore_value_ui.tscn" id="4_fay8k"]
 [ext_resource type="Texture2D" uid="uid://b3us48fbw44gk" path="res://sprites/tilesets/furnaces.png" id="5_ynl01"]
 [ext_resource type="Script" path="res://scripts/item_holder.gd" id="6_1op3p"]
 [ext_resource type="AudioStream" uid="uid://c604nxr88w2w7" path="res://sfx/stop-13692.mp3" id="7_igioc"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_krq1y"]
-atlas = ExtResource("2_8w4t6")
-region = Rect2(32, 2.08165e-12, 16, 16)
-
 [sub_resource type="Resource" id="Resource_a8nwt"]
 script = ExtResource("3_gx5mh")
 item_name = "Basic Furnace"
 item_type = 3
-icon = SubResource("AtlasTexture_krq1y")
 id = 2
+price = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unhhq"]
 size = Vector2(16, 16)

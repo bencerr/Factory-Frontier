@@ -1,27 +1,26 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmycjqhu1edix"]
+[gd_scene load_steps=10 format=3 uid="uid://dmycjqhu1edix"]
 
 [ext_resource type="Script" path="res://scripts/dropper.gd" id="1_4xi7k"]
 [ext_resource type="PackedScene" uid="uid://bkk102pmxbpfy" path="res://scenes/items/ores/ore3.tscn" id="2_e04f6"]
-[ext_resource type="Texture2D" uid="uid://0p2yiuo1np6" path="res://sprites/tilesets/icons.png" id="3_i8eql"]
 [ext_resource type="Script" path="res://scripts/item_data.gd" id="4_ii26g"]
 [ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="5_at7u5"]
 [ext_resource type="Texture2D" uid="uid://c01w26c34fqq2" path="res://sprites/tilesets/Hana Caraka Cozy Island - Free/shadow.png" id="6_nfwuq"]
 [ext_resource type="Texture2D" uid="uid://x170ht5e5l05" path="res://sprites/tilesets/droppers.png" id="7_186ks"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fu1pb"]
-atlas = ExtResource("3_i8eql")
-region = Rect2(16, 2.08165e-12, 16, 16)
-
 [sub_resource type="Resource" id="Resource_eqqyj"]
 script = ExtResource("4_ii26g")
 item_name = "Aquatic Dropper"
 item_type = 0
-icon = SubResource("AtlasTexture_fu1pb")
 id = 9
+price = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_12nm7"]
 atlas = ExtResource("7_186ks")
 region = Rect2(32, 2.08165e-12, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrytp"]
+atlas = ExtResource("7_186ks")
+region = Rect2(32, 16, 16, 16)
 
 [node name="Aquatic Dropper" type="Node2D"]
 script = ExtResource("1_4xi7k")
@@ -42,7 +41,13 @@ scale = Vector2(0.1875, 0.1875)
 texture = ExtResource("6_nfwuq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-16, 0)
+rotation = -1.57079
 texture = SubResource("AtlasTexture_12nm7")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+rotation = -1.57079
+texture = SubResource("AtlasTexture_vrytp")
 
 [node name="Hold" type="Node2D" parent="."]
 position = Vector2(8, 0)

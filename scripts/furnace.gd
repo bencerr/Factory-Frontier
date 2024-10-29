@@ -25,7 +25,7 @@ func process_item(ore: Ore) -> void:
 	money_vfx(sell_value)
 	ore.queue_free()
 
-func can_recieve_item():
+func can_recieve_item() -> bool:
 	return true
 
 func recieve_item(ore: Ore) -> void:

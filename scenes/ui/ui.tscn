@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://5qesdudrl5ii"]
+[gd_scene load_steps=39 format=3 uid="uid://5qesdudrl5ii"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_hq2yj"]
 [ext_resource type="Texture2D" uid="uid://3hytavl1qmkd" path="res://sprites/store.png" id="1_lyyx3"]
@@ -17,6 +17,16 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f08t1"]
 bg_color = Color(0.129412, 0.172549, 0.203922, 1)
+shadow_color = Color(0.172549, 0.188235, 0.227451, 0.203922)
+shadow_size = 2
+shadow_offset = Vector2(2.08165e-12, -1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26qke"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 shadow_color = Color(0.172549, 0.188235, 0.227451, 0.203922)
 shadow_size = 2
 shadow_offset = Vector2(2.08165e-12, -1)
@@ -151,6 +161,19 @@ texture_normal = ExtResource("1_lyyx3")
 ignore_texture_size = true
 stretch_mode = 5
 
+[node name="Panel" type="Panel" parent="TabControl/HBoxContainer/ShopButton"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 106.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
+
 [node name="InventoryButton" type="TextureButton" parent="TabControl/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
@@ -160,6 +183,19 @@ texture_normal = ExtResource("2_862wk")
 ignore_texture_size = true
 stretch_mode = 5
 
+[node name="Panel" type="Panel" parent="TabControl/HBoxContainer/InventoryButton"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 106.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
+
 [node name="DeleteButton" type="TextureButton" parent="TabControl/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
@@ -168,6 +204,19 @@ size_flags_vertical = 4
 texture_normal = ExtResource("4_50lk6")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="TabControl/HBoxContainer/DeleteButton"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 106.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
 
 [node name="TabControl2" type="Control" parent="."]
 layout_mode = 1
@@ -247,7 +296,8 @@ layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="InventoryControl/MarginContainer/ScrollContainer"]
 layout_mode = 2
-columns = 7
+theme_override_constants/h_separation = 10
+columns = 4
 
 [node name="SortPanel" type="Panel" parent="InventoryControl"]
 layout_mode = 1
@@ -387,7 +437,9 @@ layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="ShopControl/Panel3/MarginContainer/ScrollContainer"]
 layout_mode = 2
-columns = 7
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 10
+columns = 4
 
 [node name="BuyPanel" type="Panel" parent="ShopControl"]
 visible = false

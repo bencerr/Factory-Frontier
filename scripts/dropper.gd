@@ -3,6 +3,18 @@ class_name Dropper
 
 @export var sprite: Resource
 @export var item_data: ItemData
+var drop_tween: Tween
+
+func drop_vfx() -> void:
+	if drop_tween:
+		drop_tween.kill()
+	drop_tween = create_tween()
+
+	var orginal_scale: Vector2 = self.scale
+	drop_tween.tween_property(self, "scale", Vector2(.8, .8), .18)
+	drop_tween.tween_property(self, "scale", orginal_scale, .2)
+	
+	drop_tween.play()
 
 func _on_timer_timeout() -> void:
 	$Detector.detect()
@@ -13,4 +25,5 @@ func _on_detector_belt_detected(destination: Area2D) -> void:
 	drop_item.get_node("Sprite2D").rotation = randf_range(0.0, PI*2)
 	$Hold.add_child(drop_item)
 	destination.recieve_item(drop_item)
+	drop_vfx()
 	$Timer.start()

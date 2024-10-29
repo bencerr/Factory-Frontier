@@ -8,6 +8,7 @@ func update() -> void:
 	var info: PlayerItemInfo = Player.data.inventory[item_id]
 	$TextureRect.texture = data.icon
 	$QuantityLabel.text = str(info.quantity)
+	$ItemName.text = data.item_name
 	if info.quantity <= 0:
 		visible = false
 	else:

@@ -21,6 +21,7 @@ var shop_item_id: int = -1
 var current_tab: UI_TAB = UI_TAB.NONE
 var sort_button_style: Resource
 var sort_button_style_empty: Resource
+var prev_selected_tab_panel: Panel
 
 func _on_input_type_changed(input_typ: InputHandler.INPUT_TYPE) -> void:
 	match input_typ:
@@ -63,6 +64,10 @@ func switch_tab(tab: UI_TAB) -> void:
 		current_tab = UI_TAB.NONE
 	else:
 		current_tab = tab
+
+	get_node("TabControl/HBoxContainer/InventoryButton/Panel").visible = false
+	get_node("TabControl/HBoxContainer/ShopButton/Panel").visible = false
+	get_node("TabControl/HBoxContainer/DeleteButton/Panel").visible = false
 	
 	match current_tab:
 		UI_TAB.NONE:
@@ -72,16 +77,27 @@ func switch_tab(tab: UI_TAB) -> void:
 			shop_panel.visible = true
 			inv_panel.visible = false
 			input_handler.disable_placing()
+			get_node("TabControl/HBoxContainer/ShopButton/Panel").visible = true
 		UI_TAB.INVENTORY:
 			shop_panel.visible = false
 			inv_panel.visible = true
 			input_handler.disable_placing()
+			get_node("TabControl/HBoxContainer/InventoryButton/Panel").visible = true
 
 func _on_inventory_button_pressed() -> void:
 	switch_tab(UI_TAB.INVENTORY)
 
 func _on_shop_button_pressed() -> void:
 	switch_tab(UI_TAB.SHOP)
+
+func _on_delete_button_pressed() -> void:
+	if Player.input_handler.current_input_type == InputHandler.INPUT_TYPE.DELETE:
+		input_handler.disable_deleting()
+	else:
+		input_handler.enable_deleting()
+		placement_control.visible = false
+		switch_tab(UI_TAB.NONE)
+		get_node("TabControl/HBoxContainer/DeleteButton/Panel").visible = true
 
 func _ready() -> void:
 	sort_button_style = load("res://resources/sort_button_selected.tres")
@@ -92,17 +108,13 @@ func _ready() -> void:
 	shop_selected_item_changed.connect(_on_shop_selected_item_changed)
 	_on_money_change(0)
 	load_shop()
+	filter_shop(ItemData.ITEM_TYPE.DROPPER)
+	get_node("ShopControl/SortPanel/Panel/HBoxContainer/Button").add_theme_stylebox_override("normal", sort_button_style)
+	filter_inventory(ItemData.ITEM_TYPE.DROPPER)
+	get_node("InventoryControl/SortPanel/Panel/HBoxContainer/Button").add_theme_stylebox_override("normal", sort_button_style)
 
 func _on_money_change(_value: float) -> void:
 	money_label.text = "$" + GameData.float_to_string(Player.data.money)
-
-func _on_delete_button_pressed() -> void:
-	if Player.input_handler.current_input_type == InputHandler.INPUT_TYPE.DELETE:
-		input_handler.disable_deleting()
-	else:
-		input_handler.enable_deleting()
-		placement_control.visible = false
-		switch_tab(UI_TAB.NONE)
 
 func _on_button_4_pressed() -> void:
 	if current_tab == UI_TAB.SHOP:

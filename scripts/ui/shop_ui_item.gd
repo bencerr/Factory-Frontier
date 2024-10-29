@@ -10,9 +10,11 @@ func _ready() -> void:
 	Player.ui.shop_selected_item_changed.connect(_on_shop_changed)
 	$TextureRect.texture = data.icon
 	$Price.text = "$" + str(data.price)
+	$ItemName.text = str(data.item_name)
 	default_style = $Panel.get_theme_stylebox("panel").duplicate()
 	selected_style = $Panel.get_theme_stylebox("panel").duplicate()
 	selected_style.bg_color = selected_style.bg_color.lightened(.2)
+	
 
 func _on_shop_changed(id: int) -> void:
 	if id != item_id:

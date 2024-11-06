@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b8ssmqgnutnge" path="res://sprites/tilesets/ores.png" id="2_dulf2"]
 
 [node name="Ore" type="Node2D"]
-top_level = true
+z_index = 2
 script = ExtResource("1_rbh5c")
 value = 3.0
 

@@ -41,12 +41,8 @@ func load_items() -> void:
 	for dir in dirs:
 		for res: Resource in dir_contents(dir):
 			var itm: Node = res.instantiate()
+			itm.item_data.id = hash(itm.item_data.item_name)
 			items[itm.item_data.id] = itm
-			var r: int = (itm.item_data.id / 10)
-			var c: int = (itm.item_data.id % 10) 
-			itm.item_data.icon = AtlasTexture.new()
-			itm.item_data.icon.atlas = load("res://sprites/tilesets/icons.png")
-			itm.item_data.icon.region = Rect2(c * grid_size, r * grid_size, grid_size, grid_size)
 
 func _ready() -> void:
 	load_items()

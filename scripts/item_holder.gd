@@ -18,6 +18,6 @@ func hold_item(ore: Ore) -> void:
 func _physics_process(delta: float) -> void:
 	for item in get_children():
 		if item is Ore:
-			item.position = item.global_position.move_toward(global_position, speed * delta)
+			item.global_position = item.global_position.move_toward(global_position, speed * delta)
 			if item.global_position.distance_to(global_position) < 1.0:
 				hold_item(item)

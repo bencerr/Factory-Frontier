@@ -9,9 +9,8 @@
 
 [sub_resource type="Resource" id="Resource_eqqyj"]
 script = ExtResource("3_x1y4a")
-item_name = "Basic Dropper"
+item_name = "Dusty Dropper"
 item_type = 0
-id = 8
 price = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1kd5r"]

@@ -20,8 +20,7 @@ font = ExtResource("3_s3pro")
 font_size = 18
 font_color = Color(0.956863, 0.968627, 0.976471, 1)
 shadow_size = 2
-shadow_color = Color(0.298039, 0.333333, 0.388235, 1)
-shadow_offset = Vector2(2.08165e-12, 2.08165e-12)
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control"]
 custom_minimum_size = Vector2(165, 165)
@@ -37,14 +36,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_y4h1l")
-
-[node name="TextureButton" type="TextureButton" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="QuantityLabel" type="Label" parent="."]
 layout_mode = 1
@@ -86,9 +77,17 @@ offset_top = 5.0
 offset_right = 77.5
 offset_bottom = 80.0
 grow_horizontal = 2
-text = "really long item name for testing purposes"
+text = "name"
 label_settings = SubResource("LabelSettings_fg5bk")
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

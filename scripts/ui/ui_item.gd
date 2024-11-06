@@ -9,7 +9,7 @@ func update() -> void:
 	$TextureRect.texture = data.icon
 	$QuantityLabel.text = str(info.quantity)
 	$ItemName.text = data.item_name
-	if info.quantity <= 0:
+	if info.quantity <= 0 or Player.ui.current_tab != data.item_type:
 		visible = false
 	else:
 		visible = true

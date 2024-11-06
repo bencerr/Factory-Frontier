@@ -68,7 +68,7 @@ func switch_tab(tab: UI_TAB) -> void:
 	get_node("TabControl/HBoxContainer/InventoryButton/Panel").visible = false
 	get_node("TabControl/HBoxContainer/ShopButton/Panel").visible = false
 	get_node("TabControl/HBoxContainer/DeleteButton/Panel").visible = false
-	
+
 	match current_tab:
 		UI_TAB.NONE:
 			shop_panel.visible = false

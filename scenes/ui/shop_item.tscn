@@ -31,8 +31,8 @@ font = ExtResource("2_a1c20")
 font_size = 18
 font_color = Color(0.956863, 0.968627, 0.976471, 1)
 shadow_size = 2
-shadow_color = Color(0.298039, 0.333333, 0.388235, 1)
-shadow_offset = Vector2(2.08165e-12, 2.08165e-12)
+shadow_color = Color(0, 0, 0, 0.941176)
+shadow_offset = Vector2(2.08165e-12, 1)
 
 [node name="Control" type="Control"]
 custom_minimum_size = Vector2(165, 165)

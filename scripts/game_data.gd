@@ -22,6 +22,8 @@ func dir_contents(path):
 			if dir.current_is_dir():
 				print("Found directory: " + file_name)
 			else:
+				if (file_name.get_extension() == "remap"):
+					file_name = file_name.replace('.remap', '')
 				if file_name.get_extension() == "tscn":
 					var full_path = path.path_join(file_name)
 					scene_loads.append(load(full_path))

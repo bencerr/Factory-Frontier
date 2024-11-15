@@ -25,6 +25,7 @@ Player="*res://scripts/player.gd"
 
 window/size/viewport_width=720
 window/size/viewport_height=1280
+window/handheld/orientation=6
 
 [input]
 
@@ -45,3 +46,4 @@ move_camera={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

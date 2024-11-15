@@ -1,6 +1,7 @@
 extends Node
 
 const save_path: String = "user://Factory_Frontier.tres"
+var db_client: DatabaseClient
 
 func load_data() -> Resource:
 	if ResourceLoader.exists(save_path):
@@ -18,11 +19,18 @@ func save_data(data) -> void:
 	assert(response == OK)
 
 func _ready() -> void:
+	
 	var data: Resource = load_data()
 	if data is PlayerData:
 		Player.data = data
 	else:
 		print_debug("Error loading data")
+	db_client = DatabaseClient.new()
+	add_child(db_client)
+	for child in (await db_client.get_items()):
+		print(child.item_name)
+		print(child.item_type)
+	
 
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST or what == NOTIFICATION_WM_GO_BACK_REQUEST:

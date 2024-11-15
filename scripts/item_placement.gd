@@ -11,7 +11,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not (event is InputEventMouseButton and event.pressed): return
 	if event.button_index != MOUSE_BUTTON_LEFT: return
 
-	match Player.input_handler.current_input_type:
+	match get_node("/root/Main/InputHandler").current_input_type:
 		InputHandler.INPUT_TYPE.CAMERA:
 			return
 		InputHandler.INPUT_TYPE.PLACEMENT:

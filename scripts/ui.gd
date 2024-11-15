@@ -17,7 +17,7 @@ var shop_item_id: int = -1
 @export var shop_container: Control
 @export var buy_panel: Control
 
-@onready var input_handler: InputHandler = Player.input_handler
+@onready var input_handler: InputHandler = get_node("/root/Main/InputHandler")
 var current_tab: UI_TAB = UI_TAB.NONE
 var sort_button_style: Resource
 var sort_button_style_empty: Resource
@@ -91,7 +91,7 @@ func _on_shop_button_pressed() -> void:
 	switch_tab(UI_TAB.SHOP)
 
 func _on_delete_button_pressed() -> void:
-	if Player.input_handler.current_input_type == InputHandler.INPUT_TYPE.DELETE:
+	if get_node("/root/Main/InputHandler").current_input_type == InputHandler.INPUT_TYPE.DELETE:
 		input_handler.disable_deleting()
 	else:
 		input_handler.enable_deleting()
@@ -102,7 +102,7 @@ func _on_delete_button_pressed() -> void:
 func _ready() -> void:
 	sort_button_style = load("res://resources/sort_button_selected.tres")
 	sort_button_style_empty = load("res://resources/empty_style_box.tres")
-	Player.input_handler.input_type_changed.connect(_on_input_type_changed)
+	get_node("/root/Main/InputHandler").input_type_changed.connect(_on_input_type_changed)
 	refresh_inventory()
 	Player.money_changed.connect(_on_money_change)
 	shop_selected_item_changed.connect(_on_shop_selected_item_changed)

@@ -9,7 +9,7 @@ func update() -> void:
 	$TextureRect.texture = data.icon
 	$QuantityLabel.text = str(info.quantity)
 	$ItemName.text = data.item_name
-	if info.quantity <= 0 or Player.ui.current_tab != data.item_type:
+	if info.quantity <= 0 or get_node("/root/Main/CanvasLayer/UI").current_tab != data.item_type:
 		visible = false
 	else:
 		visible = true
@@ -23,6 +23,6 @@ func _on_inventory_changed(id: int) -> void:
 		update()
 
 func _on_texture_button_pressed() -> void:
-	var input_handler: InputHandler = Player.input_handler
+	var input_handler: InputHandler = get_node("/root/Main/InputHandler")
 	input_handler.enable_placing(item_id)
-	Player.ui.switch_tab(Player.ui.UI_TAB.NONE)
+	get_node("/root/Main/CanvasLayer/UI").switch_tab(get_node("/root/Main/CanvasLayer/UI").UI_TAB.NONE)

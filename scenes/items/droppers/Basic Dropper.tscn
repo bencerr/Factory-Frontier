@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cpu2u01x5y037" path="res://scenes/items/ores/ore1.tscn" id="2_eenqf"]
 [ext_resource type="Script" path="res://scripts/item_data.gd" id="3_d3kvt"]
 [ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="4_l6ej3"]
-[ext_resource type="Texture2D" uid="uid://c01w26c34fqq2" path="res://sprites/tilesets/Hana Caraka Cozy Island - Free/shadow.png" id="5_vv4l3"]
+[ext_resource type="Texture2D" uid="uid://c01w26c34fqq2" path="res://sprites/tilesets/Hana Caraka Cozy Island - Free/shadow-circle.png" id="5_vv4l3"]
 [ext_resource type="Texture2D" uid="uid://x170ht5e5l05" path="res://sprites/tilesets/droppers.png" id="6_26tdf"]
 
 [sub_resource type="Resource" id="Resource_eqqyj"]

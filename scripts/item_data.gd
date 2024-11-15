@@ -4,8 +4,8 @@ class_name ItemData
 enum ITEM_TYPE {
 	DROPPER,
 	CONVEYOR,
-    UPGRADER,
-    FURNACE
+	UPGRADER,
+	FURNACE
 }
 
 var id: int

@@ -7,7 +7,7 @@ var selected_style: StyleBoxFlat
 
 func _ready() -> void:
 	var data: ItemData = GameData.items[item_id].item_data
-	Player.ui.shop_selected_item_changed.connect(_on_shop_changed)
+	get_node("/root/Main/CanvasLayer/UI").shop_selected_item_changed.connect(_on_shop_changed)
 	$TextureRect.texture = data.icon
 	$Price.text = "$" + str(data.price)
 	$ItemName.text = str(data.item_name)
@@ -23,4 +23,4 @@ func _on_shop_changed(id: int) -> void:
 		$Panel.add_theme_stylebox_override("panel", selected_style)
 
 func _on_texture_button_pressed() -> void:
-	Player.ui.shop_selected_item_changed.emit(item_id)
+	get_node("/root/Main/CanvasLayer/UI").shop_selected_item_changed.emit(item_id)

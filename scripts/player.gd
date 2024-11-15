@@ -2,10 +2,6 @@ extends Node
 signal money_changed(change: float)
 signal inventory_changed(id: int)
 
-@onready var input_handler: InputHandler = get_node("/root/Main/InputHandler")
-@onready var item_placement: ItemPlacement = get_node("/root/Main/InputHandler/ItemPlacement")
-@onready var ui: MainInterface = get_node("/root/Main/CanvasLayer/UI")
-
 var data: PlayerData
 var item_rotation: float = 0;
 

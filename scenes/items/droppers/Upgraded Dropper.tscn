@@ -1,29 +1,29 @@
 [gd_scene load_steps=10 format=3 uid="uid://dv2mf36ft8y6n"]
 
-[ext_resource type="Script" path="res://scripts/dropper.gd" id="1_8c14v"]
-[ext_resource type="PackedScene" uid="uid://lcdjmu8lhhlr" path="res://scenes/items/ores/ore2.tscn" id="2_k18eh"]
-[ext_resource type="Script" path="res://scripts/item_data.gd" id="3_x1y4a"]
-[ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="4_uc02c"]
-[ext_resource type="Texture2D" uid="uid://c01w26c34fqq2" path="res://sprites/tilesets/Hana Caraka Cozy Island - Free/shadow.png" id="5_1oglf"]
-[ext_resource type="Texture2D" uid="uid://x170ht5e5l05" path="res://sprites/tilesets/droppers.png" id="6_riblx"]
+[ext_resource type="Script" path="res://scripts/dropper.gd" id="1_2tk3s"]
+[ext_resource type="PackedScene" uid="uid://lcdjmu8lhhlr" path="res://scenes/items/ores/ore2.tscn" id="2_u828g"]
+[ext_resource type="Script" path="res://scripts/item_data.gd" id="3_3s8s0"]
+[ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="4_5poqu"]
+[ext_resource type="Texture2D" uid="uid://c01w26c34fqq2" path="res://sprites/tilesets/Hana Caraka Cozy Island - Free/shadow-circle.png" id="5_iokjy"]
+[ext_resource type="Texture2D" uid="uid://x170ht5e5l05" path="res://sprites/tilesets/droppers.png" id="6_u5syb"]
 
 [sub_resource type="Resource" id="Resource_eqqyj"]
-script = ExtResource("3_x1y4a")
-item_name = "Dusty Dropper"
+script = ExtResource("3_3s8s0")
+item_name = "Upgraded Dropper"
 item_type = 0
 price = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1kd5r"]
-atlas = ExtResource("6_riblx")
+atlas = ExtResource("6_u5syb")
 region = Rect2(16, 2.08165e-12, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1aaxf"]
-atlas = ExtResource("6_riblx")
+atlas = ExtResource("6_u5syb")
 region = Rect2(16, 16, 16, 16)
 
-[node name="Dusty Dropper" type="Node2D"]
-script = ExtResource("1_8c14v")
-sprite = ExtResource("2_k18eh")
+[node name="Upgraded Dropper" type="Node2D"]
+script = ExtResource("1_2tk3s")
+sprite = ExtResource("2_u828g")
 item_data = SubResource("Resource_eqqyj")
 
 [node name="Timer" type="Timer" parent="."]
@@ -31,13 +31,13 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
-[node name="Detector" parent="." instance=ExtResource("4_uc02c")]
+[node name="Detector" parent="." instance=ExtResource("4_5poqu")]
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.431373)
 position = Vector2(1, -1)
 scale = Vector2(0.1875, 0.1875)
-texture = ExtResource("5_1oglf")
+texture = ExtResource("5_iokjy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-16, 0)

@@ -16,7 +16,7 @@ var moving_camera: bool
 
 func _on_item_placed(item: PlayerItemInfo) -> void:
 	if item.quantity <= 0:
-		Player.ui.switch_tab(Player.ui.UI_TAB.INVENTORY)
+		get_node("/root/Main/CanvasLayer/UI").switch_tab(get_node("/root/Main/CanvasLayer/UI").UI_TAB.INVENTORY)
 		disable_placing()
 
 func enable_deleting() -> void:

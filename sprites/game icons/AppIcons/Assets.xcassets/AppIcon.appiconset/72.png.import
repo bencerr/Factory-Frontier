@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c01w26c34fqq2"
-path="res://.godot/imported/shadow.png-e8f3c9f32fce85f81a1a72137739b700.ctex"
+uid="uid://crh2lnvks6o5c"
+path="res://.godot/imported/72.png-32efe002c1ea690b72f21f95a33c4e29.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/tilesets/Hana Caraka Cozy Island - Free/shadow.png"
-dest_files=["res://.godot/imported/shadow.png-e8f3c9f32fce85f81a1a72137739b700.ctex"]
+source_file="res://sprites/game icons/AppIcons/Assets.xcassets/AppIcon.appiconset/72.png"
+dest_files=["res://.godot/imported/72.png-32efe002c1ea690b72f21f95a33c4e29.ctex"]
 
 [params]
 

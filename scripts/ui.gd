@@ -22,6 +22,7 @@ var current_tab: UI_TAB = UI_TAB.NONE
 var sort_button_style: Resource
 var sort_button_style_empty: Resource
 var prev_selected_tab_panel: Panel
+var icon_viewport_node: Node
 
 func _on_input_type_changed(input_typ: InputHandler.INPUT_TYPE) -> void:
 	match input_typ:
@@ -172,7 +173,12 @@ func _on_cancel_pressed() -> void:
 func _on_shop_selected_item_changed(id: int) -> void:
 	shop_item_id = id
 	var item_data: ItemData = GameData.items[id].item_data
-	buy_panel.get_node("MarginContainer/Panel/TextureRect").texture = item_data.icon
+	if icon_viewport_node:
+		icon_viewport_node.queue_free()
+	icon_viewport_node = GameData.items[id].duplicate()
+	icon_viewport_node.position = Vector2(16,16)
+	icon_viewport_node = GameData.strip_item_node(icon_viewport_node)
+	buy_panel.get_node("MarginContainer/Panel/TextureRect/SubViewport").add_child(icon_viewport_node)
 	buy_panel.get_node("MarginContainer/Panel/VBoxContainer/ItemName").text = item_data.item_name
 	buy_panel.get_node("MarginContainer/Panel/VBoxContainer/Price").text = "$" + str(item_data.price)
 	buy_panel.visible = true

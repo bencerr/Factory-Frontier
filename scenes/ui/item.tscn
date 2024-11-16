@@ -1,29 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://bx4o11nn7mvlv"]
+[gd_scene load_steps=7 format=3 uid="uid://bx4o11nn7mvlv"]
 
 [ext_resource type="Script" path="res://scripts/ui/ui_item.gd" id="1_adnxo"]
-[ext_resource type="Texture2D" uid="uid://dsvowh2gxsb40" path="res://sprites/tilesets/conveyor.png" id="1_qbv7g"]
 [ext_resource type="StyleBox" uid="uid://bvvrmv7kheqhx" path="res://resources/ui_item_panel.tres" id="2_y4h1l"]
 [ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="3_s3pro"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_i33wm"]
+viewport_path = NodePath("TextureRect/SubViewport")
+
 [sub_resource type="LabelSettings" id="LabelSettings_6h1s6"]
 font = ExtResource("3_s3pro")
-font_size = 18
+font_size = 32
 shadow_color = Color(0, 0, 0, 0.443137)
 shadow_offset = Vector2(2.08165e-12, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rookt"]
-atlas = ExtResource("1_qbv7g")
-region = Rect2(130, 2.08165e-12, 16, 16)
-
 [sub_resource type="LabelSettings" id="LabelSettings_fg5bk"]
 font = ExtResource("3_s3pro")
-font_size = 18
+font_size = 32
 font_color = Color(0.956863, 0.968627, 0.976471, 1)
-shadow_size = 2
+shadow_size = 5
 shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2.08165e-12, 1)
 
 [node name="Control" type="Control"]
-custom_minimum_size = Vector2(165, 165)
+custom_minimum_size = Vector2(280, 280)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_adnxo")
@@ -37,44 +36,41 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_y4h1l")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_i33wm")
+
+[node name="SubViewport" type="SubViewport" parent="TextureRect"]
+transparent_bg = true
+size = Vector2i(32, 32)
+
 [node name="QuantityLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 3.0
-offset_top = -28.0
-offset_right = 43.0
-offset_bottom = -3.0
+offset_left = -40.0
+offset_top = -39.0
+grow_horizontal = 0
 grow_vertical = 0
 text = "#"
 label_settings = SubResource("LabelSettings_6h1s6")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -52.5
-offset_top = -52.5
-offset_right = 52.5
-offset_bottom = 52.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_rookt")
-expand_mode = 1
-stretch_mode = 4
 
 [node name="ItemName" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -77.5
+offset_left = -139.0
 offset_top = 5.0
-offset_right = 77.5
+offset_right = 139.0
 offset_bottom = 80.0
 grow_horizontal = 2
 text = "name"

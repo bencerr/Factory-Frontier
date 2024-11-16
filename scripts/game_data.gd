@@ -11,6 +11,16 @@ func round_place(num,places):
 func float_to_string(n: float) -> String:
 	return str(round_place(n, 2))
 
+func strip_item_node(node: Node) -> Node:
+	for child in node.get_children():
+		if !(child is Sprite2D or child is AnimatedSprite2D):
+			child.queue_free()
+		else:
+			child.set_script(null)
+	node.set_script(null)
+
+	return node
+
 func dir_contents(path):
 	var scene_loads = []	
 

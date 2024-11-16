@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://5qesdudrl5ii"]
+[gd_scene load_steps=38 format=3 uid="uid://5qesdudrl5ii"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_hq2yj"]
 [ext_resource type="Texture2D" uid="uid://3hytavl1qmkd" path="res://sprites/store.png" id="1_lyyx3"]
@@ -7,8 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://b54wwcpqhhgj1" path="res://sprites/bin.png" id="4_50lk6"]
 [ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="4_ptkkj"]
 [ext_resource type="Script" path="res://scripts/ui/item_placement_control.gd" id="4_ptp1v"]
-[ext_resource type="Texture2D" uid="uid://0p2yiuo1np6" path="res://sprites/tilesets/icons.png" id="5_r4jy6"]
-[ext_resource type="Texture2D" uid="uid://dsvowh2gxsb40" path="res://sprites/tilesets/conveyor.png" id="6_yt7yy"]
 [ext_resource type="StyleBox" uid="uid://1mjmcishic3j" path="res://resources/stylebox_light_corner.tres" id="7_hssru"]
 [ext_resource type="StyleBox" uid="uid://dojw0xp3m5kn2" path="res://resources/empty_style_box.tres" id="8_vdsdl"]
 [ext_resource type="StyleBox" uid="uid://bbexbscjlpdwu" path="res://resources/button_filled.tres" id="8_w3vcj"]
@@ -33,7 +31,7 @@ shadow_offset = Vector2(2.08165e-12, -1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_tvv45"]
 font = ExtResource("4_ptkkj")
-font_size = 32
+font_size = 40
 shadow_size = 0
 shadow_color = Color(0, 0, 0, 0.729412)
 
@@ -71,24 +69,23 @@ shadow_offset = Vector2(2.08165e-12, -1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40pxr"]
 bg_color = Color(0.129412, 0.172549, 0.203922, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_40qg0"]
-atlas = ExtResource("6_yt7yy")
-region = Rect2(130, 2.08165e-12, 16, 16)
+[sub_resource type="ViewportTexture" id="ViewportTexture_fhlyb"]
+viewport_path = NodePath("ShopControl/BuyPanel/MarginContainer/Panel/TextureRect/SubViewport")
 
 [sub_resource type="LabelSettings" id="LabelSettings_dcl5c"]
 font = ExtResource("4_ptkkj")
-font_size = 24
+font_size = 40
 shadow_color = Color(0, 0, 0, 0.443137)
 shadow_offset = Vector2(2.08165e-12, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cdv4q"]
 font = ExtResource("4_ptkkj")
-font_size = 18
+font_size = 32
 shadow_color = Color(0, 0, 0, 0.443137)
 shadow_offset = Vector2(2.08165e-12, 1)
 
@@ -96,13 +93,18 @@ shadow_offset = Vector2(2.08165e-12, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3uxkx"]
 font = ExtResource("4_ptkkj")
-font_size = 26
+font_size = 40
 shadow_color = Color(0, 0, 0, 0.443137)
 shadow_offset = Vector2(2.08165e-12, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8bjoa"]
-atlas = ExtResource("5_r4jy6")
-region = Rect2(2.08165e-12, 2.08165e-12, 16, 16)
+[sub_resource type="LabelSettings" id="LabelSettings_1ctx2"]
+font = ExtResource("4_ptkkj")
+font_size = 32
+shadow_color = Color(0, 0, 0, 0.443137)
+shadow_offset = Vector2(2.08165e-12, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_plwya"]
+viewport_path = NodePath("ItemPlacementControl/ItemImage/SubViewport")
 
 [node name="UI" type="Control" node_paths=PackedStringArray("shop_panel", "inv_panel", "inv_container", "placement_control", "money_label", "shop_container", "buy_panel")]
 layout_mode = 3
@@ -117,7 +119,7 @@ shop_panel = NodePath("ShopControl")
 inv_panel = NodePath("InventoryControl")
 inv_container = NodePath("InventoryControl/MarginContainer/ScrollContainer/GridContainer")
 placement_control = NodePath("ItemPlacementControl")
-money_label = NodePath("TabControl2/MarginContainer/VBoxContainer/MoneyLabel")
+money_label = NodePath("TabControl2/MarginContainer/MoneyLabel")
 shop_container = NodePath("ShopControl/Panel3/MarginContainer/ScrollContainer/GridContainer")
 buy_panel = NodePath("ShopControl/BuyPanel")
 
@@ -141,12 +143,15 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_f08t1")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabControl"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -50.0
-offset_bottom = 50.0
+anchors_preset = -1
+anchor_left = 0.095
+anchor_top = 0.22
+anchor_right = 0.905
+anchor_bottom = 0.723
+offset_left = 0.00999223
+offset_top = 0.0689167
+offset_right = -0.0100385
+offset_bottom = 0.0401204
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 90
@@ -155,8 +160,8 @@ alignment = 1
 [node name="ShopButton" type="TextureButton" parent="TabControl/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 7
+size_flags_vertical = 5
 texture_normal = ExtResource("1_lyyx3")
 ignore_texture_size = true
 stretch_mode = 5
@@ -165,20 +170,21 @@ stretch_mode = 5
 visible = false
 show_behind_parent = true
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_top = 1.165
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 106.0
-offset_bottom = 12.0
+anchor_bottom = 1.217
+offset_top = -0.0128347
+offset_bottom = 0.0311766
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
 
 [node name="InventoryButton" type="TextureButton" parent="TabControl/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 7
+size_flags_vertical = 5
 texture_normal = ExtResource("2_862wk")
 ignore_texture_size = true
 stretch_mode = 5
@@ -187,11 +193,12 @@ stretch_mode = 5
 visible = false
 show_behind_parent = true
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_top = 1.191
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 106.0
-offset_bottom = 12.0
+anchor_bottom = 1.217
+offset_top = -3.99084
+offset_bottom = 0.0311766
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
@@ -199,8 +206,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
 [node name="DeleteButton" type="TextureButton" parent="TabControl/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 7
+size_flags_vertical = 5
 texture_normal = ExtResource("4_50lk6")
 ignore_texture_size = true
 stretch_mode = 5
@@ -209,20 +216,24 @@ stretch_mode = 5
 visible = false
 show_behind_parent = true
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_top = 1.191
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 106.0
-offset_bottom = 12.0
+anchor_bottom = 1.217
+offset_top = -3.99084
+offset_bottom = 0.0311766
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
 
 [node name="TabControl2" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 54.0
+offset_left = 51.0
+offset_top = 129.0
+offset_right = -599.0
+offset_bottom = 233.0
 grow_horizontal = 2
 
 [node name="Panel" type="Panel" parent="TabControl2"]
@@ -241,20 +252,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabControl2/MarginContainer"]
+[node name="MoneyLabel" type="Label" parent="TabControl2/MarginContainer"]
 layout_mode = 2
-
-[node name="MoneyLabel" type="Label" parent="TabControl2/MarginContainer/VBoxContainer"]
-layout_mode = 2
+size_flags_vertical = 1
 text = "$$$$
 "
 label_settings = SubResource("LabelSettings_tvv45")
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InventoryControl" type="Control" parent="."]
@@ -283,7 +291,8 @@ anchors_preset = -1
 anchor_top = 0.148
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 0.0319991
+offset_top = -8.74235
+offset_bottom = -0.232056
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 10
@@ -302,13 +311,10 @@ columns = 4
 [node name="SortPanel" type="Panel" parent="InventoryControl"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.016
 anchor_right = 1.0
-anchor_bottom = 0.116
-offset_top = -7.456
-offset_bottom = 14.944
+anchor_bottom = 0.103
+offset_bottom = 5.96309
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_reswu")
 
 [node name="Panel" type="Panel" parent="InventoryControl/SortPanel"]
@@ -336,7 +342,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_4grdk")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_3ykhp")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_3vi6p")
@@ -350,7 +356,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxTexture_qe84s")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_xq228")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_gnvsm")
@@ -364,7 +370,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxTexture_qe84s")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_xq228")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_gnvsm")
@@ -378,7 +384,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxTexture_qe84s")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_xq228")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_gnvsm")
@@ -395,7 +401,7 @@ anchor_bottom = 0.886
 offset_top = -0.160019
 offset_bottom = -0.0799713
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="ShopControl"]
 layout_mode = 1
@@ -412,19 +418,17 @@ anchors_preset = -1
 anchor_top = 0.116
 anchor_right = 1.0
 anchor_bottom = 0.866
-offset_top = 7.944
-offset_bottom = -11.556
+offset_top = 8.33708
+offset_bottom = 130.913
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_sx7tg")
 
 [node name="MarginContainer" type="MarginContainer" parent="ShopControl/Panel3"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 1.224
-offset_top = 7.0
-offset_bottom = 0.0799682
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 10
@@ -448,8 +452,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -547.0
-offset_bottom = -468.0
+offset_top = -227.232
+offset_bottom = -0.232056
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ngyo2")
@@ -476,28 +480,31 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 13.0
-offset_top = -31.5
-offset_right = 77.0
-offset_bottom = 31.5
+offset_left = 25.0
+offset_top = -73.0
+offset_right = 173.0
+offset_bottom = 73.0
 grow_vertical = 2
 size_flags_horizontal = 0
-texture = SubResource("AtlasTexture_40qg0")
-expand_mode = 1
-stretch_mode = 4
+texture = SubResource("ViewportTexture_fhlyb")
+
+[node name="SubViewport" type="SubViewport" parent="ShopControl/BuyPanel/MarginContainer/Panel/TextureRect"]
+transparent_bg = true
+size = Vector2i(32, 32)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ShopControl/BuyPanel/MarginContainer/Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.117
-anchor_top = 0.081
+anchor_left = 0.15
+anchor_top = 0.084
 anchor_right = 0.619
 anchor_bottom = 0.915
-offset_left = -0.304004
-offset_top = 0.249
-offset_right = 0.271987
-offset_bottom = 0.0349985
+offset_left = -5.10001
+offset_top = -0.396001
+offset_right = -4.84602
+offset_bottom = -0.385005
 grow_vertical = 2
+theme_override_constants/separation = 20
 alignment = 1
 
 [node name="ItemName" type="Label" parent="ShopControl/BuyPanel/MarginContainer/Panel/VBoxContainer"]
@@ -515,14 +522,15 @@ label_settings = SubResource("LabelSettings_cdv4q")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ShopControl/BuyPanel/MarginContainer/Panel"]
 layout_mode = 1
-anchors_preset = 11
+anchors_preset = 6
 anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -265.0
-offset_top = 13.0
-offset_right = -9.0
-offset_bottom = -13.0
+anchor_bottom = 0.5
+offset_left = -469.0
+offset_top = -46.5
+offset_right = -37.0
+offset_bottom = 47.5
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 10
@@ -533,7 +541,7 @@ custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = ExtResource("8_w3vcj")
 theme_override_styles/hover = ExtResource("8_w3vcj")
 theme_override_styles/pressed = ExtResource("9_nd335")
@@ -545,7 +553,7 @@ custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = ExtResource("8_w3vcj")
 theme_override_styles/hover = ExtResource("8_w3vcj")
 theme_override_styles/pressed = ExtResource("9_nd335")
@@ -556,13 +564,10 @@ text = "Cancel
 [node name="SortPanel" type="Panel" parent="ShopControl"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.016
 anchor_right = 1.0
-anchor_bottom = 0.116
-offset_top = -7.456
-offset_bottom = 14.944
+anchor_bottom = 0.109
+offset_bottom = 0.135701
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_reswu")
 
 [node name="Panel" type="Panel" parent="ShopControl/SortPanel"]
@@ -590,7 +595,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8lw0")
 theme_override_styles/hover = ExtResource("8_vdsdl")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_3vi6p")
@@ -604,7 +609,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxTexture_qe84s")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_xq228")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_gnvsm")
@@ -618,7 +623,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxTexture_qe84s")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_xq228")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_gnvsm")
@@ -632,7 +637,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxTexture_qe84s")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_xq228")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_gnvsm")
@@ -640,7 +645,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_88o8p")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_admsm")
 text = "Upgraders"
 
-[node name="ItemPlacementControl" type="Control" parent="." node_paths=PackedStringArray("name_label", "quantity_label", "item_image")]
+[node name="ItemPlacementControl" type="Control" parent="." node_paths=PackedStringArray("name_label", "quantity_label")]
 visible = false
 layout_mode = 1
 anchor_top = 0.822
@@ -653,7 +658,6 @@ grow_vertical = 0
 script = ExtResource("4_ptp1v")
 name_label = NodePath("VBoxContainer/NameLabel")
 quantity_label = NodePath("VBoxContainer/Quantity")
-item_image = NodePath("ItemImage")
 
 [node name="Panel" type="Panel" parent="ItemPlacementControl"]
 layout_mode = 1
@@ -669,10 +673,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 77.0
-offset_top = -35.0
-offset_right = 442.0
-offset_bottom = 35.0
+offset_left = 237.0
+offset_top = -46.416
+offset_right = 824.0
+offset_bottom = 45.584
 grow_vertical = 2
 alignment = 1
 
@@ -684,7 +688,7 @@ label_settings = SubResource("LabelSettings_3uxkx")
 [node name="Quantity" type="Label" parent="ItemPlacementControl/VBoxContainer"]
 layout_mode = 2
 text = "0"
-label_settings = SubResource("LabelSettings_3uxkx")
+label_settings = SubResource("LabelSettings_1ctx2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ItemPlacementControl"]
 layout_mode = 1
@@ -693,10 +697,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -265.0
-offset_top = -30.0
+offset_left = -403.0
+offset_top = -60.416
 offset_right = -15.0
-offset_bottom = 30.0
+offset_bottom = 60.584
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 20
@@ -705,6 +709,7 @@ alignment = 1
 [node name="RotateButton" type="Button" parent="ItemPlacementControl/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = ExtResource("8_w3vcj")
 theme_override_styles/hover = ExtResource("8_w3vcj")
 theme_override_styles/pressed = ExtResource("9_nd335")
@@ -714,6 +719,7 @@ text = "Rotate"
 [node name="ExitButton" type="Button" parent="ItemPlacementControl/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = ExtResource("8_w3vcj")
 theme_override_styles/hover = ExtResource("8_w3vcj")
 theme_override_styles/pressed = ExtResource("9_nd335")
@@ -722,21 +728,20 @@ text = "Exit"
 
 [node name="ItemImage" type="TextureRect" parent="ItemPlacementControl"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -344.0
-offset_top = -27.0
-offset_right = -288.0
-offset_bottom = 29.0
-grow_horizontal = 2
+offset_left = 37.0
+offset_top = -77.3521
+offset_right = 191.0
+offset_bottom = 76.6479
 grow_vertical = 2
 pivot_offset = Vector2(61, 61)
-texture = SubResource("AtlasTexture_8bjoa")
-expand_mode = 1
-stretch_mode = 4
+texture = SubResource("ViewportTexture_plwya")
+
+[node name="SubViewport" type="SubViewport" parent="ItemPlacementControl/ItemImage"]
+transparent_bg = true
+size = Vector2i(32, 32)
 
 [connection signal="pressed" from="TabControl/HBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="TabControl/HBoxContainer/InventoryButton" to="." method="_on_inventory_button_pressed"]

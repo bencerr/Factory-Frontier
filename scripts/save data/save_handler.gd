@@ -18,7 +18,6 @@ func save_data(data) -> void:
 	assert(response == OK)
 
 func _ready() -> void:
-	
 	var data: Resource = load_data()
 	if data is PlayerData:
 		Player.data = data

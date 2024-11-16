@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://buiikly52efer"]
+[gd_scene load_steps=25 format=3 uid="uid://buiikly52efer"]
 
 [ext_resource type="Script" path="res://scripts/conveyor.gd" id="1_dxdki"]
 [ext_resource type="Script" path="res://scripts/item_holder.gd" id="3_6wrjk"]
@@ -6,16 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dsvowh2gxsb40" path="res://sprites/tilesets/conveyor.png" id="4_sboh1"]
 [ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="4_ygy86"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_86vgd"]
-atlas = ExtResource("4_sboh1")
-region = Rect2(32, 2.08165e-12, 16, 16)
-
 [sub_resource type="Resource" id="Resource_x48ks"]
 script = ExtResource("3_d5867")
 item_name = "Basic Conveyor"
 item_type = 1
 price = 0.0
-icon = SubResource("AtlasTexture_86vgd")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dd884"]
 atlas = ExtResource("4_sboh1")

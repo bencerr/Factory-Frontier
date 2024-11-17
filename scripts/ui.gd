@@ -23,6 +23,8 @@ var sort_button_style: Resource
 var sort_button_style_empty: Resource
 var prev_selected_tab_panel: Panel
 var icon_viewport_node: Node
+var shop_filter: ItemData.ITEM_TYPE
+var inv_filter: ItemData.ITEM_TYPE
 
 func _on_input_type_changed(input_typ: InputHandler.INPUT_TYPE) -> void:
 	match input_typ:
@@ -47,6 +49,7 @@ func load_shop() -> void:
 		shop_container.add_child(control)
 
 func filter_shop(item_type: ItemData.ITEM_TYPE) -> void:
+	shop_filter = item_type
 	for shop_ui_itm: Shop_UI_Item in shop_container.get_children():
 		if GameData.items[shop_ui_itm.item_id].item_data.item_type == item_type:
 			shop_ui_itm.visible = true
@@ -54,6 +57,7 @@ func filter_shop(item_type: ItemData.ITEM_TYPE) -> void:
 			shop_ui_itm.visible = false
 
 func filter_inventory(item_type: ItemData.ITEM_TYPE) -> void:
+	inv_filter = item_type
 	for ui_item: UI_Item in inv_container.get_children():
 		if GameData.items[ui_item.item_id].item_data.item_type == item_type:
 			ui_item.visible = true

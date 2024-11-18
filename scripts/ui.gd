@@ -177,8 +177,8 @@ func _on_cancel_pressed() -> void:
 func _on_shop_selected_item_changed(id: int) -> void:
 	shop_item_id = id
 	var item_data: ItemData = GameData.items[id].item_data
-	if icon_viewport_node:
-		icon_viewport_node.queue_free()
+	for c in buy_panel.get_node("MarginContainer/Panel/TextureRect/SubViewport").get_children():
+		c.queue_free()
 	icon_viewport_node = GameData.items[id].duplicate()
 	icon_viewport_node.position = Vector2(16,16)
 	icon_viewport_node = GameData.strip_item_node(icon_viewport_node)

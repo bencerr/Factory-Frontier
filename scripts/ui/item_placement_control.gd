@@ -9,6 +9,8 @@ func update() -> void:
 	var item_node: Node2D = GameData.items[get_node("/root/Main/InputHandler/ItemPlacement").inv_index]
 	name_label.text = item_node.item_data.item_name
 	quantity_label.text = str(info.quantity)
+	for c in $ItemImage/SubViewport.get_children():
+		c.queue_free()
 	icon_viewport_node = GameData.items[info.item_id].duplicate()
 	icon_viewport_node = GameData.strip_item_node(icon_viewport_node)
 	icon_viewport_node.position = Vector2(16,16)

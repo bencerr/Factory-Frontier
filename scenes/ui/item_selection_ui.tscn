@@ -1,0 +1,118 @@
+[gd_scene load_steps=7 format=3 uid="uid://h8ceeqmx61i7"]
+
+[ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="1_bcagv"]
+[ext_resource type="Script" path="res://scripts/ui/item_selection_ui.gd" id="1_sqwid"]
+[ext_resource type="Texture2D" uid="uid://mlqgastpkscl" path="res://images/rotate_right_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" id="2_5wfyr"]
+[ext_resource type="Texture2D" uid="uid://14jfiqg58y0w" path="res://images/close_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" id="3_svs8i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6f36b"]
+bg_color = Color(0.129412, 0.172549, 0.203922, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.988235, 0.988235, 0.988235, 1)
+border_blend = true
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+shadow_color = Color(0.172549, 0.188235, 0.227451, 0.203922)
+shadow_size = 2
+shadow_offset = Vector2(2.08165e-12, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hkcv6"]
+font = ExtResource("1_bcagv")
+font_size = 50
+shadow_color = Color(0, 0, 0, 0.443137)
+shadow_offset = Vector2(2.08165e-12, 1)
+
+[node name="ItemSelectionControl" type="Control" node_paths=PackedStringArray("name_label")]
+top_level = true
+z_index = 99
+custom_minimum_size = Vector2(829, 165)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -413.0
+offset_bottom = -2503.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.08, 0.08)
+pivot_offset = Vector2(2.08165e-12, -6.6)
+script = ExtResource("1_sqwid")
+name_label = NodePath("MarginContainer/Control/NameLabel")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6f36b")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.681
+anchor_bottom = 1.0
+offset_top = 66.0
+offset_right = -6.56004
+offset_bottom = -66.0
+grow_vertical = 2
+text = "item_name"
+label_settings = SubResource("LabelSettings_hkcv6")
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -246.0
+offset_top = -91.0
+offset_bottom = 91.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Rotate" type="TextureButton" parent="MarginContainer/Control/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+texture_normal = ExtResource("2_5wfyr")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Close" type="TextureButton" parent="MarginContainer/Control/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+texture_normal = ExtResource("3_svs8i")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="pressed" from="MarginContainer/Control/HBoxContainer/Rotate" to="." method="_on_rotate_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/HBoxContainer/Close" to="." method="_on_close_pressed"]

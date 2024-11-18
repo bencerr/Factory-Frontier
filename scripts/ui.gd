@@ -59,7 +59,10 @@ func filter_shop(item_type: ItemData.ITEM_TYPE) -> void:
 func filter_inventory(item_type: ItemData.ITEM_TYPE) -> void:
 	inv_filter = item_type
 	for ui_item: UI_Item in inv_container.get_children():
-		if GameData.items[ui_item.item_id].item_data.item_type == item_type:
+		var data: ItemData = GameData.items[ui_item.item_id].item_data
+		var info: PlayerItemInfo = Player.data.inventory[ui_item.item_id]
+
+		if data.item_type == item_type and info.quantity > 0:
 			ui_item.visible = true
 		else:
 			ui_item.visible = false
@@ -98,6 +101,7 @@ func _on_shop_button_pressed() -> void:
 func _on_delete_button_pressed() -> void:
 	if get_node("/root/Main/InputHandler").current_input_type == InputHandler.INPUT_TYPE.DELETE:
 		input_handler.disable_deleting()
+		get_node("TabControl/HBoxContainer/DeleteButton/Panel").visible = false
 	else:
 		input_handler.enable_deleting()
 		placement_control.visible = false

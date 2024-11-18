@@ -22,10 +22,10 @@ func _on_item_placed(_item: PlayerItemInfo) -> void:
 func _ready() -> void:
 	get_node("/root/Main/InputHandler/ItemPlacement").item_placed.connect(_on_item_placed)
 
-func _on_rotate_button_pressed() -> void:
-	icon_viewport_node.rotation += deg_to_rad(90)
-	Player.item_rotation = icon_viewport_node.rotation
-
-func _on_exit_button_pressed() -> void:
+func _on_close_pressed() -> void:
 	icon_viewport_node.queue_free()
 	get_node("/root/Main/InputHandler").disable_placing()
+	
+func _on_rotate_pressed() -> void:
+	icon_viewport_node.rotation += deg_to_rad(90)
+	Player.item_rotation = icon_viewport_node.rotation

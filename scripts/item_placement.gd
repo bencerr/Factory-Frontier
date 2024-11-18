@@ -4,8 +4,12 @@ signal item_placed(item: PlayerItemInfo)
 
 @onready var tilemap: TileMap = get_node("/root/Main/TileMap")
 @onready var place_particles_scene = preload("res://scenes/particles/place_particles.tscn")
+@onready var item_selection_ui: Control
 
 var inv_index: int
+
+func _ready() -> void:
+	item_selection_ui = get_node("/root/Main/ItemSelectionControl")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not (event is InputEventMouseButton and event.pressed): return
@@ -13,6 +17,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	match get_node("/root/Main/InputHandler").current_input_type:
 		InputHandler.INPUT_TYPE.CAMERA:
+			var mouse_pos: Vector2 = get_global_mouse_position()
+			var tile_pos: Vector2i = tilemap.local_to_map(tilemap.to_local(mouse_pos))
+			var id: int = Player.get_placed_item_id(tile_pos)
+
+			if (item_selection_ui.visible): item_selection_ui.hide() 
+			if id == -1: return
+
+			item_selection_ui.show_item_info(id, mouse_pos + Vector2(10,0))
 			return
 		InputHandler.INPUT_TYPE.PLACEMENT:
 			var mouse_pos: Vector2 = get_global_mouse_position()

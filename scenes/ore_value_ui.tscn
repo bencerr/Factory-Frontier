@@ -6,7 +6,8 @@
 font = ExtResource("1_dhx6b")
 font_size = 18
 shadow_size = 2
-shadow_color = Color(0, 0, 0, 0.192157)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2.08165e-12, 2)
 
 [node name="Ore Value" type="Control"]
 custom_minimum_size = Vector2(16, 16)

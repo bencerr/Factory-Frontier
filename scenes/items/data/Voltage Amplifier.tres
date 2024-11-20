@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://oh2dxj04bjg"]
+
+[ext_resource type="Script" path="res://scripts/item_data.gd" id="1_64apg"]
+
+[resource]
+script = ExtResource("1_64apg")
+item_name = "Voltage Amplifier"
+item_type = 2
+price = 2500.0

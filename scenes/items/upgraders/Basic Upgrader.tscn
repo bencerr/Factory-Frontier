@@ -1,17 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfdd7hxh05ym"]
+[gd_scene load_steps=11 format=3 uid="uid://dfdd7hxh05ym"]
 
 [ext_resource type="Script" path="res://scripts/upgrader.gd" id="1_rsdcu"]
-[ext_resource type="Script" path="res://scripts/item_data.gd" id="3_6524q"]
+[ext_resource type="Resource" uid="uid://80l7iv4f0bxm" path="res://scenes/items/data/Basic Upgrader.tres" id="2_wejm3"]
 [ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="5_pwdon"]
 [ext_resource type="Script" path="res://scripts/item_holder.gd" id="6_7wmi8"]
 [ext_resource type="Script" path="res://scripts/upgrade_beam_vfx.gd" id="7_h75wx"]
 [ext_resource type="Texture2D" uid="uid://dyqjq6hgr6m4n" path="res://sprites/tilesets/upgraders.png" id="7_mrulo"]
-
-[sub_resource type="Resource" id="Resource_05dkw"]
-script = ExtResource("3_6524q")
-item_name = "Basic Upgrader"
-item_type = 2
-price = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k4ei5"]
 size = Vector2(16, 16)
@@ -35,7 +29,7 @@ gravity_point_center = Vector2(2.08165e-12, -10)
 gravity_direction = Vector2(2.08165e-12, -10)
 gravity = 8.52651e-14
 script = ExtResource("1_rsdcu")
-item_data = SubResource("Resource_05dkw")
+item_data = ExtResource("2_wejm3")
 multiplier = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -13,6 +13,12 @@ var item_placement: ItemPlacement
 var current_input_type: INPUT_TYPE = INPUT_TYPE.CAMERA
 var mouse_origin_pos: Vector2
 var moving_camera: bool
+var positions: Array = [Vector2(), Vector2()]
+
+var min_zoom = 1
+var max_zoom = 20
+var zoom_sensitivity = 10
+var zoom_speed = 0.03
 
 func _on_item_placed(item: PlayerItemInfo) -> void:
 	if item.quantity <= 0:
@@ -40,18 +46,38 @@ func disable_placing() -> void:
 	input_type_changed.emit(current_input_type)
 	$ItemPlacement/GridLines.visible = false	
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action("move_camera") && current_input_type == INPUT_TYPE.CAMERA:
-		if event.is_pressed():
-			mouse_origin_pos = get_global_mouse_position()
-			moving_camera = true
-		else:
-			moving_camera = false
 
-func _process(_delta: float) -> void:
-	if moving_camera:
-		var mouse_delta: Vector2 = get_global_mouse_position() - mouse_origin_pos
-		cam.position = cam.position.lerp(cam.position-mouse_delta, 0.16)
+var events = {}
+var last_drag_distance = 0
+
+
+# func _process(delta):
+# 	if events.size() == 0:
+# 		--cam.position = lerp(cam.position, , target_return_rate)
+
+func _unhandled_input(event):
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			events[event.index] = event
+		else:
+			events.erase(event.index)
+
+	if event is InputEventScreenDrag:
+		events[event.index] = event
+		if events.size() == 1:
+			cam.position = lerp(cam.position, cam.position - event.relative, .16)
+		elif events.size() == 2:
+			var drag_distance = events[0].position.distance_to(events[1].position)
+			if abs(drag_distance - last_drag_distance) > zoom_sensitivity:
+				var new_zoom = 1 + zoom_speed
+
+				if drag_distance < last_drag_distance:
+					new_zoom = (1 - zoom_speed)
+				
+				new_zoom = clamp(cam.zoom.x * new_zoom, min_zoom, max_zoom)
+				cam.zoom = Vector2.ONE * new_zoom
+
+				last_drag_distance = drag_distance
 
 func _ready() -> void:
 	item_placement = $ItemPlacement

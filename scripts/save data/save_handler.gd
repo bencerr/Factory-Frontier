@@ -4,6 +4,7 @@ const save_path: String = "user://Factory_Frontier.tres"
 
 func load_data() -> Resource:
 	if ResourceLoader.exists(save_path):
+		print("found save file")
 		return ResourceLoader.load(save_path, "", ResourceLoader.CACHE_MODE_IGNORE)
 	
 	print("new save file")
@@ -25,6 +26,6 @@ func _ready() -> void:
 		print_debug("Error loading data")
 
 func _notification(what):
-	if what == NOTIFICATION_WM_CLOSE_REQUEST or what == NOTIFICATION_WM_GO_BACK_REQUEST:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST or what == NOTIFICATION_WM_GO_BACK_REQUEST or what == NOTIFICATION_APPLICATION_PAUSED:
 		save_data(Player.data)
 		get_tree().quit()

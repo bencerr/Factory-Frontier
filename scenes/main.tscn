@@ -222,6 +222,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="ItemSelectionControl" parent="." instance=ExtResource("8_k483p")]
+visible = false
 
 [node name="ConveyorAnimationSync" type="AnimatedSprite2D" parent="."]
 visible = false

@@ -24,7 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if (item_selection_ui.visible): item_selection_ui.hide() 
 			if id == -1: return
 
-			item_selection_ui.show_item_info(id, mouse_pos + Vector2(10,0))
+			item_selection_ui.show_item_info(id, mouse_pos)
 			return
 		InputHandler.INPUT_TYPE.PLACEMENT:
 			var mouse_pos: Vector2 = get_global_mouse_position()

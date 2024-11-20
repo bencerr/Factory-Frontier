@@ -1,16 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://buiikly52efer"]
+[gd_scene load_steps=24 format=3 uid="uid://buiikly52efer"]
 
 [ext_resource type="Script" path="res://scripts/conveyor.gd" id="1_dxdki"]
+[ext_resource type="Resource" uid="uid://3li4kolgpbjh" path="res://scenes/items/data/Conveyor.tres" id="2_h1y5k"]
 [ext_resource type="Script" path="res://scripts/item_holder.gd" id="3_6wrjk"]
-[ext_resource type="Script" path="res://scripts/item_data.gd" id="3_d5867"]
 [ext_resource type="Texture2D" uid="uid://dsvowh2gxsb40" path="res://sprites/tilesets/conveyor.png" id="4_sboh1"]
 [ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="4_ygy86"]
-
-[sub_resource type="Resource" id="Resource_x48ks"]
-script = ExtResource("3_d5867")
-item_name = "Basic Conveyor"
-item_type = 1
-price = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dd884"]
 atlas = ExtResource("4_sboh1")
@@ -142,7 +136,7 @@ gravity_point_center = Vector2(2.08165e-12, -10)
 gravity_direction = Vector2(2.08165e-12, -10)
 gravity = 8.52651e-14
 script = ExtResource("1_dxdki")
-item_data = SubResource("Resource_x48ks")
+item_data = ExtResource("2_h1y5k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7mg20")

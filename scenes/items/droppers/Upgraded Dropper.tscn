@@ -1,17 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dv2mf36ft8y6n"]
+[gd_scene load_steps=9 format=3 uid="uid://dv2mf36ft8y6n"]
 
 [ext_resource type="Script" path="res://scripts/dropper.gd" id="1_2tk3s"]
 [ext_resource type="PackedScene" uid="uid://lcdjmu8lhhlr" path="res://scenes/items/ores/ore2.tscn" id="2_u828g"]
-[ext_resource type="Script" path="res://scripts/item_data.gd" id="3_3s8s0"]
+[ext_resource type="Resource" uid="uid://drvnw1hc8s64" path="res://scenes/items/data/Upgraded Dropper.tres" id="3_tysg1"]
 [ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="4_5poqu"]
 [ext_resource type="Texture2D" uid="uid://c01w26c34fqq2" path="res://sprites/tilesets/Hana Caraka Cozy Island - Free/shadow-circle.png" id="5_iokjy"]
 [ext_resource type="Texture2D" uid="uid://x170ht5e5l05" path="res://sprites/tilesets/droppers.png" id="6_u5syb"]
-
-[sub_resource type="Resource" id="Resource_eqqyj"]
-script = ExtResource("3_3s8s0")
-item_name = "Upgraded Dropper"
-item_type = 0
-price = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1kd5r"]
 atlas = ExtResource("6_u5syb")
@@ -24,7 +18,7 @@ region = Rect2(16, 16, 16, 16)
 [node name="Upgraded Dropper" type="Node2D"]
 script = ExtResource("1_2tk3s")
 sprite = ExtResource("2_u828g")
-item_data = SubResource("Resource_eqqyj")
+item_data = ExtResource("3_tysg1")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0

@@ -1,0 +1,29 @@
+{
+  "hidden_columns": {
+    "res://scenes/items/conveyors/": {
+      "resource_local_to_scene": true,
+      "resource_name": true
+    },
+    "res://scenes/items/conveyors/conveyor.tscn": {
+      "resource_local_to_scene": true,
+      "resource_name": true
+    },
+    "res://scenes/items/data/": {
+      "resource_local_to_scene": true,
+      "resource_name": true
+    },
+    "res://scenes/items/droppers/": {
+      "resource_local_to_scene": true,
+      "resource_name": true
+    }
+  },
+  "recent_paths": [
+    "res://scenes/items/conveyors/conveyor.tscn",
+    "res://scenes/items/droppers/",
+    "res://scenes/items/conveyors/",
+    "res://scenes/items/data/"
+  ],
+  "table_functions": {
+
+  }
+}

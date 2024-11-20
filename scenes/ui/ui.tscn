@@ -547,7 +547,6 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = ExtResource("8_w3vcj")
 theme_override_styles/hover = ExtResource("8_w3vcj")
 theme_override_styles/pressed = ExtResource("9_nd335")
-theme_override_styles/focus = ExtResource("8_w3vcj")
 text = "Buy"
 
 [node name="Cancel" type="Button" parent="ShopControl/BuyPanel/MarginContainer/Panel/HBoxContainer"]
@@ -559,7 +558,6 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = ExtResource("8_w3vcj")
 theme_override_styles/hover = ExtResource("8_w3vcj")
 theme_override_styles/pressed = ExtResource("9_nd335")
-theme_override_styles/focus = ExtResource("8_w3vcj")
 text = "Cancel
 "
 

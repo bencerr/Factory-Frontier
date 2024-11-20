@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://dmbxc25kc3gm2"]
+
+[ext_resource type="Script" path="res://scripts/item_data.gd" id="1_1xnfw"]
+
+[resource]
+script = ExtResource("1_1xnfw")
+item_name = "Advanced Furnace"
+item_type = 3
+price = 5000.0

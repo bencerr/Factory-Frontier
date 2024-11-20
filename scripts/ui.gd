@@ -25,6 +25,7 @@ var prev_selected_tab_panel: Panel
 var icon_viewport_node: Node
 var shop_filter: ItemData.ITEM_TYPE
 var inv_filter: ItemData.ITEM_TYPE
+var item_selection_ui: Control
 
 func _on_input_type_changed(input_typ: InputHandler.INPUT_TYPE) -> void:
 	match input_typ:
@@ -72,7 +73,8 @@ func switch_tab(tab: UI_TAB) -> void:
 		current_tab = UI_TAB.NONE
 	else:
 		current_tab = tab
-
+	
+	if item_selection_ui: item_selection_ui.hide()
 	get_node("TabControl/HBoxContainer/InventoryButton/Panel").visible = false
 	get_node("TabControl/HBoxContainer/ShopButton/Panel").visible = false
 	get_node("TabControl/HBoxContainer/DeleteButton/Panel").visible = false
@@ -121,6 +123,7 @@ func _ready() -> void:
 	get_node("ShopControl/SortPanel/Panel/HBoxContainer/Button").add_theme_stylebox_override("normal", sort_button_style)
 	filter_inventory(ItemData.ITEM_TYPE.DROPPER)
 	get_node("InventoryControl/SortPanel/Panel/HBoxContainer/Button").add_theme_stylebox_override("normal", sort_button_style)
+	item_selection_ui = get_node("/root/Main/ItemSelectionControl")
 
 func _on_money_change(_value: float) -> void:
 	money_label.text = "$" + GameData.float_to_string(Player.data.money)

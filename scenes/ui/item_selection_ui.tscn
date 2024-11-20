@@ -23,24 +23,28 @@ shadow_offset = Vector2(2.08165e-12, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hkcv6"]
 font = ExtResource("1_bcagv")
-font_size = 50
+font_size = 64
 shadow_color = Color(0, 0, 0, 0.443137)
 shadow_offset = Vector2(2.08165e-12, 1)
 
 [node name="ItemSelectionControl" type="Control" node_paths=PackedStringArray("name_label")]
 top_level = true
+light_mask = 0
 z_index = 99
-custom_minimum_size = Vector2(829, 165)
+custom_minimum_size = Vector2(1000, 300)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -413.0
-offset_bottom = -2503.0
+anchor_left = 0.001
+anchor_top = -0.004
+anchor_right = 0.077
+anchor_bottom = 0.005
+offset_left = -1.242
+offset_top = 10.672
+offset_right = 1104.37
+offset_bottom = 286.66
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.08, 0.08)
-pivot_offset = Vector2(2.08165e-12, -6.6)
+pivot_offset = Vector2(2.08165e-12, -12)
 script = ExtResource("1_sqwid")
 name_label = NodePath("MarginContainer/Control/NameLabel")
 
@@ -70,15 +74,16 @@ layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="MarginContainer/Control"]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.681
-anchor_bottom = 1.0
-offset_top = 66.0
-offset_right = -6.56004
-offset_bottom = -66.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -143.0
+offset_right = 880.0
+offset_bottom = 142.0
 grow_vertical = 2
 text = "item_name"
 label_settings = SubResource("LabelSettings_hkcv6")
+vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Control"]
@@ -88,9 +93,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -246.0
-offset_top = -91.0
-offset_bottom = 91.0
+offset_left = -541.0
+offset_top = -112.0
+offset_right = 1.0
+offset_bottom = 112.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 20

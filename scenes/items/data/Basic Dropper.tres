@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://c0qqok8mdtia"]
+
+[ext_resource type="Script" path="res://scripts/item_data.gd" id="1_xaxlt"]
+
+[resource]
+script = ExtResource("1_xaxlt")
+item_name = "Basic Dropper"
+item_type = 0
+price = 10.0

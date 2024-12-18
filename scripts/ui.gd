@@ -40,6 +40,8 @@ func refresh_inventory() -> void:
 	for key in Player.data.inventory.keys():
 		var control: UI_Item = template.instantiate()
 		control.item_id = key
+		var cntrl_size: float = (inv_panel.size.x/4.0 - 15)
+		control.custom_minimum_size = Vector2(cntrl_size, cntrl_size)
 		inv_container.add_child(control)
 
 func load_shop() -> void:
@@ -47,6 +49,8 @@ func load_shop() -> void:
 	for key in GameData.items.keys():
 		var control: Shop_UI_Item = template.instantiate()
 		control.item_id = key
+		var cntrl_size: float = (shop_panel.size.x/4.0 - 15)
+		control.custom_minimum_size = Vector2(cntrl_size, cntrl_size)
 		shop_container.add_child(control)
 
 func filter_shop(item_type: ItemData.ITEM_TYPE) -> void:

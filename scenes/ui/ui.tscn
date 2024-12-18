@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://5qesdudrl5ii"]
+[gd_scene load_steps=39 format=3 uid="uid://5qesdudrl5ii"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_hq2yj"]
 [ext_resource type="Texture2D" uid="uid://3hytavl1qmkd" path="res://sprites/store.png" id="1_lyyx3"]
@@ -65,8 +65,6 @@ shadow_offset = Vector2(2.08165e-12, -1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_admsm"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sx7tg"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ngyo2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40pxr"]
@@ -119,10 +117,10 @@ mouse_filter = 2
 script = ExtResource("1_hq2yj")
 shop_panel = NodePath("ShopControl")
 inv_panel = NodePath("InventoryControl")
-inv_container = NodePath("InventoryControl/MarginContainer/ScrollContainer/GridContainer")
+inv_container = NodePath("InventoryControl/MarginContainer/ScrollContainer/HFlowContainer")
 placement_control = NodePath("ItemPlacementControl")
 money_label = NodePath("TabControl2/MarginContainer/MoneyLabel")
-shop_container = NodePath("ShopControl/Panel3/MarginContainer/ScrollContainer/GridContainer")
+shop_container = NodePath("ShopControl/MarginContainer/ScrollContainer/HFlowContainer")
 buy_panel = NodePath("ShopControl/BuyPanel")
 
 [node name="TabControl" type="Control" parent="."]
@@ -290,25 +288,25 @@ theme_override_styles/panel = ExtResource("7_hssru")
 [node name="MarginContainer" type="MarginContainer" parent="InventoryControl"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.148
+anchor_top = 0.109
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -8.74235
-offset_bottom = -0.232056
+offset_top = 0.135701
+offset_bottom = -1.23206
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="InventoryControl/MarginContainer"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="InventoryControl/MarginContainer/ScrollContainer"]
+[node name="HFlowContainer" type="HFlowContainer" parent="InventoryControl/MarginContainer/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/h_separation = 10
-columns = 4
+theme_override_constants/v_separation = 10
 
 [node name="SortPanel" type="Panel" parent="InventoryControl"]
 layout_mode = 1
@@ -414,38 +412,28 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("7_hssru")
 
-[node name="Panel3" type="Panel" parent="ShopControl"]
+[node name="MarginContainer" type="MarginContainer" parent="ShopControl"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.116
-anchor_right = 1.0
-anchor_bottom = 0.866
-offset_top = 8.33708
-offset_bottom = 130.913
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_sx7tg")
-
-[node name="MarginContainer" type="MarginContainer" parent="ShopControl/Panel3"]
-layout_mode = 1
-anchors_preset = 15
+anchor_top = 0.109
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 0.135701
+offset_bottom = -1.23206
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ShopControl/Panel3/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ShopControl/MarginContainer"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="ShopControl/Panel3/MarginContainer/ScrollContainer"]
+[node name="HFlowContainer" type="HFlowContainer" parent="ShopControl/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 10
-columns = 4
+theme_override_constants/v_separation = 10
 
 [node name="BuyPanel" type="Panel" parent="ShopControl"]
 visible = false
@@ -648,11 +636,11 @@ text = "Upgraders"
 [node name="ItemPlacementControl" type="Control" parent="." node_paths=PackedStringArray("name_label", "quantity_label")]
 visible = false
 layout_mode = 1
-anchor_top = 0.822
+anchor_top = 0.801
 anchor_right = 1.0
 anchor_bottom = 0.886
-offset_top = -0.160034
-offset_bottom = -0.0799713
+offset_top = 0.931844
+offset_bottom = 1.15206
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("4_ptp1v")
@@ -673,10 +661,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 237.0
-offset_top = -46.416
-offset_right = 824.0
-offset_bottom = 45.584
+offset_left = 269.0
+offset_top = -87.5
+offset_right = 865.0
+offset_bottom = 86.5
 grow_vertical = 2
 alignment = 1
 
@@ -690,56 +678,59 @@ layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_1ctx2")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="ItemPlacementControl"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.767
-anchor_top = 0.053
-anchor_right = 1.0
-anchor_bottom = 0.948
-offset_left = 31.386
-offset_top = 0.00986666
-offset_right = -12.0
-offset_bottom = 0.115187
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="Rotate" type="TextureButton" parent="ItemPlacementControl/HBoxContainer2"]
+[node name="Rotate" type="TextureButton" parent="ItemPlacementControl"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+anchor_left = 0.732
+anchor_top = 0.163
+anchor_right = 0.853
+anchor_bottom = 0.831
+offset_left = -0.144066
+offset_top = -0.000878498
+offset_right = -0.426056
+offset_bottom = -0.172851
+pivot_offset = Vector2(57, 57)
 size_flags_horizontal = 3
 size_flags_vertical = 5
 texture_normal = ExtResource("13_f176k")
-ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Close" type="TextureButton" parent="ItemPlacementControl/HBoxContainer2"]
+[node name="Close" type="TextureButton" parent="ItemPlacementControl"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+anchor_left = 0.867
+anchor_top = 0.164
+anchor_right = 0.99
+anchor_bottom = 0.825
+offset_left = 0.185946
+offset_top = -0.0164532
+offset_right = -2.58001
+offset_bottom = 0.0635512
 size_flags_horizontal = 3
 size_flags_vertical = 5
 texture_normal = ExtResource("14_ju1kl")
-ignore_texture_size = true
 stretch_mode = 5
 
 [node name="ItemImage" type="TextureRect" parent="ItemPlacementControl"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 37.0
-offset_top = -77.3521
-offset_right = 191.0
-offset_bottom = 76.6479
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.047
+anchor_right = 0.154
+anchor_bottom = 0.949
+offset_left = -0.259999
+offset_top = 0.331
+offset_right = 51.732
+offset_bottom = 0.577
 grow_vertical = 2
-pivot_offset = Vector2(61, 61)
 texture = SubResource("ViewportTexture_plwya")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="SubViewport" type="SubViewport" parent="ItemPlacementControl/ItemImage"]
 transparent_bg = true
-size = Vector2i(32, 32)
+gui_disable_input = true
+size = Vector2i(26, 26)
 
 [connection signal="pressed" from="TabControl/HBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="TabControl/HBoxContainer/InventoryButton" to="." method="_on_inventory_button_pressed"]
@@ -754,5 +745,5 @@ size = Vector2i(32, 32)
 [connection signal="pressed" from="ShopControl/SortPanel/Panel/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="ShopControl/SortPanel/Panel/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="ShopControl/SortPanel/Panel/HBoxContainer/Button4" to="." method="_on_button_4_pressed"]
-[connection signal="pressed" from="ItemPlacementControl/HBoxContainer2/Rotate" to="ItemPlacementControl" method="_on_rotate_pressed"]
-[connection signal="pressed" from="ItemPlacementControl/HBoxContainer2/Close" to="ItemPlacementControl" method="_on_close_pressed"]
+[connection signal="pressed" from="ItemPlacementControl/Rotate" to="ItemPlacementControl" method="_on_rotate_pressed"]
+[connection signal="pressed" from="ItemPlacementControl/Close" to="ItemPlacementControl" method="_on_close_pressed"]

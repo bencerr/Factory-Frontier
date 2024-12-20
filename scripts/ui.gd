@@ -37,18 +37,36 @@ func _on_input_type_changed(input_typ: InputHandler.INPUT_TYPE) -> void:
 
 func refresh_inventory() -> void:
 	var template: PackedScene = load("res://scenes/ui/item.tscn")
+	var sorted_inv: Array = []
+
 	for key in Player.data.inventory.keys():
+		sorted_inv.append({"key": key, "price": GameData.items[key].item_data.price})
+
+	sorted_inv.sort_custom(func(a, b): 
+		return a.price < b.price
+	)
+
+	for d in sorted_inv:
 		var control: UI_Item = template.instantiate()
-		control.item_id = key
+		control.item_id = d["key"]
 		var cntrl_size: float = (inv_panel.size.x/4.0 - 15)
 		control.custom_minimum_size = Vector2(cntrl_size, cntrl_size)
 		inv_container.add_child(control)
 
 func load_shop() -> void:
 	var template: PackedScene = load("res://scenes/ui/shop_item.tscn")
+	var sorted_shop: Array = []
+
 	for key in GameData.items.keys():
+		sorted_shop.append({"key": key, "price": GameData.items[key].item_data.price})
+
+	sorted_shop.sort_custom(func(a, b): 
+		return a.price < b.price
+	)
+
+	for d in sorted_shop:
 		var control: Shop_UI_Item = template.instantiate()
-		control.item_id = key
+		control.item_id = d["key"]
 		var cntrl_size: float = (shop_panel.size.x/4.0 - 15)
 		control.custom_minimum_size = Vector2(cntrl_size, cntrl_size)
 		shop_container.add_child(control)

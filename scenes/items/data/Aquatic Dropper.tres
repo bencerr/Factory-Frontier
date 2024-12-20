@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://bc2v408y74gir"]
+
+[ext_resource type="Script" path="res://scripts/item_data.gd" id="1_jw3yw"]
+
+[resource]
+script = ExtResource("1_jw3yw")
+item_name = "Aquatic Dropper"
+item_type = 0
+price = 8000.0

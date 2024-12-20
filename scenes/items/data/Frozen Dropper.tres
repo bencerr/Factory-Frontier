@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://dxx4jbbys8510"]
+
+[ext_resource type="Script" path="res://scripts/item_data.gd" id="1_0v128"]
+
+[resource]
+script = ExtResource("1_0v128")
+item_name = "Frozen Dropper"
+item_type = 0
+price = 10000.0

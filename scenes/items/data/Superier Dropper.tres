@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://b4tc1g81jkhhr"]
+
+[ext_resource type="Script" path="res://scripts/item_data.gd" id="1_uovm1"]
+
+[resource]
+script = ExtResource("1_uovm1")
+item_name = "Superier Dropper"
+item_type = 0
+price = 2500.0

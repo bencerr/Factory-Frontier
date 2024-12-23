@@ -55,6 +55,40 @@ func add_money(amount: float) -> void:
 	data.money += amount
 	money_changed.emit(amount)
 
+func do_rebirth():
+	data.money = 0
+
+	for i in range(0, data.placed_items.size()):
+		var placed_item_data: PlacedItemData = data.placed_items[i]
+		var id = placed_item_data.item_index
+		var item_info: PlayerItemInfo = Player.data.inventory[id]
+		var item_data: ItemData = GameData.items[id].item_data
+
+		if item_data.rarity == ItemData.RARITY.REBIRTH:
+			item_info.quantity += 1
+			update_inventory_item(id, item_info)
+		
+		data.placed_items[i].instance.queue_free()
+
+	data.placed_items.clear()
+	
+	for key in data.inventory.keys():
+		if GameData.items[key].item_data.rarity == ItemData.RARITY.REBIRTH: continue
+		var item_info: PlayerItemInfo = data.inventory[key]
+		item_info.quantity = 0
+		update_inventory_item(key, item_info)
+	
+	data.rebirths += 1
+	money_changed.emit(0)
+	
+	var winner = GameData.rebirth_items.pick_random()
+	var item_updated = Player.data.inventory[winner]
+	item_updated.quantity += 1
+	update_inventory_item(winner, item_updated)
+	# TODO: add a notifaction or animation sequence for rebirthing
+	
+	SaveHandler.save_data(data)
+
 func _ready() -> void:
 	for item_key in GameData.items.keys():
 		if not data.inventory.has(item_key):
@@ -64,5 +98,6 @@ func _ready() -> void:
 	
 	for key in data.inventory.keys():
 		data.inventory[key].quantity = 1
+	data.money += 1000
 
 	load_placed_items()

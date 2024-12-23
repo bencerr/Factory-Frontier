@@ -3,7 +3,8 @@ class_name MainInterface
 enum UI_TAB {
 	NONE,
 	SHOP,
-	INVENTORY
+	INVENTORY,
+	REBIRTH
 }
 
 signal shop_selected_item_changed(item_id: int)
@@ -16,6 +17,9 @@ var shop_item_id: int = -1
 @export var money_label: Label
 @export var shop_container: Control
 @export var buy_panel: Control
+@export var rebirth_control: Control
+@export var rebirth_price_label: Label
+@export var rebirth_label: RichTextLabel
 
 @onready var input_handler: InputHandler = get_node("/root/Main/InputHandler")
 var current_tab: UI_TAB = UI_TAB.NONE
@@ -58,6 +62,9 @@ func load_shop() -> void:
 	var sorted_shop: Array = []
 
 	for key in GameData.items.keys():
+		# only load non-rebirth items
+		if GameData.items[key].item_data.rarity == ItemData.RARITY.REBIRTH: continue
+
 		sorted_shop.append({"key": key, "price": GameData.items[key].item_data.price})
 
 	sorted_shop.sort_custom(func(a, b): 
@@ -100,21 +107,34 @@ func switch_tab(tab: UI_TAB) -> void:
 	get_node("TabControl/HBoxContainer/InventoryButton/Panel").visible = false
 	get_node("TabControl/HBoxContainer/ShopButton/Panel").visible = false
 	get_node("TabControl/HBoxContainer/DeleteButton/Panel").visible = false
+	get_node("TabControl/HBoxContainer/RebirthButton/Panel").visible = false
 
 	match current_tab:
 		UI_TAB.NONE:
 			shop_panel.visible = false
 			inv_panel.visible = false
+			rebirth_control.visible = false
 		UI_TAB.SHOP:
 			shop_panel.visible = true
 			inv_panel.visible = false
+			rebirth_control.visible = false
 			input_handler.disable_placing()
 			get_node("TabControl/HBoxContainer/ShopButton/Panel").visible = true
 		UI_TAB.INVENTORY:
 			shop_panel.visible = false
 			inv_panel.visible = true
+			rebirth_control.visible = false
 			input_handler.disable_placing()
 			get_node("TabControl/HBoxContainer/InventoryButton/Panel").visible = true
+		UI_TAB.REBIRTH:
+			rebirth_control.visible = true
+			shop_panel.visible = false
+			inv_panel.visible = false
+			input_handler.disable_placing()
+			get_node("TabControl/HBoxContainer/RebirthButton/Panel").visible = true
+
+func _on_rebirth_button_pressed() -> void:
+	switch_tab(UI_TAB.REBIRTH)
 
 func _on_inventory_button_pressed() -> void:
 	switch_tab(UI_TAB.INVENTORY)
@@ -146,9 +166,11 @@ func _ready() -> void:
 	filter_inventory(ItemData.ITEM_TYPE.DROPPER)
 	get_node("InventoryControl/SortPanel/Panel/HBoxContainer/Button").add_theme_stylebox_override("normal", sort_button_style)
 	item_selection_ui = get_node("/root/Main/ItemSelectionControl")
+	rebirth_price_label.text = "Cost: 	$" + GameData.float_to_prefix(GameData.calc_rebirth_price(Player.data.rebirths))
+	rebirth_label.text = "[center][b] " + str(Player.data.rebirths) +" [/b] rebirths[/center]"
 
 func _on_money_change(_value: float) -> void:
-	money_label.text = "$" + GameData.float_to_string(Player.data.money)
+	money_label.text = "$" + GameData.float_to_prefix(Player.data.money)
 
 func _on_button_4_pressed() -> void:
 	if current_tab == UI_TAB.SHOP:
@@ -206,8 +228,10 @@ func _on_cancel_pressed() -> void:
 func _on_shop_selected_item_changed(id: int) -> void:
 	shop_item_id = id
 	var item_data: ItemData = GameData.items[id].item_data
+
 	for c in buy_panel.get_node("MarginContainer/Panel/TextureRect/SubViewport").get_children():
 		c.queue_free()
+	
 	icon_viewport_node = GameData.items[id].duplicate()
 	icon_viewport_node.position = Vector2(16,16)
 	icon_viewport_node = GameData.strip_item_node(icon_viewport_node)
@@ -223,3 +247,11 @@ func _on_buy_pressed() -> void:
 		item_updated.quantity += 1
 		Player.update_inventory_item(shop_item_id, item_updated)
 		Player.data.money -= data.price
+
+func _on_do_rebirth_button_pressed() -> void:
+	var price := GameData.calc_rebirth_price(Player.data.rebirths)
+
+	if Player.data.money >= price:
+		Player.do_rebirth()
+		rebirth_label.text = "[center][b] " + str(Player.data.rebirths) +" [/b] rebirths[/center]"
+		rebirth_price_label.text = "Cost: 	$" + GameData.float_to_prefix(GameData.calc_rebirth_price(Player.data.rebirths))

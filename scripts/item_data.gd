@@ -8,8 +8,14 @@ enum ITEM_TYPE {
 	FURNACE
 }
 
+enum RARITY {
+	COMMON,
+	REBIRTH
+}
+
 var id: int
 
 @export var item_name: String = ""
 @export var item_type: ITEM_TYPE = ITEM_TYPE.DROPPER
 @export var price: float = 0
+@export var rarity: RARITY = RARITY.COMMON

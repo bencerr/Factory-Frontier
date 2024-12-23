@@ -1,15 +1,46 @@
 extends Node
 
 var items: Dictionary = {}
+var rebirth_items: Array[int] = [] # keys for items dict
 
 const grid_size: int = 16
 var item_id_counter: int = 0
 
-func round_place(num,places):
-	return (round(num*pow(10,places))/pow(10,places))
+const suffixes_metric_symbol: Dictionary = {
+	"0": "", 
+	"1": "k", 
+	"2": "M", 
+	"3": "B", 
+	"4": "T", 
+	"5": "q", 
+	"6": "Q", 
+	"7": "sx", 
+	"8": "Sp", 
+}
 
-func float_to_string(n: float) -> String:
-	return str(round_place(n, 2))
+func log10(x) -> float:
+	return log(x) / log(10)
+
+func float_to_prefix(number: float) -> String:
+	if number < 1000:  # No suffix needed for numbers below 1000
+		return str(number)
+
+	var exponent: int = floor(log10(number) / 3)
+	if str(exponent) in suffixes_metric_symbol:
+		var suffix = suffixes_metric_symbol[str(exponent)]
+		var scaled_number: float = number / pow(10, exponent * 3)
+
+		while scaled_number >= 1000:
+			scaled_number /= 1000
+			exponent += 1
+			suffix = suffixes_metric_symbol.get(str(exponent), "")  # Update suffix
+
+		return str(round(scaled_number)) + suffix
+	else:
+		return str(number)
+
+func calc_rebirth_price(rebirth: int) -> float:
+	return 1e1 * pow(rebirth+1,1.1)
 
 func strip_item_node(node: Node) -> Node:
 	for child in node.get_children():
@@ -55,6 +86,8 @@ func load_items() -> void:
 			var itm: Node = res.instantiate()
 			itm.item_data.id = hash(itm.item_data.item_name)
 			items[itm.item_data.id] = itm
+			if itm.item_data.rarity == ItemData.RARITY.REBIRTH:
+				rebirth_items.append(itm.item_data.id)
 
 func _ready() -> void:
 	load_items()

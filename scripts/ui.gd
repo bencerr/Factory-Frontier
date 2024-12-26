@@ -246,7 +246,7 @@ func _on_buy_pressed() -> void:
 		var item_updated = Player.data.inventory[shop_item_id]
 		item_updated.quantity += 1
 		Player.update_inventory_item(shop_item_id, item_updated)
-		Player.data.money -= data.price
+		Player.add_money(-1 * data.price)
 
 func _on_do_rebirth_button_pressed() -> void:
 	var price := GameData.calc_rebirth_price(Player.data.rebirths)
@@ -254,4 +254,4 @@ func _on_do_rebirth_button_pressed() -> void:
 	if Player.data.money >= price:
 		Player.do_rebirth()
 		rebirth_label.text = "[center][b] " + str(Player.data.rebirths) +" [/b] rebirths[/center]"
-		rebirth_price_label.text = "Cost: 	$" + GameData.float_to_prefix(GameData.calc_rebirth_price(Player.data.rebirths))
+		rebirth_price_label.text = "Cost: $" + GameData.float_to_prefix(GameData.calc_rebirth_price(Player.data.rebirths))

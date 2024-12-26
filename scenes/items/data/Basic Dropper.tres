@@ -6,4 +6,5 @@
 script = ExtResource("1_xaxlt")
 item_name = "Basic Dropper"
 item_type = 0
-price = 10.0
+price = 0.0
+rarity = 0

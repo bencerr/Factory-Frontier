@@ -3,10 +3,15 @@ extends Node
 const save_path: String = "user://Factory_Frontier.tres"
 
 func load_data() -> Resource:
+	#var as_text = FileAccess.get_file_as_string(save_path)
+	#print(as_text)
+	
 	if ResourceLoader.exists(save_path):
 		print("found save file")
-		return ResourceLoader.load(save_path, "", ResourceLoader.CACHE_MODE_IGNORE)
-	
+		var res: Resource = ResourceLoader.load(save_path, "", ResourceLoader.CACHE_MODE_IGNORE)
+		if res: return res
+		print("error with save file")
+		
 	print("new save file")
 	var data: PlayerData = PlayerData.new()
 	data.inventory = {}
@@ -16,6 +21,7 @@ func load_data() -> Resource:
 func save_data(data) -> void:
 	print('saving to file')
 	var response: int = ResourceSaver.save(data, save_path, ResourceSaver.FLAG_CHANGE_PATH)
+	print("save response: " + str(response))
 	assert(response == OK)
 
 func _ready() -> void:

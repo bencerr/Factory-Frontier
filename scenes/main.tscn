@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://ci5aifnevl48"]
+[gd_scene load_steps=30 format=3 uid="uid://ci5aifnevl48"]
 
 [ext_resource type="Texture2D" uid="uid://p33b3al8i42" path="res://sprites/tilesets/ground.png" id="1_4bdgf"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_adrvj"]
 [ext_resource type="Texture2D" uid="uid://dsvowh2gxsb40" path="res://sprites/tilesets/conveyor.png" id="2_3llvq"]
+[ext_resource type="PackedScene" uid="uid://dgypyfkfvd700" path="res://scenes/ui/rebirth_cutscene.tscn" id="3_qmwlc"]
 [ext_resource type="Texture2D" uid="uid://cqrffyrvef7b" path="res://sprites/tilesets/Hana Caraka Cozy Island - Free/props.png" id="5_0mkc6"]
 [ext_resource type="PackedScene" uid="uid://cadm5wekokr3h" path="res://scenes/input_handler.tscn" id="5_3klxr"]
 [ext_resource type="PackedScene" uid="uid://5qesdudrl5ii" path="res://scenes/ui/ui.tscn" id="5_ju281"]
@@ -220,6 +221,8 @@ script = ExtResource("1_adrvj")
 custom_minimum_size = Vector2(720, 1280)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("3_qmwlc")]
 
 [node name="ItemSelectionControl" parent="." instance=ExtResource("8_k483p")]
 visible = false

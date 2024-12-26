@@ -6,4 +6,5 @@
 script = ExtResource("1_ckfpu")
 item_name = "Basic Furnace"
 item_type = 3
-price = 10.0
+price = 0.0
+rarity = 0

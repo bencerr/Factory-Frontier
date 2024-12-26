@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgypyfkfvd700"]
+
+[ext_resource type="Script" path="res://scripts/ui/rebirth_cutscene_script.gd" id="1_x4yyr"]
+[ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="2_7wpvu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwevm"]
+bg_color = Color(0.113725, 0.113725, 0.113725, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_nc3av"]
+base_font = ExtResource("2_7wpvu")
+variation_embolden = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_k6u3b"]
+viewport_path = NodePath("Panel/ItemImage/SubViewport")
+
+[node name="Control" type="Control" node_paths=PackedStringArray("image", "viewport", "label")]
+top_level = true
+z_index = 99
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(621, 1334)
+script = ExtResource("1_x4yyr")
+image = NodePath("Panel/ItemImage")
+viewport = NodePath("Panel/ItemImage/SubViewport")
+label = NodePath("Panel/Label")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vwevm")
+
+[node name="Label" type="RichTextLabel" parent="Panel"]
+layout_mode = 2
+anchor_left = 0.052
+anchor_top = 0.357
+anchor_right = 0.948
+anchor_bottom = 0.379
+offset_left = 0.415999
+offset_top = -0.476062
+offset_right = -0.416091
+offset_bottom = -0.172022
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_7wpvu")
+theme_override_fonts/bold_font = SubResource("FontVariation_nc3av")
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+bbcode_enabled = true
+text = "[center] You got a [b]<item_name>[/b] from rebirthing![/center]"
+fit_content = true
+
+[node name="ItemImage" type="TextureRect" parent="Panel"]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+layout_mode = 2
+anchor_left = 0.218
+anchor_top = 0.38
+anchor_right = 0.782
+anchor_bottom = 0.643
+offset_left = 0.243988
+offset_top = 1.15993
+offset_right = -0.244081
+offset_bottom = -0.524018
+grow_vertical = 2
+pivot_offset = Vector2(350, 350)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("ViewportTexture_k6u3b")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SubViewport" type="SubViewport" parent="Panel/ItemImage"]
+transparent_bg = true
+gui_disable_input = true
+size = Vector2i(32, 32)

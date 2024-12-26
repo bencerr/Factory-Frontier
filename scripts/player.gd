@@ -1,6 +1,7 @@
 extends Node
 signal money_changed(change: float)
 signal inventory_changed(id: int)
+signal rebirthed(id: int)
 
 var data: PlayerData
 var item_rotation: float = 0;
@@ -85,8 +86,7 @@ func do_rebirth():
 	var item_updated = Player.data.inventory[winner]
 	item_updated.quantity += 1
 	update_inventory_item(winner, item_updated)
-	# TODO: add a notifaction or animation sequence for rebirthing
-	
+	rebirthed.emit(winner)
 	SaveHandler.save_data(data)
 
 func _ready() -> void:
@@ -96,8 +96,4 @@ func _ready() -> void:
 			data.inventory[item_key].item_id = item_key
 			data.inventory[item_key].quantity = 0
 	
-	for key in data.inventory.keys():
-		data.inventory[key].quantity = 1
-	data.money += 1000
-
 	load_placed_items()

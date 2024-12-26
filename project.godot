@@ -28,7 +28,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SaveHandler="*res://scripts/save data/save_handler.gd"
+SaveHandler="*res://scripts/save_data/save_handler.gd"
 GameData="*res://scripts/game_data.gd"
 Player="*res://scripts/player.gd"
 

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://bl4clgwruu4r8"]
+
+[ext_resource type="Script" path="res://scripts/item_data.gd" id="1_fufa5"]
+
+[resource]
+script = ExtResource("1_fufa5")
+item_type = 0
+price = 0.0
+rarity = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://rmmtsjgp54cf"]
+[gd_scene load_steps=8 format=3 uid="uid://rmmtsjgp54cf"]
 
 [ext_resource type="Script" path="res://scripts/dropper.gd" id="1_r10l2"]
 [ext_resource type="PackedScene" uid="uid://cpu2u01x5y037" path="res://scenes/items/ores/ore1.tscn" id="2_eenqf"]
@@ -9,13 +9,10 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_12nm7"]
 atlas = ExtResource("6_26tdf")
-region = Rect2(2.08165e-12, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lbncb"]
-atlas = ExtResource("6_26tdf")
-region = Rect2(2.08165e-12, 2.08165e-12, 16, 16)
+region = Rect2(2.08165e-12, 2.08165e-12, 16, 32)
 
 [node name="Basic Dropper" type="Node2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("1_r10l2")
 sprite = ExtResource("2_eenqf")
 item_data = ExtResource("3_hbpvh")
@@ -36,14 +33,9 @@ texture = ExtResource("5_vv4l3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
+position = Vector2(-8, 2.08165e-12)
 rotation = -1.5708
 texture = SubResource("AtlasTexture_12nm7")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-z_index = 1
-position = Vector2(-16, 0)
-rotation = -1.5708
-texture = SubResource("AtlasTexture_lbncb")
 
 [node name="Hold" type="Node2D" parent="."]
 position = Vector2(8, 0)

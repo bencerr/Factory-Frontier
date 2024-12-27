@@ -1,0 +1,50 @@
+[gd_scene load_steps=10 format=3 uid="uid://j8ptfea8xhd4"]
+
+[ext_resource type="Script" path="res://scripts/upgrader.gd" id="1_hw1ud"]
+[ext_resource type="Resource" uid="uid://b7ffui00nkpew" path="res://scenes/items/data/Rooted Upgrader.tres" id="2_dn8g1"]
+[ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="3_p4j1y"]
+[ext_resource type="Texture2D" uid="uid://bq7tbjciavufv" path="res://sprites/tilesets/upgraders-layer-2.png" id="4_0p82d"]
+[ext_resource type="Script" path="res://scripts/item_holder.gd" id="5_k5tif"]
+[ext_resource type="Texture2D" uid="uid://cp6nsmve6g5ak" path="res://sprites/tilesets/upgraders-layer-3.png" id="6_gobjd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4ei5"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3ldd"]
+atlas = ExtResource("4_0p82d")
+region = Rect2(64, 32, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aiqqi"]
+atlas = ExtResource("6_gobjd")
+region = Rect2(64, 32, 16, 48)
+
+[node name="Upgrader" type="Area2D"]
+z_index = 1
+position = Vector2(2.08165e-12, 2.08165e-12)
+gravity_point_center = Vector2(2.08165e-12, -10)
+gravity_direction = Vector2(2.08165e-12, -10)
+gravity = 8.52651e-14
+script = ExtResource("1_hw1ud")
+item_data = ExtResource("2_dn8g1")
+multiplier = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_k4ei5")
+
+[node name="Detector" parent="." instance=ExtResource("3_p4j1y")]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-2.08165e-12, 0)
+texture = SubResource("AtlasTexture_m3ldd")
+
+[node name="ItemHolder" type="Node2D" parent="."]
+script = ExtResource("5_k5tif")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.819608)
+z_index = 3
+position = Vector2(-2.08165e-12, 0)
+texture = SubResource("AtlasTexture_aiqqi")
+
+[connection signal="belt_detected" from="Detector" to="." method="_on_detector_belt_detected"]
+[connection signal="item_held" from="ItemHolder" to="." method="_on_item_holder_item_held"]

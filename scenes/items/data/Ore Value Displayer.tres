@@ -4,7 +4,6 @@
 
 [resource]
 script = ExtResource("1_lvofa")
-item_name = "Ore Value Displayer"
 item_type = 2
 price = 500.0
 rarity = 0

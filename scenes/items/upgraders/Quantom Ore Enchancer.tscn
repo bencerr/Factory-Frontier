@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://wdusebvrlyl8"]
+
+[ext_resource type="Script" path="res://scripts/upgrader.gd" id="1_vjk31"]
+[ext_resource type="Resource" uid="uid://dgmk7kjgod77c" path="res://scenes/items/data/Quantom Ore Enchancer.tres" id="2_p3iru"]
+[ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="3_xqlhr"]
+[ext_resource type="Texture2D" uid="uid://dyqjq6hgr6m4n" path="res://sprites/tilesets/upgraders.png" id="4_k4vsu"]
+[ext_resource type="Script" path="res://scripts/item_holder.gd" id="5_gx3bs"]
+[ext_resource type="Script" path="res://scripts/upgrade_beam_vfx.gd" id="6_8byj3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4ei5"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aiqqi"]
+atlas = ExtResource("4_k4vsu")
+region = Rect2(16, 32, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu0xs"]
+atlas = ExtResource("4_k4vsu")
+region = Rect2(2.08165e-12, 16, 2, 12)
+
+[node name="Upgrader" type="Area2D"]
+z_index = 1
+position = Vector2(2.08165e-12, 2.08165e-12)
+gravity_point_center = Vector2(2.08165e-12, -10)
+gravity_direction = Vector2(2.08165e-12, -10)
+gravity = 8.52651e-14
+script = ExtResource("1_vjk31")
+item_data = ExtResource("2_p3iru")
+multiplier = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_k4ei5")
+
+[node name="Detector" parent="." instance=ExtResource("3_xqlhr")]
+
+[node name="ItemHolder" type="Node2D" parent="."]
+script = ExtResource("5_gx3bs")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(-2.08165e-12, 0)
+texture = SubResource("AtlasTexture_aiqqi")
+
+[node name="Beam" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(0, 0.5)
+scale = Vector2(1, 1.08333)
+texture = SubResource("AtlasTexture_uu0xs")
+script = ExtResource("6_8byj3")
+
+[connection signal="belt_detected" from="Detector" to="." method="_on_detector_belt_detected"]
+[connection signal="item_held" from="ItemHolder" to="." method="_on_item_holder_item_held"]

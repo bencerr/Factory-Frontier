@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://bq7ebvah1oq7h"]
+
+[ext_resource type="Script" path="res://scripts/dropper.gd" id="1_s2dwy"]
+[ext_resource type="PackedScene" uid="uid://cpu2u01x5y037" path="res://scenes/items/ores/ore1.tscn" id="2_0ef8o"]
+[ext_resource type="Resource" uid="uid://dt8rlf7xe24wy" path="res://scenes/items/data/Giant Diamond Dropper.tres" id="3_u2qma"]
+[ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="4_a1tmg"]
+[ext_resource type="Texture2D" uid="uid://c01w26c34fqq2" path="res://sprites/tilesets/Hana Caraka Cozy Island - Free/shadow-circle.png" id="5_2ww5b"]
+[ext_resource type="Texture2D" uid="uid://x170ht5e5l05" path="res://sprites/tilesets/droppers.png" id="6_jxqyi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12nm7"]
+atlas = ExtResource("6_jxqyi")
+region = Rect2(2.08165e-12, 36, 16, 22)
+
+[node name="Giant Diamond Dropper" type="Node2D"]
+script = ExtResource("1_s2dwy")
+sprite = ExtResource("2_0ef8o")
+item_data = ExtResource("3_u2qma")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="Detector" parent="." instance=ExtResource("4_a1tmg")]
+position = Vector2(16, 2.08165e-12)
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.431373)
+position = Vector2(1, -1)
+scale = Vector2(0.1875, 0.1875)
+texture = ExtResource("5_2ww5b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(1.19209e-07, -4)
+scale = Vector2(0.8125, 0.8125)
+texture = SubResource("AtlasTexture_12nm7")
+
+[node name="Hold" type="Node2D" parent="."]
+position = Vector2(8, 0)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="belt_detected" from="Detector" to="." method="_on_detector_belt_detected"]

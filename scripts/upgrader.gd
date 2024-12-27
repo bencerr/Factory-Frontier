@@ -7,8 +7,8 @@ var detector: Detector
 signal process_ore(ore: Ore)
 
 func upgrade(ore: Ore) -> void:
-	if ore.upgrade_tags.has(item_data.item_name): return
-	ore.upgrade_tags.append(item_data.item_name)
+	if ore.upgrade_tags.has(item_data.name): return
+	ore.upgrade_tags.append(item_data.name)
 	var ore_value: float = ore.value
 	ore.value = (ore_value * multiplier)
 	process_ore.emit(ore)

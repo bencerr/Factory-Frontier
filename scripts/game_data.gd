@@ -40,7 +40,8 @@ func float_to_prefix(number: float) -> String:
 		return str(number)
 
 func calc_rebirth_price(rebirth: int) -> float:
-	return 1e1 * pow(rebirth+1,1.1)
+	return 0
+	#return 1e1 * pow(rebirth+1,1.1)
 
 func strip_item_node(node: Node) -> Node:
 	for child in node.get_children():
@@ -52,8 +53,8 @@ func strip_item_node(node: Node) -> Node:
 
 	return node
 
-func dir_contents(path):
-	var scene_loads = []	
+func dir_contents(path) -> Array[Array]:
+	var scene_loads: Array[Array] = []
 
 	var dir = DirAccess.open(path)
 	if dir:
@@ -67,7 +68,7 @@ func dir_contents(path):
 					file_name = file_name.replace('.remap', '')
 				if file_name.get_extension() == "tscn":
 					var full_path = path.path_join(file_name)
-					scene_loads.append(load(full_path))
+					scene_loads.append([load(full_path), file_name.get_basename()])
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
@@ -82,9 +83,10 @@ func load_items() -> void:
 		"res://scenes/items/upgraders"]
 
 	for dir in dirs:
-		for res: Resource in dir_contents(dir):
-			var itm: Node = res.instantiate()
-			itm.item_data.id = hash(itm.item_data.item_name)
+		for arr: Array in dir_contents(dir):
+			var itm: Node = arr[0].instantiate()
+			itm.item_data.id = hash(arr[1])
+			itm.item_data.name = arr[1]
 			items[itm.item_data.id] = itm
 			if itm.item_data.rarity == ItemData.RARITY.REBIRTH:
 				rebirth_items.append(itm.item_data.id)

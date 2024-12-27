@@ -28,7 +28,7 @@ func play(item_id: int) -> void:
 	image_tween.tween_property(image, "scale", Vector2(1,1), 1).set_delay(1)
 	image_tween.tween_property(image, "modulate", Color.WHITE, 1).set_delay(1)
 	image_tween.finished.connect(func():
-		label.text = "[center] You got a [b]%s[/b] from rebirthing![/center]" % GameData.items[item_id].item_data.item_name
+		label.text = "[center] You got a [b]%s[/b] from rebirthing![/center]" % GameData.items[item_id].item_data.name
 	)
 
 	control_tween.chain().tween_property(self, "modulate", Color.TRANSPARENT, 2).set_delay(5)

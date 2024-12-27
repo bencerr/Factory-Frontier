@@ -236,7 +236,7 @@ func _on_shop_selected_item_changed(id: int) -> void:
 	icon_viewport_node.position = Vector2(16,16)
 	icon_viewport_node = GameData.strip_item_node(icon_viewport_node)
 	buy_panel.get_node("MarginContainer/Panel/TextureRect/SubViewport").add_child(icon_viewport_node)
-	buy_panel.get_node("MarginContainer/Panel/VBoxContainer/ItemName").text = item_data.item_name
+	buy_panel.get_node("MarginContainer/Panel/VBoxContainer/ItemName").text = item_data.name
 	buy_panel.get_node("MarginContainer/Panel/VBoxContainer/Price").text = "$" + str(item_data.price)
 	buy_panel.visible = true
 

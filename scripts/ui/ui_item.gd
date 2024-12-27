@@ -7,7 +7,7 @@ func update() -> void:
 	var data: ItemData = GameData.items[item_id].item_data
 	var info: PlayerItemInfo = Player.data.inventory[item_id]
 	$QuantityLabel.text = "x" + str(info.quantity)
-	$ItemName.text = data.item_name
+	$ItemName.text = data.name
 
 	if info.quantity <= 0 or get_node("/root/Main/CanvasLayer/UI").inv_filter != data.item_type:
 		visible = false

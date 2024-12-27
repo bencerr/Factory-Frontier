@@ -20,6 +20,7 @@ func _on_timer_timeout() -> void:
 	$Detector.detect()
 
 func _on_detector_belt_detected(destination: Area2D) -> void:
+	if destination.get_parent() is Dropper: return
 	var drop_item: Node2D = sprite.instantiate()
 	$Hold.add_child(drop_item)
 	drop_item.global_position = $Hold.global_position

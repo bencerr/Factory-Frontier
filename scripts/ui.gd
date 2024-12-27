@@ -155,7 +155,7 @@ func _on_delete_button_pressed() -> void:
 func _ready() -> void:
 	sort_button_style = load("res://resources/sort_button_selected.tres")
 	sort_button_style_empty = load("res://resources/empty_style_box.tres")
-	get_node("/root/Main/InputHandler").input_type_changed.connect(_on_input_type_changed)
+	get_node("/root/Main/InputHandler").input_type_changed.connect(_on_input_type_changed) 
 	refresh_inventory()
 	Player.money_changed.connect(_on_money_change)
 	shop_selected_item_changed.connect(_on_shop_selected_item_changed)

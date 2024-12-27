@@ -20,8 +20,8 @@ func load_data() -> Resource:
 
 func save_data(data) -> void:
 	print('saving to file')
-	var response: int = ResourceSaver.save(data, save_path, ResourceSaver.FLAG_CHANGE_PATH)
-	print("save response: " + str(response))
+	var response: int = ResourceSaver.save(data, save_path)
+	#print("save response: " + str(response))
 	assert(response == OK)
 
 func _ready() -> void:

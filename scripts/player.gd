@@ -2,12 +2,16 @@ extends Node
 signal money_changed(change: float)
 signal inventory_changed(id: int)
 signal rebirthed(id: int)
+signal tile_map_loaded(tm: TileMap)
 
 var data: PlayerData
 var item_rotation: float = 0;
+var _tilemap: TileMap
 
 # Placed Items
 func load_placed_items() -> void:
+	if get_node_or_null("/root/Main/TileMap") == null:
+		await tile_map_loaded
 	for i in range(0, len(data.placed_items)):
 		var placed_item_data: PlacedItemData = data.placed_items[i]
 		var n: Node2D = GameData.items[placed_item_data.item_index]
@@ -97,3 +101,6 @@ func _ready() -> void:
 			data.inventory[item_key].quantity = 0
 	
 	load_placed_items()
+
+func _on_tile_map_loaded(tm: TileMap) -> void:
+	_tilemap = tm

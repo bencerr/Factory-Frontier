@@ -14,6 +14,8 @@ func update() -> void:
 	icon_viewport_node = GameData.items[info.item_id].duplicate()
 	icon_viewport_node = GameData.strip_item_node(icon_viewport_node)
 	icon_viewport_node.position = get_node("ItemImage/SubViewport").size / 2
+	get_node("Rotate").rotation = icon_viewport_node.rotation
+	Player.item_rotation = icon_viewport_node.rotation
 	$ItemImage/SubViewport.add_child(icon_viewport_node)
 
 func _on_item_placed(_item: PlayerItemInfo) -> void:

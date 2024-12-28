@@ -15,13 +15,18 @@
     "res://scenes/items/droppers/": {
       "resource_local_to_scene": true,
       "resource_name": true
+    },
+    "res://scenes/items/furnaces/": {
+      "resource_local_to_scene": true,
+      "resource_name": true
     }
   },
   "recent_paths": [
     "res://scenes/items/conveyors/conveyor.tscn",
     "res://scenes/items/droppers/",
     "res://scenes/items/conveyors/",
-    "res://scenes/items/data/"
+    "res://scenes/items/data/",
+    "res://scenes/items/furnaces/"
   ],
   "table_functions": {
     "filter": [

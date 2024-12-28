@@ -1,0 +1,50 @@
+[gd_scene load_steps=11 format=3 uid="uid://dwiw0d7ilvg40"]
+
+[ext_resource type="Script" path="res://scripts/upgrader.gd" id="1_qt0oc"]
+[ext_resource type="Resource" uid="uid://dntort51gp1m" path="res://scenes/items/data/Infrared Upgrader.tres" id="2_ftihp"]
+[ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="3_ux2da"]
+[ext_resource type="Script" path="res://scripts/item_holder.gd" id="5_sik70"]
+[ext_resource type="Texture2D" uid="uid://bq7tbjciavufv" path="res://sprites/tilesets/upgraders-layer-2.png" id="6_hs605"]
+[ext_resource type="Script" path="res://scripts/upgrade_beam_vfx.gd" id="6_kuc4l"]
+[ext_resource type="Texture2D" uid="uid://cp6nsmve6g5ak" path="res://sprites/tilesets/upgraders-layer-3.png" id="7_ipeoh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4ei5"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24eqt"]
+atlas = ExtResource("6_hs605")
+region = Rect2(96, 2.08165e-12, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mv4kr"]
+atlas = ExtResource("7_ipeoh")
+region = Rect2(96, 2.08165e-12, 16, 48)
+
+[node name="Upgrader" type="Area2D"]
+z_index = 1
+position = Vector2(2.08165e-12, 2.08165e-12)
+gravity_point_center = Vector2(2.08165e-12, -10)
+gravity_direction = Vector2(2.08165e-12, -10)
+gravity = 8.52651e-14
+script = ExtResource("1_qt0oc")
+item_data = ExtResource("2_ftihp")
+multiplier = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_k4ei5")
+
+[node name="Detector" parent="." instance=ExtResource("3_ux2da")]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-2.08165e-12, 0)
+texture = SubResource("AtlasTexture_24eqt")
+
+[node name="ItemHolder" type="Node2D" parent="."]
+script = ExtResource("5_sik70")
+
+[node name="Beam" type="Sprite2D" parent="."]
+z_index = 3
+texture = SubResource("AtlasTexture_mv4kr")
+script = ExtResource("6_kuc4l")
+
+[connection signal="belt_detected" from="Detector" to="." method="_on_detector_belt_detected"]
+[connection signal="item_held" from="ItemHolder" to="." method="_on_item_holder_item_held"]

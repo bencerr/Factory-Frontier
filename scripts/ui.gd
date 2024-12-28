@@ -44,6 +44,7 @@ func refresh_inventory() -> void:
 	var sorted_inv: Array = []
 
 	for key in Player.data.inventory.keys():
+		if not GameData.items.has(key): continue
 		sorted_inv.append({"key": key, "price": GameData.items[key].item_data.price})
 
 	sorted_inv.sort_custom(func(a, b): 

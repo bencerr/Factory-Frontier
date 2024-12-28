@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/dropper.gd" id="1_t6l2h"]
 [ext_resource type="PackedScene" uid="uid://cpu2u01x5y037" path="res://scenes/items/ores/ore1.tscn" id="2_sm3hu"]
-[ext_resource type="Resource" uid="uid://dt8rlf7xe24wy" path="res://scenes/items/data/Giant Diamond Dropper.tres" id="3_i0w04"]
+[ext_resource type="Resource" uid="uid://bl4clgwruu4r8" path="res://scenes/items/data/Pure Diamond Miner.tres" id="3_1ssm8"]
 [ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="4_ect0w"]
 [ext_resource type="Texture2D" uid="uid://c01w26c34fqq2" path="res://sprites/tilesets/Hana Caraka Cozy Island - Free/shadow-circle.png" id="5_axllu"]
 [ext_resource type="Texture2D" uid="uid://x170ht5e5l05" path="res://sprites/tilesets/droppers.png" id="6_v7n00"]
@@ -11,10 +11,10 @@
 atlas = ExtResource("6_v7n00")
 region = Rect2(16, 36, 16, 22)
 
-[node name="Giant Diamond Dropper" type="Node2D"]
+[node name="Miner" type="Node2D"]
 script = ExtResource("1_t6l2h")
 sprite = ExtResource("2_sm3hu")
-item_data = ExtResource("3_i0w04")
+item_data = ExtResource("3_1ssm8")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5

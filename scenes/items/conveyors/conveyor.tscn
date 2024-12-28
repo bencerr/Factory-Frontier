@@ -1,73 +1,73 @@
 [gd_scene load_steps=24 format=3 uid="uid://buiikly52efer"]
 
-[ext_resource type="Script" path="res://scripts/conveyor.gd" id="1_dxdki"]
-[ext_resource type="Resource" uid="uid://3li4kolgpbjh" path="res://scenes/items/data/Conveyor.tres" id="2_h1y5k"]
-[ext_resource type="Script" path="res://scripts/item_holder.gd" id="3_6wrjk"]
-[ext_resource type="Texture2D" uid="uid://dsvowh2gxsb40" path="res://sprites/tilesets/conveyor.png" id="4_sboh1"]
-[ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="4_ygy86"]
+[ext_resource type="Script" path="res://scripts/conveyor.gd" id="1_pr18w"]
+[ext_resource type="Resource" uid="uid://3li4kolgpbjh" path="res://scenes/items/data/Conveyor.tres" id="2_ekg2r"]
+[ext_resource type="Texture2D" uid="uid://dsvowh2gxsb40" path="res://sprites/tilesets/conveyor.png" id="3_pe1bh"]
+[ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="4_ldejc"]
+[ext_resource type="Script" path="res://scripts/item_holder.gd" id="5_ljlwv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dd884"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("3_pe1bh")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xnmbf"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("3_pe1bh")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tbcrs"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("3_pe1bh")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qmi8x"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("3_pe1bh")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2ogq"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("3_pe1bh")
 region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wlr5o"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("3_pe1bh")
 region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a70ui"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("3_pe1bh")
 region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p71fy"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("3_pe1bh")
 region = Rect2(112, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3kkbt"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("3_pe1bh")
 region = Rect2(128, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lh5km"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("3_pe1bh")
 region = Rect2(144, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8qra"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("3_pe1bh")
 region = Rect2(160, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahtt6"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("3_pe1bh")
 region = Rect2(176, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5v3ms"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("3_pe1bh")
 region = Rect2(192, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6yfpb"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("3_pe1bh")
 region = Rect2(208, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_02hdd"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("3_pe1bh")
 region = Rect2(224, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q75op"]
-atlas = ExtResource("4_sboh1")
+atlas = ExtResource("3_pe1bh")
 region = Rect2(240, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7mg20"]
@@ -135,8 +135,8 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 gravity_point_center = Vector2(2.08165e-12, -10)
 gravity_direction = Vector2(2.08165e-12, -10)
 gravity = 8.52651e-14
-script = ExtResource("1_dxdki")
-item_data = ExtResource("2_h1y5k")
+script = ExtResource("1_pr18w")
+item_data = ExtResource("2_ekg2r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7mg20")
@@ -145,10 +145,10 @@ frame_progress = 0.480898
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_k4ei5")
 
-[node name="Detector" parent="." instance=ExtResource("4_ygy86")]
+[node name="Detector" parent="." instance=ExtResource("4_ldejc")]
 
 [node name="ItemHolder" type="Node2D" parent="."]
-script = ExtResource("3_6wrjk")
+script = ExtResource("5_ljlwv")
 
 [connection signal="belt_detected" from="Detector" to="." method="_on_detector_belt_detected"]
 [connection signal="item_held" from="ItemHolder" to="." method="_on_item_holder_item_held"]

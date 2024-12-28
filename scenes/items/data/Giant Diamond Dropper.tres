@@ -4,7 +4,6 @@
 
 [resource]
 script = ExtResource("1_5cgx5")
-item_name = ""
 item_type = 0
 price = 0.0
 rarity = 1

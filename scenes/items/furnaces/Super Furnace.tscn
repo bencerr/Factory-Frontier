@@ -1,18 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://4dwfrnwe77qb"]
+[gd_scene load_steps=13 format=3 uid="uid://csmc8ds5wvdqb"]
 
-[ext_resource type="Script" path="res://scripts/furnace.gd" id="1_52cl2"]
-[ext_resource type="Resource" uid="uid://dmbxc25kc3gm2" path="res://scenes/items/data/Advanced Furnace.tres" id="2_l8p1o"]
-[ext_resource type="PackedScene" uid="uid://kaam8tiwss0t" path="res://scenes/ore_value_ui.tscn" id="4_0otx7"]
-[ext_resource type="Texture2D" uid="uid://b3us48fbw44gk" path="res://sprites/tilesets/furnaces.png" id="5_c1lx2"]
-[ext_resource type="Script" path="res://scripts/item_holder.gd" id="6_1t3r4"]
-[ext_resource type="AudioStream" uid="uid://c604nxr88w2w7" path="res://sfx/stop-13692.mp3" id="7_ryshk"]
+[ext_resource type="Script" path="res://scripts/furnace.gd" id="1_5cpxg"]
+[ext_resource type="Resource" uid="uid://bk0jgiax7klnd" path="res://scenes/items/data/Super Furnace.tres" id="2_1ydu1"]
+[ext_resource type="PackedScene" uid="uid://kaam8tiwss0t" path="res://scenes/ore_value_ui.tscn" id="3_2k5ib"]
+[ext_resource type="Texture2D" uid="uid://b3us48fbw44gk" path="res://sprites/tilesets/furnaces.png" id="4_xpesj"]
+[ext_resource type="Script" path="res://scripts/item_holder.gd" id="5_gt2ix"]
+[ext_resource type="AudioStream" uid="uid://c604nxr88w2w7" path="res://sfx/stop-13692.mp3" id="6_fjb50"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unhhq"]
 size = Vector2(16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mmymp"]
-atlas = ExtResource("5_c1lx2")
-region = Rect2(16, 2.08165e-12, 16, 16)
+atlas = ExtResource("4_xpesj")
+region = Rect2(64, 2.08165e-12, 16, 16)
 
 [sub_resource type="Gradient" id="Gradient_k1ju7"]
 offsets = PackedFloat32Array(0, 0.209003, 0.983923, 1)
@@ -34,12 +34,12 @@ point_count = 2
 offsets = PackedFloat32Array(0, 0.636964, 1)
 colors = PackedColorArray(1, 0.313726, 0.247059, 1, 1, 0.313726, 0.247059, 1, 0.929412, 0.0431373, 0, 0)
 
-[node name="Advanced Furnace" type="Area2D"]
+[node name="Furnace" type="Area2D"]
 position = Vector2(27, 0)
-script = ExtResource("1_52cl2")
-item_data = ExtResource("2_l8p1o")
-label_scene = ExtResource("4_0otx7")
-mult = 1.5
+script = ExtResource("1_5cpxg")
+item_data = ExtResource("2_1ydu1")
+label_scene = ExtResource("3_2k5ib")
+mult = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_unhhq")
@@ -48,15 +48,15 @@ shape = SubResource("RectangleShape2D_unhhq")
 texture = SubResource("AtlasTexture_mmymp")
 
 [node name="ItemHolder" type="Node2D" parent="."]
-script = ExtResource("6_1t3r4")
+script = ExtResource("5_gt2ix")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(1, 0, 0, 1)
+color = Color(0.163807, 0.517661, 0.775906, 0.352941)
 texture = SubResource("GradientTexture2D_ms6go")
 texture_scale = 0.25
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_ryshk")
+stream = ExtResource("6_fjb50")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false

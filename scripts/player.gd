@@ -99,6 +99,11 @@ func _ready() -> void:
 			data.inventory[item_key] = PlayerItemInfo.new()
 			data.inventory[item_key].item_id = item_key
 			data.inventory[item_key].quantity = 0
+
+	for item_key in data.inventory.keys():
+		if not GameData.items.has(item_key):
+			print("data loss: %s" % item_key)
+			data.inventory.erase(item_key)
 	
 	load_placed_items()
 

@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_tcl1m")
-item_name = "Upgraded Dropper"
 item_type = 0
-price = 1000.0
+price = 100000.0
+rarity = 0

@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_cirdx")
-item_name = "Super Frozen Dropper"
 item_type = 0
-price = 100000.0
+price = 1e+18
+rarity = 0

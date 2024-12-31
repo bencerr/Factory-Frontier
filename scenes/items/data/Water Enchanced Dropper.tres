@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_rnxeq")
-item_name = "Water Enchanced Dropper"
 item_type = 0
-price = 5000.0
+price = 1e+09
+rarity = 0

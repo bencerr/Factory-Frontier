@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_uovm1")
-item_name = "Superier Dropper"
 item_type = 0
-price = 2500.0
+price = 1e+06
+rarity = 0

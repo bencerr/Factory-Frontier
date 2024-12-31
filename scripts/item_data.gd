@@ -1,7 +1,7 @@
-extends Resource
 class_name ItemData
+extends Resource
 
-enum ITEM_TYPE {
+enum ITEMTYPE {
 	DROPPER,
 	CONVEYOR,
 	UPGRADER,
@@ -13,9 +13,10 @@ enum RARITY {
 	REBIRTH
 }
 
-var id: int
-var name: String # get_name()
-
-@export var item_type: ITEM_TYPE = ITEM_TYPE.DROPPER
+@export var item_type: ITEMTYPE = ITEMTYPE.DROPPER
 @export var price: float = 0
 @export var rarity: RARITY = RARITY.COMMON
+
+var id: int
+# name = resource_name
+var name: String

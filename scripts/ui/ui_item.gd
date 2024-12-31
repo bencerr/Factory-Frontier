@@ -1,5 +1,5 @@
+class_name UIItem
 extends Control
-class_name UI_Item
 
 var item_id: int
 
@@ -29,4 +29,4 @@ func _on_inventory_changed(id: int) -> void:
 func _on_texture_button_pressed() -> void:
 	var input_handler: InputHandler = get_node("/root/Main/InputHandler")
 	input_handler.enable_placing(item_id)
-	get_node("/root/Main/CanvasLayer/UI").switch_tab(get_node("/root/Main/CanvasLayer/UI").UI_TAB.NONE)
+	get_node("/root/Main/CanvasLayer/UI").switch_tab(MainInterface.UITAB.NONE)

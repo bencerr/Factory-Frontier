@@ -1,5 +1,5 @@
-extends Area2D
 class_name Detector
+extends Area2D
 
 signal belt_detected
 var detecting: bool = false
@@ -12,11 +12,11 @@ func _physics_process(_delta: float) -> void:
 		return
 	var areas = get_overlapping_areas()
 
-	areas = areas.filter(func(area: Area2D): 
+	areas = areas.filter(func(area: Area2D):
 		return area != get_parent()
 	)
 
-	if len(areas) == 1:
+	if len(areas) >= 1:
 		var area: Area2D = areas[0]
 		belt_detected.emit(area)
 		detecting = false

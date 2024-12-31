@@ -1,8 +1,10 @@
-extends Area2D
 class_name Conveyor
+extends Area2D
+
+@export var item_data: ItemData
+
 var item_holder: ItemHolder
 var detector: Detector
-@export var item_data: ItemData
 
 func _ready() -> void:
 	item_holder = $ItemHolder

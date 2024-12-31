@@ -1,5 +1,5 @@
-extends Resource
 class_name PlacedItemData
+extends Resource
 
 @export var item_index: int = -1
 @export var rotation: float = 0

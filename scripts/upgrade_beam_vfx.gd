@@ -6,7 +6,7 @@ var upgrader: Upgrader
 func _on_ore_processed(_ore: Ore) -> void:
 	if ore_processed_tween:
 		ore_processed_tween.kill()
-	
+
 	ore_processed_tween = create_tween()
 	ore_processed_tween.tween_property(self, "scale", Vector2(1.2, 1), .2)
 	ore_processed_tween.tween_property(self, "scale", Vector2(1, 1), .1)

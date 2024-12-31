@@ -1,5 +1,5 @@
-extends Node2D
 class_name Ore
+extends Node2D
 
 signal value_changed(change: float)
 @export var value: float = 1:

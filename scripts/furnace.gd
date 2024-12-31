@@ -1,5 +1,6 @@
-extends Area2D
 class_name Furnace
+extends Area2D
+
 @export var item_data: ItemData
 @export var label_scene: PackedScene
 @export var mult: float = 1

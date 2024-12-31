@@ -1,9 +1,11 @@
-extends Area2D
 class_name ValueDisplayer
-var item_holder: ItemHolder
-var detector: Detector
+extends Area2D
+
 @export var item_data: ItemData
 @export var value_display_ui: PackedScene
+
+var item_holder: ItemHolder
+var detector: Detector
 
 func display_ore_data(ore: Ore) -> void:
 	var ore_value: float = ore.value

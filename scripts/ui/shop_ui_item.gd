@@ -1,5 +1,5 @@
+class_name ShopUIItem
 extends Control
-class_name Shop_UI_Item
 
 var item_id: int
 var default_style: StyleBoxFlat
@@ -17,7 +17,6 @@ func _ready() -> void:
 	default_style = $Panel.get_theme_stylebox("panel").duplicate()
 	selected_style = $Panel.get_theme_stylebox("panel").duplicate()
 	selected_style.bg_color = selected_style.bg_color.lightened(.2)
-	
 
 func _on_shop_changed(id: int) -> void:
 	if id != item_id:

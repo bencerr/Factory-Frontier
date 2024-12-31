@@ -1,10 +1,13 @@
-extends Area2D
 class_name Upgrader
-var item_holder: ItemHolder
-var detector: Detector
+extends Area2D
+
+signal process_ore(ore: Ore)
+
 @export var item_data: ItemData
 @export var multiplier: float
-signal process_ore(ore: Ore)
+
+var item_holder: ItemHolder
+var detector: Detector
 
 func upgrade(ore: Ore) -> void:
 	if ore.upgrade_tags.has(item_data.name): return

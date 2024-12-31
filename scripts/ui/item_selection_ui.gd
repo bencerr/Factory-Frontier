@@ -19,5 +19,7 @@ func _on_close_pressed() -> void:
 
 func _on_rotate_pressed() -> void:
 	Player.data.placed_items[placed_item_id].rotation += deg_to_rad(90)
-	Player.data.placed_items[placed_item_id].instance.rotation = Player.data.placed_items[placed_item_id].rotation
+	Player.data.placed_items[placed_item_id].instance.rotation = Player.data.placed_items[
+		placed_item_id
+	].rotation
 

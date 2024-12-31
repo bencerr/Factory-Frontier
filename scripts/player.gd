@@ -53,8 +53,8 @@ func update_inventory_item(item_id: int, item: PlayerItemInfo) -> bool:
 		data.inventory[item_id] = item
 		inventory_changed.emit(item_id)
 		return true
-	else:
-		return false
+
+	return false
 
 func add_money(amount: float) -> void:
 	data.money += amount
@@ -72,20 +72,20 @@ func do_rebirth():
 		if item_data.rarity == ItemData.RARITY.REBIRTH:
 			item_info.quantity += 1
 			update_inventory_item(id, item_info)
-		
+
 		data.placed_items[i].instance.queue_free()
 
 	data.placed_items.clear()
-	
+
 	for key in data.inventory.keys():
 		if GameData.items[key].item_data.rarity == ItemData.RARITY.REBIRTH: continue
 		var item_info: PlayerItemInfo = data.inventory[key]
 		item_info.quantity = 0
 		update_inventory_item(key, item_info)
-	
+
 	data.rebirths += 1
 	money_changed.emit(0)
-	
+
 	var winner = GameData.rebirth_items.pick_random()
 	var item_updated = Player.data.inventory[winner]
 	item_updated.quantity += 1
@@ -104,7 +104,7 @@ func _ready() -> void:
 		if not GameData.items.has(item_key):
 			print("data loss: %s" % item_key)
 			data.inventory.erase(item_key)
-	
+
 	load_placed_items()
 
 func _on_tile_map_loaded(tm: TileMap) -> void:

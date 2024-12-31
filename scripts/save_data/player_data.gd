@@ -1,5 +1,5 @@
-extends Resource
 class_name PlayerData
+extends Resource
 
 @export var money: float
 @export var rebirths: int

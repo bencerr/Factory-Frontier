@@ -1,5 +1,5 @@
-extends Node2D
 class_name Dropper
+extends Node2D
 
 @export var sprite: Resource
 @export var item_data: ItemData
@@ -13,7 +13,7 @@ func drop_vfx() -> void:
 	var orginal_scale: Vector2 = self.scale
 	drop_tween.tween_property(self, "scale", Vector2(.8, .8), .18)
 	drop_tween.tween_property(self, "scale", orginal_scale, .2)
-	
+
 	drop_tween.play()
 
 func _on_timer_timeout() -> void:

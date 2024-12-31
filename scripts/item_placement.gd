@@ -1,12 +1,12 @@
-extends Node2D
 class_name ItemPlacement
+extends Node2D
 signal item_placed(item: PlayerItemInfo)
+
+var inv_index: int
 
 @onready var tilemap: TileMap = get_node("/root/Main/TileMap")
 @onready var place_particles_scene = preload("res://scenes/particles/place_particles.tscn")
 @onready var item_selection_ui: Control
-
-var inv_index: int
 
 func _ready() -> void:
 	item_selection_ui = get_node("/root/Main/ItemSelectionControl")
@@ -16,17 +16,17 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.button_index != MOUSE_BUTTON_LEFT: return
 
 	match get_node("/root/Main/InputHandler").current_input_type:
-		InputHandler.INPUT_TYPE.CAMERA:
+		InputHandler.INPUTTYPE.CAMERA:
 			var mouse_pos: Vector2 = get_global_mouse_position()
 			var tile_pos: Vector2i = tilemap.local_to_map(tilemap.to_local(mouse_pos))
 			var id: int = Player.get_placed_item_id(tile_pos)
 
-			if (item_selection_ui.visible): item_selection_ui.hide() 
+			if (item_selection_ui.visible): item_selection_ui.hide()
 			if id == -1: return
 
 			item_selection_ui.show_item_info(id, mouse_pos)
 			return
-		InputHandler.INPUT_TYPE.PLACEMENT:
+		InputHandler.INPUTTYPE.PLACEMENT:
 			var mouse_pos: Vector2 = get_global_mouse_position()
 			var tile_pos: Vector2i = tilemap.local_to_map(tilemap.to_local(mouse_pos))
 			var item_info: PlayerItemInfo = Player.data.inventory[inv_index]
@@ -58,7 +58,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				Player.data.placed_items.append(pid)
 				item_placed.emit(item_info)
 				SaveHandler.save_data(Player.data)
-		InputHandler.INPUT_TYPE.DELETE:
+		InputHandler.INPUTTYPE.DELETE:
 			var mouse_pos: Vector2 = get_global_mouse_position()
 			var tile_pos: Vector2i = tilemap.local_to_map(tilemap.to_local(mouse_pos))
 			var id: int = Player.get_placed_item_id(tile_pos)

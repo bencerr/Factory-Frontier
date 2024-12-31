@@ -30,7 +30,7 @@
   ],
   "table_functions": {
     "filter": [
-      "return true"
+      "if res.item_type == 0: return true\nelse: return false"
     ],
     "process": [
       "return value"

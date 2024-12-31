@@ -1,22 +1,21 @@
 extends Node
 
+const GRID_SIZE: int = 16
+const SUFFIXES_METRIC_SYMBOL: Dictionary = {
+	"0": "",
+	"1": "k",
+	"2": "M",
+	"3": "B",
+	"4": "T",
+	"5": "q",
+	"6": "Q",
+	"7": "sx",
+	"8": "Sp",
+}
+
 var items: Dictionary = {}
 var rebirth_items: Array[int] = [] # keys for items dict
-
-const grid_size: int = 16
 var item_id_counter: int = 0
-
-const suffixes_metric_symbol: Dictionary = {
-	"0": "", 
-	"1": "k", 
-	"2": "M", 
-	"3": "B", 
-	"4": "T", 
-	"5": "q", 
-	"6": "Q", 
-	"7": "sx", 
-	"8": "Sp", 
-}
 
 func log10(x) -> float:
 	return log(x) / log(10)
@@ -26,22 +25,21 @@ func float_to_prefix(number: float) -> String:
 		return str(number)
 
 	var exponent: int = floor(log10(number) / 3)
-	if str(exponent) in suffixes_metric_symbol:
-		var suffix = suffixes_metric_symbol[str(exponent)]
+	if str(exponent) in SUFFIXES_METRIC_SYMBOL:
+		var suffix = SUFFIXES_METRIC_SYMBOL[str(exponent)]
 		var scaled_number: float = number / pow(10, exponent * 3)
 
 		while scaled_number >= 1000:
 			scaled_number /= 1000
 			exponent += 1
-			suffix = suffixes_metric_symbol.get(str(exponent), "")  # Update suffix
+			suffix = SUFFIXES_METRIC_SYMBOL.get(str(exponent), "")  # Update suffix
 
 		return str(round(scaled_number)) + suffix
-	else:
-		return str(number)
+
+	return str(number)
 
 func calc_rebirth_price(rebirth: int) -> float:
-	return 0
-	#return 1e1 * pow(rebirth+1,1.1)
+	return 1e6 * pow(rebirth+1,1.1)
 
 func strip_item_node(node: Node) -> Node:
 	for child in node.get_children():

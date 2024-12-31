@@ -1,9 +1,11 @@
-extends Node2D
 class_name ItemHolder
+extends Node2D
 
 signal item_held
-var direction: Vector2 = Vector2.from_angle(rotation)
+
 @export var speed: float = 16
+
+var direction: Vector2 = Vector2.from_angle(rotation)
 var moving_item: bool = false
 
 func recieve_item(ore: Ore) -> void:

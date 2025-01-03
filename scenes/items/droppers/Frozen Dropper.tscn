@@ -13,7 +13,7 @@ region = Rect2(96, 2.08165e-12, 16, 32)
 
 [node name="Dropper" type="Node2D"]
 script = ExtResource("1_g8nqj")
-sprite = ExtResource("2_ey3gg")
+ore_scene = ExtResource("2_ey3gg")
 item_data = ExtResource("3_jl3ev")
 
 [node name="Timer" type="Timer" parent="."]

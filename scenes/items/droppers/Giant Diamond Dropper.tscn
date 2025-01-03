@@ -13,7 +13,7 @@ region = Rect2(2.08165e-12, 36, 16, 22)
 
 [node name="Giant Diamond Dropper" type="Node2D"]
 script = ExtResource("1_s2dwy")
-sprite = ExtResource("2_0ef8o")
+ore_scene = ExtResource("2_0ef8o")
 item_data = ExtResource("3_u2qma")
 
 [node name="Timer" type="Timer" parent="."]

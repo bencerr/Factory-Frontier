@@ -13,7 +13,7 @@ region = Rect2(16, 36, 16, 22)
 
 [node name="Miner" type="Node2D"]
 script = ExtResource("1_t6l2h")
-sprite = ExtResource("2_sm3hu")
+ore_scene = ExtResource("2_sm3hu")
 item_data = ExtResource("3_1ssm8")
 
 [node name="Timer" type="Timer" parent="."]

@@ -14,7 +14,7 @@ region = Rect2(2.08165e-12, 2.08165e-12, 16, 32)
 [node name="Basic Dropper" type="Node2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("1_r10l2")
-sprite = ExtResource("2_eenqf")
+ore_scene = ExtResource("2_eenqf")
 item_data = ExtResource("3_hbpvh")
 
 [node name="Timer" type="Timer" parent="."]

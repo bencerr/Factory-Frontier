@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://h8ceeqmx61i7"]
+[gd_scene load_steps=8 format=3 uid="uid://h8ceeqmx61i7"]
 
 [ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="1_bcagv"]
 [ext_resource type="Script" path="res://scripts/ui/item_selection_ui.gd" id="1_sqwid"]
@@ -7,11 +7,11 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6f36b"]
 bg_color = Color(0.129412, 0.172549, 0.203922, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.988235, 0.988235, 0.988235, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.0705882, 0.101961, 0.12549, 1)
 border_blend = true
 corner_radius_top_left = 35
 corner_radius_top_right = 35
@@ -23,11 +23,17 @@ shadow_offset = Vector2(2.08165e-12, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hkcv6"]
 font = ExtResource("1_bcagv")
-font_size = 64
+font_size = 58
 shadow_color = Color(0, 0, 0, 0.443137)
 shadow_offset = Vector2(2.08165e-12, 1)
 
-[node name="ItemSelectionControl" type="Control" node_paths=PackedStringArray("name_label")]
+[sub_resource type="LabelSettings" id="LabelSettings_yo5fr"]
+font = ExtResource("1_bcagv")
+font_size = 48
+shadow_color = Color(0, 0, 0, 0.443137)
+shadow_offset = Vector2(2.08165e-12, 1)
+
+[node name="ItemSelectionControl" type="Control" node_paths=PackedStringArray("name_label", "stat_label")]
 top_level = true
 light_mask = 0
 z_index = 99
@@ -46,7 +52,8 @@ grow_vertical = 2
 scale = Vector2(0.08, 0.08)
 pivot_offset = Vector2(2.08165e-12, -12)
 script = ExtResource("1_sqwid")
-name_label = NodePath("MarginContainer/Control/NameLabel")
+name_label = NodePath("MarginContainer/Control/VBoxContainer/NameLabel")
+stat_label = NodePath("MarginContainer/Control/VBoxContainer/StatLabel")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -64,26 +71,37 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
 
 [node name="Control" type="Control" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="MarginContainer/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -143.0
-offset_right = 880.0
-offset_bottom = 142.0
+anchors_preset = -1
+anchor_right = 0.641
+anchor_bottom = 1.0
+offset_right = -0.740037
+offset_bottom = 6.0
 grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="NameLabel" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
 text = "item_name"
 label_settings = SubResource("LabelSettings_hkcv6")
 vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="StatLabel" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "stat1: 1"
+label_settings = SubResource("LabelSettings_yo5fr")
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Control"]
@@ -93,10 +111,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -541.0
-offset_top = -112.0
+offset_left = -405.0
+offset_top = -88.0
 offset_right = 1.0
-offset_bottom = 112.0
+offset_bottom = 88.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 20

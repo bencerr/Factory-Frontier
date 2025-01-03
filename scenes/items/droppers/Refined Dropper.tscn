@@ -17,7 +17,7 @@ region = Rect2(32, 16, 16, 16)
 
 [node name="Refined Dropper" type="Node2D"]
 script = ExtResource("1_pw4cq")
-sprite = ExtResource("2_3yaq8")
+ore_scene = ExtResource("2_3yaq8")
 item_data = ExtResource("3_8blwl")
 
 [node name="Timer" type="Timer" parent="."]

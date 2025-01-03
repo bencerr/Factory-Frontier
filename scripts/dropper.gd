@@ -1,7 +1,7 @@
 class_name Dropper
 extends Node2D
 
-@export var sprite: Resource
+@export var ore_scene: PackedScene
 @export var item_data: ItemData
 var drop_tween: Tween
 
@@ -21,7 +21,7 @@ func _on_timer_timeout() -> void:
 
 func _on_detector_belt_detected(destination: Area2D) -> void:
 	if destination.get_parent() is Dropper: return
-	var drop_item: Node2D = sprite.instantiate()
+	var drop_item: Node2D = ore_scene.instantiate()
 	$Hold.add_child(drop_item)
 	drop_item.global_position = $Hold.global_position
 	drop_item.get_node("Sprite2D").rotation = randf_range(0.0, PI*2)

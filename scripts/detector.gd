@@ -16,7 +16,6 @@ func _physics_process(_delta: float) -> void:
 		return area != get_parent()
 	)
 
-	if len(areas) >= 1:
-		var area: Area2D = areas[0]
+	for area: Area2D in areas:
 		belt_detected.emit(area)
 		detecting = false

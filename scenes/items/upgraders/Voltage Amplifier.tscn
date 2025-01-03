@@ -30,6 +30,7 @@ gravity = 8.52651e-14
 script = ExtResource("1_hvyvk")
 item_data = ExtResource("2_er0bg")
 multiplier = 1.5
+upgrade_limit = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_k4ei5")

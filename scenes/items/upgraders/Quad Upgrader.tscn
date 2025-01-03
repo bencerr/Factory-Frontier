@@ -27,7 +27,8 @@ gravity_direction = Vector2(2.08165e-12, -10)
 gravity = 8.52651e-14
 script = ExtResource("1_jy2oo")
 item_data = ExtResource("2_f6trf")
-multiplier = 2.0
+multiplier = 1.5
+upgrade_limit = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_k4ei5")

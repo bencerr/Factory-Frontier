@@ -17,6 +17,9 @@ func offload_item() -> Ore:
 func hold_item(ore: Ore) -> void:
 	item_held.emit(ore)
 
+func _exit_tree() -> void:
+	GameData.ore_count -= get_child_count()
+
 func _physics_process(delta: float) -> void:
 	for item in get_children():
 		if item is Ore:

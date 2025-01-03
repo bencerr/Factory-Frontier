@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_bcxb1")
-item_name = "Enchanced Upgrader"
 item_type = 2
 price = 100.0
+rarity = 0

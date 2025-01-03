@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_64apg")
-item_name = "Voltage Amplifier"
 item_type = 2
-price = 2500.0
+price = 250000.0
+rarity = 0

@@ -8,7 +8,7 @@ var selected_style: StyleBoxFlat
 func _ready() -> void:
 	var data: ItemData = GameData.items[item_id].item_data
 	get_node("/root/Main/CanvasLayer/UI").shop_selected_item_changed.connect(_on_shop_changed)
-	$Price.text = "$" + str(data.price)
+	$Price.text = "$" + GameData.float_to_prefix(data.price)
 	$ItemName.text = str(data.name)
 	var node = GameData.items[item_id].duplicate()
 	node.position = Vector2(16,16)

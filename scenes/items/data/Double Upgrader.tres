@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_ik7h4")
 item_type = 2
-price = 1000.0
+price = 75000.0
 rarity = 0

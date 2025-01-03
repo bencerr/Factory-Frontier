@@ -17,6 +17,9 @@ var items: Dictionary = {}
 var rebirth_items: Array[int] = [] # keys for items dict
 var item_id_counter: int = 0
 
+func round_place(num: float, places: int):
+	return (round(num*pow(10,places))/pow(10,places))
+
 func log10(x) -> float:
 	return log(x) / log(10)
 
@@ -34,7 +37,7 @@ func float_to_prefix(number: float) -> String:
 			exponent += 1
 			suffix = SUFFIXES_METRIC_SYMBOL.get(str(exponent), "")  # Update suffix
 
-		return str(round(scaled_number)) + suffix
+		return str(round_place(scaled_number, 2)) + suffix  # Round to 2 decimal places
 
 	return str(number)
 

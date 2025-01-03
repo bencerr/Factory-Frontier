@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_wdjp8")
-item_name = "Refined Upgrader"
 item_type = 2
-price = 1000.0
+price = 10000.0
+rarity = 0

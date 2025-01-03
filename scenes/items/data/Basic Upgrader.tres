@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_4aioj")
-item_name = "Basic Upgrader"
 item_type = 2
 price = 10.0
+rarity = 0

@@ -30,6 +30,9 @@ func _ready() -> void:
 	else:
 		print_debug("Error loading data")
 
+func _exit_tree() -> void:
+	save_data(Player.data)
+
 func _notification(what):
 	if (
 	what == NOTIFICATION_WM_CLOSE_REQUEST) or (

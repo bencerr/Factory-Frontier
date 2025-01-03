@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://5qesdudrl5ii"]
+[gd_scene load_steps=48 format=3 uid="uid://5qesdudrl5ii"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_hq2yj"]
 [ext_resource type="Texture2D" uid="uid://3hytavl1qmkd" path="res://sprites/store.png" id="1_lyyx3"]
@@ -35,6 +35,12 @@ shadow_offset = Vector2(2.08165e-12, -1)
 [sub_resource type="LabelSettings" id="LabelSettings_tvv45"]
 font = ExtResource("4_ptkkj")
 font_size = 38
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_r1rc7"]
+font = ExtResource("4_ptkkj")
+font_size = 26
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
@@ -144,7 +150,7 @@ shadow_offset = Vector2(2.08165e-12, 1)
 [sub_resource type="ViewportTexture" id="ViewportTexture_plwya"]
 viewport_path = NodePath("ItemPlacementControl/ItemImage/SubViewport")
 
-[node name="UI" type="Control" node_paths=PackedStringArray("shop_panel", "inv_panel", "inv_container", "placement_control", "money_label", "shop_container", "buy_panel", "rebirth_control", "rebirth_price_label", "rebirth_label")]
+[node name="UI" type="Control" node_paths=PackedStringArray("shop_panel", "inv_panel", "inv_container", "placement_control", "money_label", "shop_container", "buy_panel", "rebirth_control", "rebirth_price_label", "rebirth_label", "ore_limit_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -157,12 +163,13 @@ shop_panel = NodePath("ShopControl")
 inv_panel = NodePath("InventoryControl")
 inv_container = NodePath("InventoryControl/MarginContainer/ScrollContainer/HFlowContainer")
 placement_control = NodePath("ItemPlacementControl")
-money_label = NodePath("TabControl2/Panel/MarginContainer/MoneyLabel")
+money_label = NodePath("TabControl2/Panel/MarginContainer/VBoxContainer/MoneyLabel")
 shop_container = NodePath("ShopControl/MarginContainer/ScrollContainer/HFlowContainer")
 buy_panel = NodePath("ShopControl/BuyPanel")
 rebirth_control = NodePath("RebirthControl")
 rebirth_price_label = NodePath("RebirthControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer2/RebirthPrice")
 rebirth_label = NodePath("TabControl2/Panel2/MarginContainer/RebirthLabel2")
+ore_limit_label = NodePath("TabControl2/Panel/MarginContainer/VBoxContainer/OreLimitLabel")
 
 [node name="TabControl" type="Control" parent="."]
 layout_mode = 1
@@ -322,12 +329,23 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="MoneyLabel" type="Label" parent="TabControl2/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabControl2/Panel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MoneyLabel" type="Label" parent="TabControl2/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "$$$$
 "
 label_settings = SubResource("LabelSettings_tvv45")
+vertical_alignment = 1
+
+[node name="OreLimitLabel" type="Label" parent="TabControl2/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "0 / 50 ores"
+label_settings = SubResource("LabelSettings_r1rc7")
 vertical_alignment = 1
 
 [node name="Panel2" type="Panel" parent="TabControl2"]

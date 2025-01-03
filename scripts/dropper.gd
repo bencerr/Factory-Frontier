@@ -17,7 +17,8 @@ func drop_vfx() -> void:
 	drop_tween.play()
 
 func _on_timer_timeout() -> void:
-	$Detector.detect()
+	if GameData.ore_count < Player.data.ore_limit:
+		$Detector.detect()
 
 func _on_detector_belt_detected(destination: Area2D) -> void:
 	if destination.get_parent() is Dropper: return
@@ -27,4 +28,5 @@ func _on_detector_belt_detected(destination: Area2D) -> void:
 	drop_item.get_node("Sprite2D").rotation = randf_range(0.0, PI*2)
 	destination.recieve_item(drop_item)
 	drop_vfx()
+	GameData.ore_count += 1
 	$Timer.start()

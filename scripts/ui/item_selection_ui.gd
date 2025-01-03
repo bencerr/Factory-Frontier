@@ -19,7 +19,7 @@ func get_item_stats() -> String:
 		ore.queue_free()
 
 		s += "Value: $%s" % GameData.float_to_prefix(ore_value)
-		s += "\nFrequency: %sx" % freq
+		s += "\nFrequency: %ss" % freq
 	elif item is Upgrader:
 		s = "Mult: %sx" % GameData.float_to_prefix(item.multiplier)
 	elif item is Furnace:

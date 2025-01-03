@@ -15,6 +15,7 @@ enum UITAB {NONE,SHOP,INVENTORY,REBIRTH}
 @export var rebirth_control: Control
 @export var rebirth_price_label: Label
 @export var rebirth_label: RichTextLabel
+@export var ore_limit_label: Label
 
 var shop_item_id: int = -1
 var current_tab: UITAB = UITAB.NONE
@@ -159,6 +160,7 @@ func _ready() -> void:
 	get_node("/root/Main/InputHandler").input_type_changed.connect(_on_input_type_changed)
 	shop_selected_item_changed.connect(_on_shop_selected_item_changed)
 	Player.money_changed.connect(_on_money_change)
+	GameData.ore_count_changed.connect(_on_ore_count_changed)
 
 	# init code
 	_on_money_change(0)
@@ -297,3 +299,6 @@ func _on_do_rebirth_button_pressed() -> void:
 		rebirth_price_label.text = "Cost: $%s" % GameData.float_to_prefix(
 			GameData.calc_rebirth_price(Player.data.rebirths)
 		)
+
+func _on_ore_count_changed(_val: int) -> void:
+	ore_limit_label.text = "%s / %s ores" % [GameData.ore_count, Player.data.ore_limit]

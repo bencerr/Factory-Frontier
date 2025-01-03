@@ -1,5 +1,7 @@
 extends Node
 
+signal ore_count_changed(change: int)
+
 const GRID_SIZE: int = 16
 const SUFFIXES_METRIC_SYMBOL: Dictionary = {
 	"0": "",
@@ -13,9 +15,16 @@ const SUFFIXES_METRIC_SYMBOL: Dictionary = {
 	"8": "Sp",
 }
 
+
 var items: Dictionary = {}
 var rebirth_items: Array[int] = [] # keys for items dict
 var item_id_counter: int = 0
+var ore_count: int = 0:
+	get:
+		return ore_count
+	set(val):
+		ore_count = val
+		ore_count_changed.emit(val)
 
 func round_place(num: float, places: int):
 	return (round(num*pow(10,places))/pow(10,places))

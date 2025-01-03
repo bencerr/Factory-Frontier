@@ -236,7 +236,7 @@ frame_progress = 0.269415
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
 offset = Vector2(2.08165e-12, 2.08165e-12)
-zoom = Vector2(5, 5)
+zoom = Vector2(7, 7)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_s3mw5")

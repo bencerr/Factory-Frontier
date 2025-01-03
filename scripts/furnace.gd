@@ -24,6 +24,7 @@ func process_item(ore: Ore) -> void:
 	var sell_value: float = ore_value * mult
 	Player.add_money(sell_value)
 	money_vfx(sell_value)
+	GameData.ore_count -= 1
 	ore.queue_free()
 
 func can_recieve_item() -> bool:

@@ -9,7 +9,7 @@ var inv_index: int
 @onready var item_selection_ui: Control
 
 func _ready() -> void:
-	item_selection_ui = get_node("/root/Main/ItemSelectionControl")
+	item_selection_ui = get_node("/root/Main/CanvasLayer/ItemSelectionControl")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not (event is InputEventMouseButton and event.pressed): return
@@ -24,7 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if (item_selection_ui.visible): item_selection_ui.hide()
 			if id == -1: return
 
-			item_selection_ui.show_item_info(id, mouse_pos)
+			item_selection_ui.show_item_info(id)
 			return
 		InputHandler.INPUTTYPE.PLACEMENT:
 			var mouse_pos: Vector2 = get_global_mouse_position()

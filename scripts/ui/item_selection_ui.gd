@@ -33,8 +33,8 @@ func update() -> void:
 	name_label.text = GameData.items[item_info.item_id].item_data.name
 	stat_label.text = get_item_stats()
 
-func show_item_info(id: int, pos: Vector2):
-	global_position = pos
+func show_item_info(id: int):
+	position = get_global_mouse_position()
 	placed_item_id = id
 	update()
 	show()

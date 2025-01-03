@@ -36,6 +36,8 @@ Player="*res://scripts/player.gd"
 
 window/size/viewport_width=1242
 window/size/viewport_height=2668
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 window/handheld/orientation=6
 
 [editor_plugins]

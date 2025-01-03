@@ -153,7 +153,7 @@ func _on_delete_button_pressed() -> void:
 func _ready() -> void:
 	sort_button_style = load("res://resources/sort_button_selected.tres")
 	sort_button_style_empty = load("res://resources/empty_style_box.tres")
-	item_selection_ui = get_node("/root/Main/ItemSelectionControl")
+	item_selection_ui = get_node("/root/Main/CanvasLayer/ItemSelectionControl")
 
 	# events
 	get_node("/root/Main/InputHandler").input_type_changed.connect(_on_input_type_changed)

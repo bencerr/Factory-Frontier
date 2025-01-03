@@ -225,7 +225,7 @@ size_flags_vertical = 4
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("3_qmwlc")]
 
-[node name="ItemSelectionControl" parent="." instance=ExtResource("8_k483p")]
+[node name="ItemSelectionControl" parent="CanvasLayer" instance=ExtResource("8_k483p")]
 visible = false
 
 [node name="ConveyorAnimationSync" type="AnimatedSprite2D" parent="."]

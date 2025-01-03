@@ -21,7 +21,8 @@ func get_item_stats() -> String:
 		s += "Value: $%s" % GameData.float_to_prefix(ore_value)
 		s += "\nFrequency: %ss" % freq
 	elif item is Upgrader:
-		s = "Mult: %sx" % GameData.float_to_prefix(item.multiplier)
+		s += "Mult: %sx" % GameData.float_to_prefix(item.multiplier)
+		s += "\nLimit: %s" % str(item.upgrade_limit)
 	elif item is Furnace:
 		s = "Mult: %sx" % GameData.float_to_prefix(item.mult)
 

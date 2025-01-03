@@ -14,8 +14,6 @@ func drop_vfx() -> void:
 	drop_tween.tween_property(self, "scale", Vector2(.8, .8), .18)
 	drop_tween.tween_property(self, "scale", orginal_scale, .2)
 
-	drop_tween.play()
-
 func _on_timer_timeout() -> void:
 	if GameData.ore_count < Player.data.ore_limit:
 		$Detector.detect()
@@ -29,4 +27,3 @@ func _on_detector_belt_detected(destination: Area2D) -> void:
 	destination.recieve_item(drop_item)
 	drop_vfx()
 	GameData.ore_count += 1
-	$Timer.start()

@@ -25,6 +25,7 @@ shadow_offset = Vector2(2.08165e-12, 1)
 custom_minimum_size = Vector2(280, 280)
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 1
 script = ExtResource("1_adnxo")
 
 [node name="Panel" type="Panel" parent="."]
@@ -85,5 +86,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

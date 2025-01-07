@@ -2,6 +2,7 @@ extends Control
 
 @export var name_label: Label
 @export var quantity_label: Label
+@export var texture_rect: TextureRect
 var icon_viewport_node: Node2D
 
 func update() -> void:
@@ -16,7 +17,7 @@ func update() -> void:
 	icon_viewport_node = GameData.strip_item_node(icon_viewport_node)
 	icon_viewport_node.position = get_node("ItemImage/SubViewport").size / 2
 	get_node("Rotate").rotation = Player.item_rotation
-	icon_viewport_node.rotation = Player.item_rotation
+	texture_rect.rotation = Player.item_rotation
 	$ItemImage/SubViewport.add_child(icon_viewport_node)
 
 func _on_item_placed(_item: PlayerItemInfo) -> void:
@@ -32,4 +33,4 @@ func _on_close_pressed() -> void:
 func _on_rotate_pressed() -> void:
 	Player.item_rotation += deg_to_rad(90)
 	get_node("Rotate").rotation = Player.item_rotation
-	icon_viewport_node.rotation = Player.item_rotation
+	texture_rect.rotation = Player.item_rotation

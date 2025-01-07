@@ -15,7 +15,6 @@ const SUFFIXES_METRIC_SYMBOL: Dictionary = {
 	"8": "Sp",
 }
 
-
 var items: Dictionary = {}
 var rebirth_items: Array[int] = [] # keys for items dict
 var item_id_counter: int = 0
@@ -51,7 +50,7 @@ func float_to_prefix(number: float) -> String:
 	return str(number)
 
 func calc_rebirth_price(rebirth: int) -> float:
-	return 1e6 * pow(rebirth+1,1.1)
+	return 1e12 * (rebirth+1) * ((pow(10, floor(rebirth/100.0))))
 
 func strip_item_node(node: Node) -> Node:
 	for child in node.get_children():

@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://dikvnsjnahwol"]
+
+[ext_resource type="Script" path="res://scripts/upgrader.gd" id="1_mtdo7"]
+[ext_resource type="Resource" uid="uid://bx3hjf8m4nls1" path="res://scenes/items/data/Mystical Enchancer.tres" id="2_urkwm"]
+[ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="3_q6h5c"]
+[ext_resource type="Texture2D" uid="uid://bq7tbjciavufv" path="res://sprites/tilesets/upgraders-layer-2.png" id="4_jita8"]
+[ext_resource type="Script" path="res://scripts/item_holder.gd" id="7_hhdtm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24eqt"]
+atlas = ExtResource("4_jita8")
+region = Rect2(144, 40, 16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4ei5"]
+size = Vector2(4, 4)
+
+[node name="Upgrader" type="Area2D"]
+z_index = 1
+position = Vector2(2.08165e-12, 2.08165e-12)
+gravity_point_center = Vector2(2.08165e-12, -10)
+gravity_direction = Vector2(2.08165e-12, -10)
+gravity = 8.52651e-14
+script = ExtResource("1_mtdo7")
+item_data = ExtResource("2_urkwm")
+multiplier = 1.5
+destroy_chance = 0.5
+upgrade_limit = 6
+
+[node name="Detector" parent="." instance=ExtResource("3_q6h5c")]
+
+[node name="ItemHolder" type="Node2D" parent="."]
+script = ExtResource("7_hhdtm")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-2.08165e-12, 0)
+texture = SubResource("AtlasTexture_24eqt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, -2.08165e-12)
+shape = SubResource("RectangleShape2D_k4ei5")
+
+[connection signal="belt_detected" from="Detector" to="." method="_on_detector_belt_detected"]
+[connection signal="item_held" from="ItemHolder" to="." method="_on_item_holder_item_held"]

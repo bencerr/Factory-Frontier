@@ -43,6 +43,8 @@ func get_item_stats(item_id: int) -> String:
 	elif item is Upgrader:
 		s += "Mult: %sx" % GameData.float_to_prefix(item.multiplier)
 		s += "\nLimit: %s" % str(item.upgrade_limit)
+		if item.destroy_chance > 0:
+			s += "\nDestroy: %s%%" % str(item.destroy_chance * 100)
 	elif item is Furnace:
 		s = "Mult: %sx" % GameData.float_to_prefix(item.mult)
 
@@ -73,7 +75,7 @@ func float_to_prefix(number: float) -> String:
 	return str(number)
 
 func calc_rebirth_price(rebirth: int) -> float:
-	return 1e12 * (rebirth+1) * ((pow(10, floor(rebirth/100.0))))
+	return 1e14 * (rebirth+1) * ((pow(10, floor(rebirth/100.0))))
 
 func strip_item_node(node: Node) -> Node:
 	for child in node.get_children():

@@ -5,6 +5,7 @@ signal process_ore(ore: Ore)
 
 @export var item_data: ItemData
 @export var multiplier: float
+@export_range(0,1) var destroy_chance: float = 0
 @export var upgrade_limit: int = 1
 
 var item_holder: ItemHolder

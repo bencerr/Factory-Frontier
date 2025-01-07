@@ -16,7 +16,7 @@ func display_ore_data(ore: Ore) -> void:
 	ore.add_child(control)
 
 func _update_ore_value_display(value: float, control: Control) -> void:
-	control.get_node("Label").text = str(value)
+	control.get_node("Label").text = GameData.float_to_prefix(value)
 
 func _ready() -> void:
 	item_holder = $ItemHolder

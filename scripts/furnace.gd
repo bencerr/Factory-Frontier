@@ -8,7 +8,7 @@ extends Area2D
 func money_vfx(value: float) -> void:
 	var control: Control = label_scene.instantiate()
 	get_node("/root/Main").add_child(control)
-	control.get_node("Label").text = "+" + str(value)
+	control.get_node("Label").text = "+" + GameData.float_to_prefix(value)
 	var pos: Vector2 = Vector2(randf_range(-9, 9), randf_range(-8, -12))
 	control.position = get_node("Sprite2D").global_position
 	control.position += pos

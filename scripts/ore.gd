@@ -9,4 +9,4 @@ signal value_changed(change: float)
 		value = val
 		value_changed.emit(val)
 
-@export var upgrade_tags: Dictionary = {} # {tag_name: tag_count}
+var upgrade_tags: Dictionary = {} # {tag_name: tag_count}

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://csf1ptdiwyeah"]
+
+[ext_resource type="Script" path="res://scripts/ore.gd" id="1_rcobq"]
+[ext_resource type="Texture2D" uid="uid://b8ssmqgnutnge" path="res://sprites/tilesets/ores.png" id="2_j34tn"]
+
+[node name="Ore" type="Node2D"]
+z_index = 2
+script = ExtResource("1_rcobq")
+value = 500.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.976471, 0.662745, 0.576471, 1)
+texture = ExtResource("2_j34tn")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bwbj17y0v3dw2"]
 
 [ext_resource type="Script" path="res://scripts/dropper.gd" id="1_k8uld"]
-[ext_resource type="PackedScene" uid="uid://lcdjmu8lhhlr" path="res://scenes/items/ores/ore2.tscn" id="2_uv0mq"]
+[ext_resource type="PackedScene" uid="uid://tq1enrjtorx8" path="res://scenes/items/ores/ore6.tscn" id="2_1ev04"]
 [ext_resource type="Resource" uid="uid://3vkxvg6pw14e" path="res://scenes/items/data/Super Frozen Dropper.tres" id="3_b6hyg"]
 [ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="4_v2b6u"]
 [ext_resource type="Texture2D" uid="uid://c01w26c34fqq2" path="res://sprites/tilesets/Hana Caraka Cozy Island - Free/shadow-circle.png" id="5_0x1y6"]
@@ -13,12 +13,11 @@ region = Rect2(112, 2.08165e-12, 16, 32)
 
 [node name="Dropper" type="Node2D"]
 script = ExtResource("1_k8uld")
-ore_scene = ExtResource("2_uv0mq")
+ore_scene = ExtResource("2_1ev04")
 item_data = ExtResource("3_b6hyg")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
-
+wait_time = 0.7
 autostart = true
 
 [node name="Detector" parent="." instance=ExtResource("4_v2b6u")]

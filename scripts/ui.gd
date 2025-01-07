@@ -16,6 +16,7 @@ enum UITAB {NONE,SHOP,INVENTORY,REBIRTH}
 @export var rebirth_price_label: Label
 @export var rebirth_label: RichTextLabel
 @export var ore_limit_label: Label
+@export var buy_panel_subviewport: SubViewport
 
 var shop_item_id: int = -1
 var current_tab: UITAB = UITAB.NONE
@@ -70,10 +71,10 @@ func load_shop() -> void:
 		return a.price < b.price
 	)
 
+	var cntrl_size: float = (shop_panel.get_node("MarginContainer").size.x/3.0 - 15)
 	for d in sorted_shop:
 		var control: ShopUIItem = template.instantiate()
 		control.item_id = d["key"]
-		var cntrl_size: float = (shop_panel.size.x/4.0 - 15)
 		control.custom_minimum_size = Vector2(cntrl_size, cntrl_size)
 		shop_container.add_child(control)
 
@@ -264,26 +265,26 @@ func deselect_inv_filters() -> void:
 		if button is Button:
 			button.add_theme_stylebox_override("normal", sort_button_style_empty)
 
-func _on_cancel_pressed() -> void:
-	buy_panel.visible = false
-
 func _on_shop_selected_item_changed(id: int) -> void:
 	shop_item_id = id
 	var item_data: ItemData = GameData.items[id].item_data
 
-	for c in buy_panel.get_node("MarginContainer/Panel/TextureRect/SubViewport").get_children():
+	for c in buy_panel_subviewport.get_children():
 		c.queue_free()
 
 	icon_viewport_node = GameData.items[id].duplicate()
-	icon_viewport_node.position = Vector2(16,16)
+	icon_viewport_node.position = buy_panel_subviewport.size / 2
 	icon_viewport_node = GameData.strip_item_node(icon_viewport_node)
-	buy_panel.get_node("MarginContainer/Panel/TextureRect/SubViewport").add_child(icon_viewport_node)
-	buy_panel.get_node("MarginContainer/Panel/VBoxContainer/ItemName").text = item_data.name
-	buy_panel.get_node("MarginContainer/Panel/VBoxContainer/Price").text = "$%s" % (
+	buy_panel_subviewport.add_child(icon_viewport_node)
+	buy_panel.get_node("MarginContainer/VBoxContainer/ItemName").text = item_data.name
+
+	var stats = GameData.get_item_stats(id)
+	buy_panel.get_node("MarginContainer/VBoxContainer/Stats").text = stats
+	buy_panel.get_node("MarginContainer/VBoxContainer/Price").text = "$%s" % (
 		GameData.float_to_prefix(item_data.price))
-	buy_panel.visible = true
 
 func _on_buy_pressed() -> void:
+	if not GameData.items.has(shop_item_id): return
 	var data: ItemData = GameData.items[shop_item_id].item_data
 	if Player.data.money >= data.price:
 		var item_updated = Player.data.inventory[shop_item_id]

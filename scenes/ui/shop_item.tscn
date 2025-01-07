@@ -24,11 +24,11 @@ shadow_color = Color(0, 0, 0, 0.941176)
 shadow_offset = Vector2(2.08165e-12, 1)
 
 [node name="Control" type="Control"]
-custom_minimum_size = Vector2(280, 280)
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 280.0
-offset_bottom = 280.0
+offset_right = 200.0
+offset_bottom = 200.0
 mouse_filter = 1
 script = ExtResource("1_yc4uk")
 

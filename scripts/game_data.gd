@@ -25,6 +25,29 @@ var ore_count: int = 0:
 		ore_count = val
 		ore_count_changed.emit(val)
 
+func get_item_stats(item_id: int) -> String:
+	var item: Node = GameData.items[item_id]
+	var s: String = ""
+
+	if item is Dropper:
+		var ore = item.ore_scene.instantiate()
+		var timer: Timer = item.get_node_or_null("Timer")
+		var freq: String = ""
+		if timer: freq = str(timer.wait_time)
+
+		var ore_value: float = ore.value
+		ore.queue_free()
+
+		s += "Value: $%s" % GameData.float_to_prefix(ore_value)
+		s += "\nFrequency: %ss" % freq
+	elif item is Upgrader:
+		s += "Mult: %sx" % GameData.float_to_prefix(item.multiplier)
+		s += "\nLimit: %s" % str(item.upgrade_limit)
+	elif item is Furnace:
+		s = "Mult: %sx" % GameData.float_to_prefix(item.mult)
+
+	return s
+
 func round_place(num: float, places: int):
 	return (round(num*pow(10,places))/pow(10,places))
 

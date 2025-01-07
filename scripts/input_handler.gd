@@ -16,8 +16,8 @@ var current_input_type: INPUTTYPE = INPUTTYPE.CAMERA
 var mouse_origin_pos: Vector2
 var moving_camera: bool
 var positions: Array = [Vector2(), Vector2()]
-var min_zoom = 1
-var max_zoom = 20
+var min_zoom = 4
+var max_zoom = 16
 var zoom_sensitivity = 10
 var zoom_speed = 0.03
 var events = {}
@@ -61,7 +61,8 @@ func _unhandled_input(event):
 	if event is InputEventScreenDrag:
 		events[event.index] = event
 		if events.size() == 1:
-			cam.position = lerp(cam.position, cam.position - event.relative, .16)
+			var cam_move_speed: float = (max_zoom - cam.zoom.x + 1)/max_zoom * .25
+			cam.position = lerp(cam.position, cam.position - event.relative, cam_move_speed)
 		elif events.size() == 2:
 			var drag_distance = events[0].position.distance_to(events[1].position)
 			if abs(drag_distance - last_drag_distance) > zoom_sensitivity:

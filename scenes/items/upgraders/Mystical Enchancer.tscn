@@ -22,7 +22,7 @@ gravity = 8.52651e-14
 script = ExtResource("1_mtdo7")
 item_data = ExtResource("2_urkwm")
 multiplier = 1.5
-destroy_chance = 0.5
+destroy_chance = 0.2
 upgrade_limit = 6
 
 [node name="Detector" parent="." instance=ExtResource("3_q6h5c")]
@@ -31,6 +31,7 @@ upgrade_limit = 6
 script = ExtResource("7_hhdtm")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = 3
 position = Vector2(-2.08165e-12, 0)
 texture = SubResource("AtlasTexture_24eqt")
 

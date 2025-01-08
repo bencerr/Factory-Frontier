@@ -51,6 +51,9 @@ func recieve_item(ore: Ore) -> void:
 func _on_detector_belt_detected(area: Area2D) -> void:
 	var ore = item_holder.offload_item()
 	upgrade(ore)
+	if randf() < destroy_chance:
+		ore.free()
+		return
 	area.recieve_item(ore)
 
 func _on_item_holder_item_held(_ore: Ore) -> void:

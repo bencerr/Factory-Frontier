@@ -52,6 +52,7 @@ func _on_detector_belt_detected(area: Area2D) -> void:
 	var ore = item_holder.offload_item()
 	upgrade(ore)
 	if randf() < destroy_chance:
+		GameData.ore_count -= 1
 		ore.free()
 		return
 	area.recieve_item(ore)

@@ -8,15 +8,15 @@ var item_holder: ItemHolder
 var detector: Detector
 
 func display_ore_data(ore: Ore) -> void:
-	var ore_value: float = ore.value
-	var control: Control = value_display_ui.instantiate()
-	control.get_node("Label").position.y -= .5
-	control.get_node("Label").text = str(ore_value)
-	ore.value_changed.connect(_update_ore_value_display.bind(control))
-	ore.add_child(control)
+	var lbl: Label = value_display_ui.instantiate()
+	lbl.position.y -= 10
+	lbl.text = GameData.float_to_prefix(ore.value)
+	ore.value_changed.connect(_update_ore_value_display.bind(lbl))
+	ore.add_child(lbl)
+	print(lbl.position)
 
-func _update_ore_value_display(value: float, control: Control) -> void:
-	control.get_node("Label").text = GameData.float_to_prefix(value)
+func _update_ore_value_display(value: float, lbl: Label) -> void:
+	lbl.text = GameData.float_to_prefix(value)
 
 func _ready() -> void:
 	item_holder = $ItemHolder

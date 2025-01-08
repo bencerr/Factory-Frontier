@@ -18,6 +18,7 @@ const SUFFIXES_METRIC_SYMBOL: Dictionary = {
 var items: Dictionary = {}
 var rebirth_items: Array[int] = [] # keys for items dict
 var item_id_counter: int = 0
+var cam_max_size: int = 100
 var ore_count: int = 0:
 	get:
 		return ore_count

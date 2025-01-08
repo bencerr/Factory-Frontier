@@ -62,7 +62,9 @@ func _unhandled_input(event):
 		events[event.index] = event
 		if events.size() == 1:
 			var cam_move_speed: float = (max_zoom - cam.zoom.x + 1)/max_zoom * .25
-			cam.position = lerp(cam.position, cam.position - event.relative, cam_move_speed)
+			cam.position = lerp(cam.position, cam.position - event.relative, cam_move_speed).clamp(
+			Vector2(-GameData.cam_max_size, -GameData.cam_max_size),
+			Vector2(GameData.cam_max_size, GameData.cam_max_size))
 		elif events.size() == 2:
 			var drag_distance = events[0].position.distance_to(events[1].position)
 			if abs(drag_distance - last_drag_distance) > zoom_sensitivity:

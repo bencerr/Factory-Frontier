@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bq7ebvah1oq7h"]
 
 [ext_resource type="Script" path="res://scripts/dropper.gd" id="1_s2dwy"]
-[ext_resource type="PackedScene" uid="uid://cpu2u01x5y037" path="res://scenes/items/ores/ore1.tscn" id="2_0ef8o"]
+[ext_resource type="PackedScene" uid="uid://bt5doo1wuptk7" path="res://scenes/items/ores/rebirth_ore1.tscn" id="2_chkhj"]
 [ext_resource type="Resource" uid="uid://dt8rlf7xe24wy" path="res://scenes/items/data/Giant Diamond Dropper.tres" id="3_u2qma"]
 [ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="4_a1tmg"]
 [ext_resource type="Texture2D" uid="uid://c01w26c34fqq2" path="res://sprites/tilesets/Hana Caraka Cozy Island - Free/shadow-circle.png" id="5_2ww5b"]
@@ -13,12 +13,11 @@ region = Rect2(2.08165e-12, 36, 16, 22)
 
 [node name="Giant Diamond Dropper" type="Node2D"]
 script = ExtResource("1_s2dwy")
-ore_scene = ExtResource("2_0ef8o")
+ore_scene = ExtResource("2_chkhj")
 item_data = ExtResource("3_u2qma")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
-
+wait_time = 3.0
 autostart = true
 
 [node name="Detector" parent="." instance=ExtResource("4_a1tmg")]

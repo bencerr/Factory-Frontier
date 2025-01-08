@@ -141,8 +141,6 @@ item_data = ExtResource("2_ekg2r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7mg20")
-frame = 9
-frame_progress = 0.741776
 script = ExtResource("4_noea7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

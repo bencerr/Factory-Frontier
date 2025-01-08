@@ -5,11 +5,13 @@
 [sub_resource type="LabelSettings" id="LabelSettings_fs70q"]
 font = ExtResource("1_dhx6b")
 font_size = 32
-shadow_size = 2
+shadow_size = 8
 shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(2.08165e-12, 2)
+shadow_offset = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="Label" type="Label"]
+z_index = 99
+custom_minimum_size = Vector2(200, 10)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -22,7 +24,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.13, 0.13)
-pivot_offset = Vector2(10, 20)
+pivot_offset = Vector2(100, 20)
 text = "0"
 label_settings = SubResource("LabelSettings_fs70q")
 horizontal_alignment = 1

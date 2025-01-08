@@ -13,7 +13,6 @@ func display_ore_data(ore: Ore) -> void:
 	lbl.text = GameData.float_to_prefix(ore.value)
 	ore.value_changed.connect(_update_ore_value_display.bind(lbl))
 	ore.add_child(lbl)
-	print(lbl.position)
 
 func _update_ore_value_display(value: float, lbl: Label) -> void:
 	lbl.text = GameData.float_to_prefix(value)

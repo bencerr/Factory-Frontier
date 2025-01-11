@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://5qesdudrl5ii"]
+[gd_scene load_steps=82 format=3 uid="uid://5qesdudrl5ii"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_hq2yj"]
 [ext_resource type="Texture2D" uid="uid://3hytavl1qmkd" path="res://sprites/store.png" id="1_lyyx3"]
@@ -54,6 +54,12 @@ corner_radius_bottom_left = 20
 [sub_resource type="FontVariation" id="FontVariation_bqyr0"]
 base_font = ExtResource("4_ptkkj")
 variation_embolden = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_5qgvj"]
+font = ExtResource("4_ptkkj")
+font_size = 40
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.752941)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_reswu"]
 bg_color = Color(0, 0, 0, 0)
@@ -374,7 +380,7 @@ animations = [{
 "speed": 20.0
 }]
 
-[node name="UI" type="Control" node_paths=PackedStringArray("shop_panel", "inv_panel", "inv_container", "placement_control", "money_label", "shop_container", "buy_panel", "rebirth_control", "rebirth_price_label", "rebirth_label", "ore_limit_label", "buy_panel_subviewport")]
+[node name="UI" type="Control" node_paths=PackedStringArray("shop_panel", "inv_panel", "inv_container", "placement_control", "money_label", "shop_container", "buy_panel", "rebirth_control", "rebirth_price_label", "rebirth_label", "ore_limit_label", "buy_panel_subviewport", "rebirth_panel_button", "buff_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -395,6 +401,8 @@ rebirth_price_label = NodePath("RebirthControl/Panel/MarginContainer/Panel/Margi
 rebirth_label = NodePath("TabControl2/Panel2/MarginContainer/RebirthLabel2")
 ore_limit_label = NodePath("TabControl2/Panel/MarginContainer/VBoxContainer/OreLimitLabel")
 buy_panel_subviewport = NodePath("ShopControl/BuyPanel/MarginContainer/VBoxContainer/TextureRect/SubViewport")
+rebirth_panel_button = NodePath("TabControl/HBoxContainer/RebirthButton")
+buff_label = NodePath("BuffControl/MarginContainer/Label")
 
 [node name="TabControl" type="Control" parent="."]
 layout_mode = 1
@@ -611,6 +619,53 @@ theme_override_font_sizes/bold_font_size = 32
 bbcode_enabled = true
 text = "[center][b] 0 [/b] rebirths[/center]"
 fit_content = true
+
+[node name="BuffControl" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.534
+anchor_top = 0.851
+anchor_right = 1.0
+anchor_bottom = 0.886
+offset_left = -0.228049
+offset_top = -0.468029
+offset_bottom = 0.15206
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BuffTimer" type="Timer" parent="BuffControl"]
+autostart = true
+
+[node name="MarginContainer" type="MarginContainer" parent="BuffControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="BuffControl/MarginContainer"]
+custom_minimum_size = Vector2(350, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "2x money: 0:00"
+label_settings = SubResource("LabelSettings_5qgvj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="2xMoneyButton" type="Button" parent="BuffControl/MarginContainer"]
+custom_minimum_size = Vector2(220, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("4_ptkkj")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("8_w3vcj")
+theme_override_styles/hover = ExtResource("8_w3vcj")
+theme_override_styles/pressed = ExtResource("9_nd335")
+text = "2x Money"
 
 [node name="InventoryControl" type="Control" parent="."]
 visible = false
@@ -1185,6 +1240,8 @@ auto_play = true
 [connection signal="pressed" from="TabControl/HBoxContainer/InventoryButton" to="." method="_on_inventory_button_pressed"]
 [connection signal="pressed" from="TabControl/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
 [connection signal="pressed" from="TabControl/HBoxContainer/RebirthButton" to="." method="_on_rebirth_button_pressed"]
+[connection signal="timeout" from="BuffControl/BuffTimer" to="." method="_on_buff_timer_timeout"]
+[connection signal="pressed" from="BuffControl/MarginContainer/2xMoneyButton" to="." method="_on_x_money_button_pressed"]
 [connection signal="pressed" from="InventoryControl/SortPanel/Panel/HBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="InventoryControl/SortPanel/Panel/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="InventoryControl/SortPanel/Panel/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]

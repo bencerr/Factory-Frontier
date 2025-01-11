@@ -2,3 +2,12 @@
 .godot/
 .DS_Store
 export_presets.cfg
+*.zip
+
+# Android 
+*.aar
+*.gdap
+
+# iOS
+*.a
+*.gdip

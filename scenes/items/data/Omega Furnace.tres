@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_ilkng")
 item_type = 3
-price = 1e+07
+price = 1e+12
 rarity = 0

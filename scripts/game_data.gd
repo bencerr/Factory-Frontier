@@ -15,6 +15,16 @@ const SUFFIXES_METRIC_SYMBOL: Dictionary = {
 	"8": "Sp",
 }
 
+var buffs: Dictionary = {
+	"2x":
+		func (value: float):
+			return value*2,
+	"3x":
+		func (value: float):
+			return value*3
+}
+
+var ad_mode := "PROD" # PROD, TESTING
 var items: Dictionary = {}
 var rebirth_items: Array[int] = [] # keys for items dict
 var item_id_counter: int = 0
@@ -128,3 +138,4 @@ func load_items() -> void:
 
 func _ready() -> void:
 	load_items()
+	MobileAds.initialize()

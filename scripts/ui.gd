@@ -17,6 +17,8 @@ enum UITAB {NONE,SHOP,INVENTORY,REBIRTH}
 @export var rebirth_label: RichTextLabel
 @export var ore_limit_label: Label
 @export var buy_panel_subviewport: SubViewport
+@export var rebirth_panel_button: TextureButton
+@export var buff_label: Label
 
 var shop_item_id: int = -1
 var current_tab: UITAB = UITAB.NONE
@@ -180,6 +182,11 @@ func _ready() -> void:
 		)
 	rebirth_label.text = "[center][b]%s[/b] rebirths[/center]" % str(Player.data.rebirths)
 
+	if Player.data.rebirths == 0 and Player.data.money < GameData.calc_rebirth_price(0)/100000:
+		rebirth_panel_button.visible = false
+	else:
+		rebirth_panel_button.visible = true
+
 func _on_money_change(_value: float) -> void:
 	money_label.text = "$" + GameData.float_to_prefix(Player.data.money)
 
@@ -304,3 +311,28 @@ func _on_do_rebirth_button_pressed() -> void:
 
 func _on_ore_count_changed(_val: int) -> void:
 	ore_limit_label.text = "%s / %s ores" % [GameData.ore_count, Player.data.ore_limit]
+
+func _on_money_changed(_val: float) -> void:
+	if Player.data.rebirths == 0 and Player.data.money < GameData.calc_rebirth_price(0)/100000:
+		rebirth_panel_button.visible = false
+	else:
+		rebirth_panel_button.visible = true
+
+func _on_buff_timer_timeout() -> void:
+	for buff in Player.data.buffs:
+		buff.time_left -= 1
+		if buff.time_left <= 0:
+			Player.data.buffs = Player.data.buffs.filter(func(b):
+				if b==buff.name: return true
+				return false)
+			continue
+		# only 1 buff, in future need more label
+		var minutes = buff.time_left / 60
+		var seconds = fmod(buff.time_left, 60)
+		var time_string = "%02d:%02d" % [minutes, seconds]
+		buff_label.text = "%s: %s" % [buff.name, time_string]
+	if len(Player.data.buffs) == 0:
+		buff_label.text = ""
+
+func _on_x_money_button_pressed() -> void:
+	get_node("/root/Main").play_rewarded_ad.emit()

@@ -26,7 +26,8 @@ func save_data(data) -> void:
 func _ready() -> void:
 	var data: Resource = load_data()
 	if data is PlayerData:
-		Player.data = data
+		var p_data: PlayerData = data
+		Player.data = p_data
 	else:
 		print_debug("Error loading data")
 

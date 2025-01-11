@@ -249,10 +249,16 @@ cam = NodePath("../Camera2D")
 wait_time = 30.0
 autostart = true
 
+[node name="AdTimer" type="Timer" parent="."]
+wait_time = 600.0
+autostart = true
+
 [node name="ConveyorAnimationSync" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("SpriteFrames_f80a0")
 frame_progress = 0.811531
 
+[connection signal="play_rewarded_ad" from="." to="." method="_on_play_rewarded_ad"]
 [connection signal="ready" from="TileMap" to="." method="_on_tile_map_ready"]
 [connection signal="timeout" from="SaveTimer" to="." method="_on_save_timer_timeout"]
+[connection signal="timeout" from="AdTimer" to="." method="_on_ad_timer_timeout"]

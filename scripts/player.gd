@@ -3,6 +3,7 @@ signal money_changed(change: float)
 signal inventory_changed(id: int)
 signal rebirthed(id: int)
 signal tile_map_loaded(tm: TileMap)
+signal buffs_changed()
 
 var data: PlayerData
 var item_rotation: float = 0;
@@ -57,6 +58,10 @@ func update_inventory_item(item_id: int, item: PlayerItemInfo) -> bool:
 	return false
 
 func add_money(amount: float) -> void:
+	if len(data.buffs) >= 1:
+		for buff_name in GameData.buffs.keys():
+			if len(data.buffs.filter(func(buff: Buff): return buff.name == buff_name)) > 0:
+				amount = GameData.buffs[buff_name].call(amount)
 	data.money += amount
 	money_changed.emit(amount)
 

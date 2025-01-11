@@ -6,3 +6,4 @@ extends Resource
 @export var inventory: Dictionary
 @export var placed_items: Array[PlacedItemData]
 @export var ore_limit: int = 50
+@export var buffs: Array[Buff]

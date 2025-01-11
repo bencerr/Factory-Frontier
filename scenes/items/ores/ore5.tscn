@@ -6,7 +6,7 @@
 [node name="Ore" type="Node2D"]
 z_index = 2
 script = ExtResource("1_w1oco")
-value = 12500.0
+value = 2000.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.717647, 0.882353, 0.792157, 1)

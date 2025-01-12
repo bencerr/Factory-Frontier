@@ -5,6 +5,8 @@ var upgrader: Upgrader
 
 func _on_ore_processed(_ore: Ore) -> void:
 	if ore_processed_tween:
+		if ore_processed_tween.is_running():
+			return
 		ore_processed_tween.kill()
 
 	ore_processed_tween = create_tween()

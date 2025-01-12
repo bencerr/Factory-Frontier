@@ -15,15 +15,16 @@ var default_rotation: float
 var shake_tween: Tween
 func shake_vfx() -> void:
 	if shake_tween:
-		if shake_tween.is_running(): shake_tween.stop()
+		if shake_tween.is_running():
+			return
 		shake_tween.kill()
+
 	shake_tween = self.create_tween()
 	var shake = 5
-	var shake_duration = 0.1
 
-	shake_tween.tween_property(self, "rotation", -deg_to_rad(shake), shake_duration)
-	shake_tween.tween_property(self, "rotation", deg_to_rad(shake), shake_duration)
-	shake_tween.tween_property(self, "rotation", default_rotation, shake_duration)
+	shake_tween.tween_property(self, "rotation", -deg_to_rad(shake), .1)
+	shake_tween.tween_property(self, "rotation", deg_to_rad(shake), .09)
+	shake_tween.tween_property(self, "rotation", default_rotation, .08)
 
 func upgrade(ore: Ore) -> void:
 	if ore.upgrade_tags.has(item_data.name):

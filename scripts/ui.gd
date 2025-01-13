@@ -323,7 +323,7 @@ func _on_buff_timer_timeout() -> void:
 		buff.time_left -= 1
 		if buff.time_left <= 0:
 			Player.data.buffs = Player.data.buffs.filter(func(b):
-				if b==buff.name: return true
+				if b.name==buff.name: return true
 				return false)
 			continue
 		# only 1 buff, in future need more label

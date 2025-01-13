@@ -11,20 +11,25 @@ signal process_ore(ore: Ore)
 var item_holder: ItemHolder
 var detector: Detector
 var default_rotation: float
-
 var shake_tween: Tween
+var shaking: bool = false
+
 func shake_vfx() -> void:
-	if shake_tween:
+	if shaking and shake_tween:
 		if shake_tween.is_running():
 			return
 		shake_tween.kill()
 
-	shake_tween = self.create_tween()
+	shaking = true
 	var shake = 5
+	shake_tween = self.create_tween()
 
-	shake_tween.tween_property(self, "rotation", -deg_to_rad(shake), .1)
-	shake_tween.tween_property(self, "rotation", deg_to_rad(shake), .09)
+	shake_tween.tween_property(self, "rotation", default_rotation - deg_to_rad(shake), .1)
+	shake_tween.tween_property(self, "rotation", default_rotation + deg_to_rad(shake), .09)
 	shake_tween.tween_property(self, "rotation", default_rotation, .08)
+	shake_tween.finished.connect(func():
+		shaking = false
+	)
 
 func upgrade(ore: Ore) -> void:
 	if ore.upgrade_tags.has(item_data.name):

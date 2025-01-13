@@ -651,7 +651,6 @@ theme_override_constants/margin_bottom = 5
 custom_minimum_size = Vector2(350, 2.08165e-12)
 layout_mode = 2
 size_flags_horizontal = 0
-text = "2x money: 0:00"
 label_settings = SubResource("LabelSettings_5qgvj")
 horizontal_alignment = 1
 vertical_alignment = 1

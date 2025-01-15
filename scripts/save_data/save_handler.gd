@@ -27,7 +27,6 @@ func _ready() -> void:
 	var data: Resource = load_data()
 	if data is PlayerData:
 		var p_data: PlayerData = data
-		p_data.buffs.append(Buff.new("2x", 100))
 		Player.data = p_data
 	else:
 		print_debug("Error loading data")

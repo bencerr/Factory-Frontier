@@ -2,32 +2,40 @@ extends Node
 signal play_rewarded_ad()
 
 @export var tile_map: TileMap
+
 var interstitial_ad : InterstitialAd
-var interstitial_ad_load_callback := InterstitialAdLoadCallback.new()
+var rewarded_ad: RewardedAd
 var rewarded_interstitial_ad : RewardedInterstitialAd
+
+var interstitial_ad_load_callback := InterstitialAdLoadCallback.new()
 var rewarded_interstitial_ad_load_callback := RewardedInterstitialAdLoadCallback.new()
+var rewarded_ad_load_callback := RewardedAdLoadCallback.new()
+
 var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 
-func on_rewarded_interstitial_ad_loaded(_rewarded_interstitial_ad : RewardedInterstitialAd) -> void:
+func _on_rewarded_ad_loaded(_reward_ad: RewardedAd) -> void:
+	print("rewarded ad loaded")
+	rewarded_ad = _reward_ad
+
+func _on_rewarded_interstitial_ad_loaded(_rewarded_interstitial_ad: RewardedInterstitialAd) -> void:
 	print("loaded reward intersitial ad")
 	self.rewarded_interstitial_ad = _rewarded_interstitial_ad
 
-func on_interstitial_ad_failed_to_load(ad_error: LoadAdError) -> void:
-	print(ad_error.message)
-
-func on_interstitial_ad_loaded(ad: InterstitialAd) -> void:
+func _on_interstitial_ad_loaded(ad: InterstitialAd) -> void:
 	print("loaded ad")
 	self.interstitial_ad = ad
 
-func load_interstitial_rewarded() -> void:
+func _on_ad_failed_to_load(ad_error: LoadAdError) -> void:
+	print(ad_error.message)
+
+func load_rewarded() -> void:
 	var unit_id : String
 	if GameData.ad_mode == "TESTING":
-		unit_id = "ca-app-pub-3940256099942544/6978759866"
+		unit_id = "ca-app-pub-3940256099942544/1712485313"
 	else:
-		unit_id = "ca-app-pub-2418850822211418/8229186293"
+		unit_id = "ca-app-pub-2418850822211418/5028114360"
 
-	RewardedInterstitialAdLoader.new().load(unit_id, AdRequest.new(),
-	rewarded_interstitial_ad_load_callback)
+	RewardedAdLoader.new().load(unit_id, AdRequest.new(), rewarded_ad_load_callback)
 
 func load_interstitial() -> void:
 	var unit_id : String
@@ -46,21 +54,24 @@ func play_intersitial_ad() -> void:
 	load_interstitial()
 
 func play_reward_ad() -> void:
-	if rewarded_interstitial_ad:
-		rewarded_interstitial_ad.show(on_user_earned_reward_listener)
-		rewarded_interstitial_ad.destroy()
-	load_interstitial_rewarded()
+	if rewarded_ad:
+		rewarded_ad.show(on_user_earned_reward_listener)
+		rewarded_ad.destroy()
+	load_rewarded()
 
 func _ready() -> void:
 	$ConveyorAnimationSync.play()
-	interstitial_ad_load_callback.on_ad_failed_to_load = on_interstitial_ad_failed_to_load
-	interstitial_ad_load_callback.on_ad_loaded = on_interstitial_ad_loaded
+	interstitial_ad_load_callback.on_ad_failed_to_load = _on_ad_failed_to_load
+	interstitial_ad_load_callback.on_ad_loaded = _on_interstitial_ad_loaded
 
-	rewarded_interstitial_ad_load_callback.on_ad_failed_to_load = on_interstitial_ad_failed_to_load
-	rewarded_interstitial_ad_load_callback.on_ad_loaded = on_rewarded_interstitial_ad_loaded
+	rewarded_interstitial_ad_load_callback.on_ad_failed_to_load = _on_ad_failed_to_load
+	rewarded_interstitial_ad_load_callback.on_ad_loaded = _on_rewarded_interstitial_ad_loaded
+
+	rewarded_ad_load_callback.on_ad_failed_to_load = _on_ad_failed_to_load
+	rewarded_ad_load_callback.on_ad_loaded = _on_rewarded_ad_loaded
 
 	load_interstitial()
-	load_interstitial_rewarded()
+	load_rewarded()
 
 	on_user_earned_reward_listener.on_user_earned_reward = func(rewarded_item : RewardedItem):
 		print("on_user_earned_reward, rewarded_item: rewarded", rewarded_item.amount, rewarded_item.type)
@@ -70,10 +81,10 @@ func _ready() -> void:
 			for i in range(len(Player.data.buffs)):
 				var buff = Player.data.buffs[i]
 				if buff.name == "2x":
-					Player.data.buffs[i].time_left += 600
+					Player.data.buffs[i].time_left += rewarded_item.amount
 					rewarded = true
 			if not rewarded:
-				Player.data.buffs.append(Buff.new("2x", 600))
+				Player.data.buffs.append(Buff.new("2x", rewarded_item.amount))
 
 		Player.buffs_changed.emit()
 		SaveHandler.save_data(Player.data)

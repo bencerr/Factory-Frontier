@@ -18,7 +18,8 @@ enum UITAB {NONE,SHOP,INVENTORY,REBIRTH}
 @export var ore_limit_label: Label
 @export var buy_panel_subviewport: SubViewport
 @export var rebirth_panel_button: TextureButton
-@export var buff_label: Label
+@export var buff_label_scene: PackedScene
+@export var buff_container: VBoxContainer
 
 var shop_item_id: int = -1
 var current_tab: UITAB = UITAB.NONE
@@ -319,20 +320,27 @@ func _on_money_changed(_val: float) -> void:
 		rebirth_panel_button.visible = true
 
 func _on_buff_timer_timeout() -> void:
-	for buff in Player.data.buffs:
+	for i in range(len(Player.data.buffs)-1, -1, -1):
+		var buff = Player.data.buffs[i]
 		buff.time_left -= 1
 		if buff.time_left <= 0:
-			Player.data.buffs = Player.data.buffs.filter(func(b):
-				if b.name==buff.name: return true
-				return false)
-			continue
-		# only 1 buff, in future need more label
+			if buff.buff_label_instance:
+				buff.buff_label_instance.queue_free()
+			Player.data.buffs.remove_at(i)
+
+	for buff in Player.data.buffs:
 		var minutes = buff.time_left / 60
 		var seconds = fmod(buff.time_left, 60)
 		var time_string = "%02d:%02d" % [minutes, seconds]
-		buff_label.text = "%s: %s" % [buff.name, time_string]
-	if len(Player.data.buffs) == 0:
-		buff_label.text = ""
+
+		if not buff.buff_label_instance:
+			buff.buff_label_instance = buff_label_scene.instantiate()
+			buff_container.add_child(buff.buff_label_instance)
+			buff_container.move_child(buff.buff_label_instance, 0)
+		buff.buff_label_instance.text = "%s: %s" % [buff.name, time_string]
+
+	#if len(Player.data.buffs) == 0:
+		# todo
 
 func _on_x_money_button_pressed() -> void:
 	get_node("/root/Main").play_rewarded_ad.emit()

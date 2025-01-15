@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcb1i5pm2ypno"]
+
+[ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="1_h6583"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5qgvj"]
+font = ExtResource("1_h6583")
+font_size = 40
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.752941)
+
+[node name="Label" type="Label"]
+custom_minimum_size = Vector2(350, 2.08165e-12)
+text = "2x: 10"
+label_settings = SubResource("LabelSettings_5qgvj")
+horizontal_alignment = 2
+vertical_alignment = 1

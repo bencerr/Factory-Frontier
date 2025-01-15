@@ -67,9 +67,10 @@ func _ready() -> void:
 		var rewarded = false
 
 		if rewarded_item.type == "2x 10min":
-			for buff in Player.data.buffs:
+			for i in range(len(Player.data.buffs)):
+				var buff = Player.data.buffs[i]
 				if buff.name == "2x":
-					buff.time_left += 600
+					Player.data.buffs[i].time_left += 600
 					rewarded = true
 			if not rewarded:
 				Player.data.buffs.append(Buff.new("2x", 600))

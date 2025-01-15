@@ -39,7 +39,7 @@ position = Vector2(27, 0)
 script = ExtResource("1_ay8eh")
 item_data = ExtResource("2_7fwx1")
 label_scene = ExtResource("3_qh5bj")
-mult = 10.0
+mult = 14.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_unhhq")

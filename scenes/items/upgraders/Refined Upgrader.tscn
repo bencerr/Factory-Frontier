@@ -147,7 +147,7 @@ gravity_direction = Vector2(2.08165e-12, -10)
 gravity = 8.52651e-14
 script = ExtResource("1_n777r")
 item_data = ExtResource("2_lxiib")
-multiplier = 1.5
+multiplier = 2.5
 
 [node name="Detector" parent="." instance=ExtResource("5_pu27g")]
 

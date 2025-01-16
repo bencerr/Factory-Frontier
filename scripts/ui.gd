@@ -190,6 +190,10 @@ func _ready() -> void:
 
 func _on_money_change(_value: float) -> void:
 	money_label.text = "$" + GameData.float_to_prefix(Player.data.money)
+	if Player.data.rebirths == 0 and Player.data.money < GameData.calc_rebirth_price(0)/100000:
+		rebirth_panel_button.visible = false
+	else:
+		rebirth_panel_button.visible = true
 
 func _on_button_4_pressed() -> void:
 	if current_tab == UITAB.SHOP:
@@ -312,12 +316,6 @@ func _on_do_rebirth_button_pressed() -> void:
 
 func _on_ore_count_changed(_val: int) -> void:
 	ore_limit_label.text = "%s / %s ores" % [GameData.ore_count, Player.data.ore_limit]
-
-func _on_money_changed(_val: float) -> void:
-	if Player.data.rebirths == 0 and Player.data.money < GameData.calc_rebirth_price(0)/100000:
-		rebirth_panel_button.visible = false
-	else:
-		rebirth_panel_button.visible = true
 
 func _on_buff_timer_timeout() -> void:
 	for i in range(len(Player.data.buffs)-1, -1, -1):

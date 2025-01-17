@@ -10,8 +10,9 @@ enum INPUTTYPE {
 }
 
 @export var cam: Camera2D
-var item_placement: ItemPlacement
+@export var enabled: bool = true
 
+var item_placement: ItemPlacement
 var current_input_type: INPUTTYPE = INPUTTYPE.CAMERA
 var mouse_origin_pos: Vector2
 var moving_camera: bool
@@ -52,6 +53,7 @@ func disable_placing() -> void:
 	$ItemPlacement/GridLines.visible = false
 
 func _unhandled_input(event):
+	if not enabled: return
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			events[event.index] = event

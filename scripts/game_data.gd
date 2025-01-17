@@ -24,6 +24,8 @@ var buffs: Dictionary = {
 			return value*3
 }
 
+var base_level_upgrades: Array[PlayerUpgrade]
+var ore_limit_upgrades: Array[PlayerUpgrade]
 var ad_mode := "PROD" # PROD, TESTING
 var items: Dictionary = {}
 var rebirth_items: Array[int] = [] # keys for items dict
@@ -111,7 +113,11 @@ func dir_contents(path) -> Array[Array]:
 			else:
 				if (file_name.get_extension() == "remap"):
 					file_name = file_name.replace('.remap', '')
+
 				if file_name.get_extension() == "tscn":
+					var full_path = path.path_join(file_name)
+					scene_loads.append([load(full_path), file_name.get_basename()])
+				elif file_name.get_extension() == "tres":
 					var full_path = path.path_join(file_name)
 					scene_loads.append([load(full_path), file_name.get_basename()])
 			file_name = dir.get_next()
@@ -119,6 +125,26 @@ func dir_contents(path) -> Array[Array]:
 		print("An error occurred when trying to access the path.")
 
 	return scene_loads
+
+func load_base_level_upgrades() -> void:
+	var dir = "res://scenes/items/data/base_levels"
+
+	var temp = dir_contents(dir)
+	for contents: Array in temp:
+		base_level_upgrades.append(contents[0])
+
+	base_level_upgrades.sort_custom(func(a, b):
+		return a.index < b.index)
+
+func load_ore_limit_upgrades() -> void:
+	var dir = "res://scenes/items/data/ore_limits"
+
+	var temp = dir_contents(dir)
+	for contents: Array in temp:
+		ore_limit_upgrades.append(contents[0])
+
+	ore_limit_upgrades.sort_custom(func(a, b):
+		return a.index < b.index)
 
 func load_items() -> void:
 	var dirs := [
@@ -138,4 +164,6 @@ func load_items() -> void:
 
 func _ready() -> void:
 	load_items()
+	load_base_level_upgrades()
+	load_ore_limit_upgrades()
 	MobileAds.initialize()

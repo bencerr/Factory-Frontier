@@ -4,6 +4,7 @@ signal inventory_changed(id: int)
 signal rebirthed(id: int)
 signal tile_map_loaded(tm: TileMap)
 signal buffs_changed()
+signal main_loaded()
 
 var data: PlayerData
 var item_rotation: float = 0;
@@ -109,7 +110,9 @@ func _ready() -> void:
 		if not GameData.items.has(item_key):
 			print("data loss: %s" % item_key)
 			data.inventory.erase(item_key)
-
+	if get_node_or_null("/root/Main") == null:
+		await main_loaded
+	get_node("/root/Main").load_base()
 	load_placed_items()
 
 func _on_tile_map_loaded(tm: TileMap) -> void:

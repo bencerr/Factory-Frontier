@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlayerUpgrade" load_steps=2 format=3 uid="uid://c43gj1hlh3bgj"]
+
+[ext_resource type="Script" path="res://scripts/PlayerUpgrade.gd" id="1_n71ln"]
+
+[resource]
+script = ExtResource("1_n71ln")
+index = 0
+value = 0
+name = "base_level"
+cost = 2.08165e-12

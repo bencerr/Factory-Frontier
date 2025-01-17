@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlayerUpgrade" load_steps=2 format=3 uid="uid://c5oic4fptbt07"]
+
+[ext_resource type="Script" path="res://scripts/PlayerUpgrade.gd" id="1_5amj8"]
+
+[resource]
+script = ExtResource("1_5amj8")
+index = 0
+value = 50
+name = "ore_limti"
+cost = 2.08165e-12

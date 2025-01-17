@@ -15,7 +15,7 @@ func drop_vfx() -> void:
 	drop_tween.tween_property(self, "scale", orginal_scale, .2)
 
 func _on_timer_timeout() -> void:
-	if GameData.ore_count < Player.data.ore_limit:
+	if GameData.ore_count < GameData.ore_limit_upgrades[Player.data.ore_limit_index].value:
 		$Detector.detect()
 
 func _on_detector_belt_detected(destination: Area2D) -> void:

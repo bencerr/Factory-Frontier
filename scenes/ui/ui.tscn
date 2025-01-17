@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://5qesdudrl5ii"]
+[gd_scene load_steps=87 format=3 uid="uid://5qesdudrl5ii"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_hq2yj"]
 [ext_resource type="Texture2D" uid="uid://3hytavl1qmkd" path="res://sprites/store.png" id="1_lyyx3"]
@@ -8,13 +8,16 @@
 [ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="4_ptkkj"]
 [ext_resource type="Script" path="res://scripts/ui/item_placement_control.gd" id="4_ptp1v"]
 [ext_resource type="Texture2D" uid="uid://ebpbcrw2s3c5" path="res://images/cycle_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" id="5_4jy3f"]
+[ext_resource type="Texture2D" uid="uid://cyuc6mti1xti5" path="res://images/upgrade_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" id="5_diqhm"]
 [ext_resource type="StyleBox" uid="uid://1mjmcishic3j" path="res://resources/stylebox_light_corner.tres" id="7_hssru"]
 [ext_resource type="PackedScene" uid="uid://dcb1i5pm2ypno" path="res://scenes/ui/buff_label.tscn" id="8_rucfv"]
 [ext_resource type="StyleBox" uid="uid://dojw0xp3m5kn2" path="res://resources/empty_style_box.tres" id="8_vdsdl"]
 [ext_resource type="StyleBox" uid="uid://bbexbscjlpdwu" path="res://resources/button_filled.tres" id="8_w3vcj"]
 [ext_resource type="StyleBox" uid="uid://dw5ntbfolxxn0" path="res://resources/button_filled_pressed.tres" id="9_nd335"]
 [ext_resource type="StyleBox" uid="uid://h3625wn475mf" path="res://resources/style_box_2.tres" id="12_6fc0u"]
+[ext_resource type="Script" path="res://scripts/ui/upgrade_control.gd" id="13_2rjmd"]
 [ext_resource type="Texture2D" uid="uid://mlqgastpkscl" path="res://images/rotate_right_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" id="13_f176k"]
+[ext_resource type="StyleBox" uid="uid://bf0lc2df1giml" path="res://resources/button_filled_disabled.tres" id="14_4jlfn"]
 [ext_resource type="Texture2D" uid="uid://14jfiqg58y0w" path="res://images/close_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" id="14_ju1kl"]
 [ext_resource type="Texture2D" uid="uid://bedqdowu8u2tq" path="res://sprites/tilesets/arrow.png" id="16_46i8i"]
 [ext_resource type="Script" path="res://scripts/AnimatedTextureRect.gd" id="16_lhlli"]
@@ -102,7 +105,7 @@ shadow_color = Color(0, 0, 0, 0.752941)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vo3sh"]
 font = ExtResource("4_ptkkj")
-font_size = 32
+font_size = 48
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.752941)
 
@@ -110,6 +113,16 @@ shadow_color = Color(0, 0, 0, 0.752941)
 atlas = ExtResource("5_4jy3f")
 region = Rect2(2.08165e-12, 2.08165e-12, 96, 96)
 margin = Rect2(20, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[sub_resource type="FontVariation" id="FontVariation_5e2r7"]
+base_font = ExtResource("4_ptkkj")
+variation_embolden = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_0vnjp"]
+font = ExtResource("4_ptkkj")
+font_size = 64
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.752941)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v8lw0"]
 
@@ -375,7 +388,7 @@ animations = [{
 "speed": 20.0
 }]
 
-[node name="UI" type="Control" node_paths=PackedStringArray("shop_panel", "inv_panel", "inv_container", "placement_control", "money_label", "shop_container", "buy_panel", "rebirth_control", "rebirth_price_label", "rebirth_label", "ore_limit_label", "buy_panel_subviewport", "rebirth_panel_button", "buff_container")]
+[node name="UI" type="Control" node_paths=PackedStringArray("shop_panel", "inv_panel", "inv_container", "placement_control", "money_label", "shop_container", "buy_panel", "rebirth_control", "rebirth_price_label", "rebirth_label", "ore_limit_label", "buy_panel_subviewport", "rebirth_panel_button", "buff_container", "upgrade_control")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -399,6 +412,7 @@ buy_panel_subviewport = NodePath("ShopControl/BuyPanel/MarginContainer/VBoxConta
 rebirth_panel_button = NodePath("TabControl/HBoxContainer/RebirthButton")
 buff_label_scene = ExtResource("8_rucfv")
 buff_container = NodePath("BuffControl/MarginContainer/VBoxContainer")
+upgrade_control = NodePath("UpgradeControl")
 
 [node name="TabControl" type="Control" parent="."]
 layout_mode = 1
@@ -421,14 +435,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_f08t1")
 [node name="HBoxContainer" type="HBoxContainer" parent="TabControl"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.095
-anchor_top = 0.22
-anchor_right = 0.905
-anchor_bottom = 0.723
-offset_left = 0.00999223
-offset_top = 0.0689167
-offset_right = -0.0100385
-offset_bottom = 0.0401204
+anchor_left = 0.052
+anchor_top = 0.194
+anchor_right = 0.948
+anchor_bottom = 0.749
+offset_left = -0.584001
+offset_top = -0.0210442
+offset_right = 0.583909
+offset_bottom = 0.130095
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 90
@@ -480,16 +494,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
 
-[node name="DeleteButton" type="TextureButton" parent="TabControl/HBoxContainer"]
+[node name="UpgradeButton" type="TextureButton" parent="TabControl/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 5
-texture_normal = ExtResource("4_50lk6")
+texture_normal = ExtResource("5_diqhm")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Panel" type="Panel" parent="TabControl/HBoxContainer/DeleteButton"]
+[node name="Panel" type="Panel" parent="TabControl/HBoxContainer/UpgradeButton"]
 visible = false
 show_behind_parent = true
 layout_mode = 1
@@ -513,6 +527,29 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Panel" type="Panel" parent="TabControl/HBoxContainer/RebirthButton"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.191
+anchor_right = 1.0
+anchor_bottom = 1.217
+offset_top = -3.99084
+offset_bottom = 0.0311766
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
+
+[node name="DeleteButton" type="TextureButton" parent="TabControl/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 5
+texture_normal = ExtResource("4_50lk6")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="TabControl/HBoxContainer/DeleteButton"]
 visible = false
 show_behind_parent = true
 layout_mode = 1
@@ -898,6 +935,150 @@ theme_override_styles/pressed = ExtResource("9_nd335")
 text = "Rebirth"
 icon = SubResource("AtlasTexture_yyee6")
 
+[node name="UpgradeControl" type="Control" parent="." node_paths=PackedStringArray("ore_limit_label", "ore_limit_button", "base_level_label", "base_level_button")]
+visible = false
+layout_mode = 1
+anchor_top = 0.629
+anchor_right = 1.0
+anchor_bottom = 0.886
+offset_top = -0.172022
+offset_bottom = 0.15206
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("13_2rjmd")
+ore_limit_label = NodePath("Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer/RichTextLabel")
+ore_limit_button = NodePath("Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer/UpgradeButton")
+base_level_label = NodePath("Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer2/RichTextLabel")
+base_level_button = NodePath("Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer2/UpgradeButton")
+
+[node name="Panel" type="Panel" parent="UpgradeControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sv8c4")
+
+[node name="MarginContainer" type="MarginContainer" parent="UpgradeControl/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="Panel" parent="UpgradeControl/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_psnqo")
+
+[node name="MarginContainer" type="MarginContainer" parent="UpgradeControl/Panel/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Control" type="Control" parent="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.188
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.0719949
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("4_ptkkj")
+theme_override_fonts/bold_font = SubResource("FontVariation_5e2r7")
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+bbcode_enabled = true
+text = "Ore Limit [[b] 0 [/b]]"
+
+[node name="UpgradeButton" type="Button" parent="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_ptkkj")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("8_w3vcj")
+theme_override_styles/hover = ExtResource("8_w3vcj")
+theme_override_styles/pressed = ExtResource("9_nd335")
+theme_override_styles/disabled = ExtResource("14_4jlfn")
+text = "($100T) Upgrade"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("4_ptkkj")
+theme_override_fonts/bold_font = SubResource("FontVariation_5e2r7")
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+bbcode_enabled = true
+text = "Ore Limit [[b] 0 [/b]]"
+
+[node name="UpgradeButton" type="Button" parent="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_ptkkj")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("8_w3vcj")
+theme_override_styles/hover = ExtResource("8_w3vcj")
+theme_override_styles/pressed = ExtResource("9_nd335")
+theme_override_styles/disabled = ExtResource("14_4jlfn")
+text = "($100T) Upgrade"
+
+[node name="Label2" type="Label" parent="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 59.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Upgrades"
+label_settings = SubResource("LabelSettings_0vnjp")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [node name="ShopControl" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -1229,8 +1410,9 @@ auto_play = true
 
 [connection signal="pressed" from="TabControl/HBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="TabControl/HBoxContainer/InventoryButton" to="." method="_on_inventory_button_pressed"]
-[connection signal="pressed" from="TabControl/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="pressed" from="TabControl/HBoxContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
 [connection signal="pressed" from="TabControl/HBoxContainer/RebirthButton" to="." method="_on_rebirth_button_pressed"]
+[connection signal="pressed" from="TabControl/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
 [connection signal="timeout" from="BuffControl/BuffTimer" to="." method="_on_buff_timer_timeout"]
 [connection signal="pressed" from="BuffControl/MarginContainer/VBoxContainer/2xMoneyButton" to="." method="_on_x_money_button_pressed"]
 [connection signal="pressed" from="InventoryControl/SortPanel/Panel/HBoxContainer/Button" to="." method="_on_button_pressed"]
@@ -1238,6 +1420,8 @@ auto_play = true
 [connection signal="pressed" from="InventoryControl/SortPanel/Panel/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="InventoryControl/SortPanel/Panel/HBoxContainer/Button4" to="." method="_on_button_4_pressed"]
 [connection signal="pressed" from="RebirthControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer2/DoRebirthButton" to="." method="_on_do_rebirth_button_pressed"]
+[connection signal="pressed" from="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer/UpgradeButton" to="UpgradeControl" method="_on_upgrade_ore_limit_button_pressed"]
+[connection signal="pressed" from="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer2/UpgradeButton" to="UpgradeControl" method="_on_upgrade_base_level_button_pressed"]
 [connection signal="pressed" from="ShopControl/SortPanel/Panel/HBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="ShopControl/SortPanel/Panel/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="ShopControl/SortPanel/Panel/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]

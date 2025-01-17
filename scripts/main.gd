@@ -89,7 +89,16 @@ func _ready() -> void:
 		Player.buffs_changed.emit()
 		SaveHandler.save_data(Player.data)
 
-func _on_tile_map_ready() -> void:
+	Player.main_loaded.emit()
+
+func load_base() -> void:
+	var indx := Player.data.base_level
+	var path := "res://scenes/bases/%s.tscn" % indx
+	var tile_map_packed: PackedScene = load(path)
+	var inst: TileMap = tile_map_packed.instantiate()
+	get_node("/root/Main/TileMap").replace_by(inst)
+	get_node("/root/Main").move_child(inst, 2)
+	get_node("/root/Main/InputHandler/ItemPlacement").tilemap = inst
 	Player.tile_map_loaded.emit(tile_map)
 
 func _on_save_timer_timeout() -> void:

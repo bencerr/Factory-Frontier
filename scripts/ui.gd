@@ -3,7 +3,7 @@ extends Control
 
 signal shop_selected_item_changed(item_id: int)
 
-enum UITAB {NONE,SHOP,INVENTORY,REBIRTH}
+enum UITAB {NONE,SHOP,INVENTORY,REBIRTH,UPGRADE}
 
 @export var shop_panel: Control
 @export var inv_panel: Control
@@ -20,6 +20,7 @@ enum UITAB {NONE,SHOP,INVENTORY,REBIRTH}
 @export var rebirth_panel_button: TextureButton
 @export var buff_label_scene: PackedScene
 @export var buff_container: VBoxContainer
+@export var upgrade_control: Control
 
 var shop_item_id: int = -1
 var current_tab: UITAB = UITAB.NONE
@@ -111,30 +112,42 @@ func switch_tab(tab: UITAB) -> void:
 	get_node("TabControl/HBoxContainer/ShopButton/Panel").visible = false
 	get_node("TabControl/HBoxContainer/DeleteButton/Panel").visible = false
 	get_node("TabControl/HBoxContainer/RebirthButton/Panel").visible = false
+	get_node("TabControl/HBoxContainer/UpgradeButton/Panel").visible = false
 
 	match current_tab:
 		UITAB.NONE:
 			shop_panel.visible = false
 			inv_panel.visible = false
 			rebirth_control.visible = false
+			upgrade_control.visible = false
 		UITAB.SHOP:
 			shop_panel.visible = true
 			inv_panel.visible = false
 			rebirth_control.visible = false
+			upgrade_control.visible = false
 			input_handler.disable_placing()
 			get_node("TabControl/HBoxContainer/ShopButton/Panel").visible = true
 		UITAB.INVENTORY:
 			shop_panel.visible = false
 			inv_panel.visible = true
 			rebirth_control.visible = false
+			upgrade_control.visible = false
 			input_handler.disable_placing()
 			get_node("TabControl/HBoxContainer/InventoryButton/Panel").visible = true
 		UITAB.REBIRTH:
 			rebirth_control.visible = true
 			shop_panel.visible = false
 			inv_panel.visible = false
+			upgrade_control.visible = false
 			input_handler.disable_placing()
 			get_node("TabControl/HBoxContainer/RebirthButton/Panel").visible = true
+		UITAB.UPGRADE:
+			upgrade_control.visible = true
+			rebirth_control.visible = false
+			shop_panel.visible = false
+			inv_panel.visible = false
+			input_handler.disable_placing()
+			get_node("TabControl/HBoxContainer/UpgradeButton/Panel").visible = true
 
 func _on_rebirth_button_pressed() -> void:
 	switch_tab(UITAB.REBIRTH)
@@ -144,6 +157,9 @@ func _on_inventory_button_pressed() -> void:
 
 func _on_shop_button_pressed() -> void:
 	switch_tab(UITAB.SHOP)
+
+func _on_upgrade_button_pressed() -> void:
+	switch_tab(UITAB.UPGRADE)
 
 func _on_delete_button_pressed() -> void:
 	if get_node("/root/Main/InputHandler").current_input_type == InputHandler.INPUTTYPE.DELETE:
@@ -315,7 +331,10 @@ func _on_do_rebirth_button_pressed() -> void:
 		)
 
 func _on_ore_count_changed(_val: int) -> void:
-	ore_limit_label.text = "%s / %s ores" % [GameData.ore_count, Player.data.ore_limit]
+	ore_limit_label.text = "%s / %s ores" % [
+		GameData.ore_count,
+		GameData.ore_limit_upgrades[Player.data.ore_limit_index].value
+	]
 
 func _on_buff_timer_timeout() -> void:
 	for i in range(len(Player.data.buffs)-1, -1, -1):

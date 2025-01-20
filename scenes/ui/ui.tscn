@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://5qesdudrl5ii"]
+[gd_scene load_steps=90 format=3 uid="uid://5qesdudrl5ii"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_hq2yj"]
 [ext_resource type="Texture2D" uid="uid://3hytavl1qmkd" path="res://sprites/store.png" id="1_lyyx3"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cyuc6mti1xti5" path="res://images/upgrade_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" id="5_diqhm"]
 [ext_resource type="StyleBox" uid="uid://1mjmcishic3j" path="res://resources/stylebox_light_corner.tres" id="7_hssru"]
 [ext_resource type="PackedScene" uid="uid://dcb1i5pm2ypno" path="res://scenes/ui/buff_label.tscn" id="8_rucfv"]
-[ext_resource type="StyleBox" uid="uid://dojw0xp3m5kn2" path="res://resources/empty_style_box.tres" id="8_vdsdl"]
+[ext_resource type="Texture2D" uid="uid://bkm184u8djrhu" path="res://images/ui_icons.png" id="8_vddln"]
 [ext_resource type="StyleBox" uid="uid://bbexbscjlpdwu" path="res://resources/button_filled.tres" id="8_w3vcj"]
 [ext_resource type="StyleBox" uid="uid://dw5ntbfolxxn0" path="res://resources/button_filled_pressed.tres" id="9_nd335"]
 [ext_resource type="StyleBox" uid="uid://h3625wn475mf" path="res://resources/style_box_2.tres" id="12_6fc0u"]
@@ -60,6 +60,12 @@ shadow_offset = Vector2(2.08165e-12, -1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ist5"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_griqv"]
+atlas = ExtResource("8_vddln")
+region = Rect2(2, 1, 12, 18)
+margin = Rect2(5, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+filter_clip = true
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qe84s"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xq228"]
@@ -69,6 +75,21 @@ shadow_offset = Vector2(2.08165e-12, -1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_88o8p"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_admsm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onm3m"]
+atlas = ExtResource("8_vddln")
+region = Rect2(16, 2, 16, 16)
+margin = Rect2(5, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gswuy"]
+atlas = ExtResource("8_vddln")
+region = Rect2(32, 2, 16, 16)
+margin = Rect2(5, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31fy3"]
+atlas = ExtResource("8_vddln")
+region = Rect2(48, 1, 16, 18)
+margin = Rect2(5, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sv8c4"]
 bg_color = Color(0.180392, 0.235294, 0.278431, 1)
@@ -107,8 +128,6 @@ font = ExtResource("4_ptkkj")
 font_size = 64
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.752941)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v8lw0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_usv7l"]
 bg_color = Color(0.129412, 0.172549, 0.203922, 1)
@@ -622,56 +641,68 @@ custom_minimum_size = Vector2(125, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
+theme_override_constants/icon_max_width = 50
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 42
 theme_override_styles/normal = SubResource("StyleBoxEmpty_4grdk")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_3ykhp")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_3vi6p")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_qj01j")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_6ist5")
 text = "Droppers"
+icon = SubResource("AtlasTexture_griqv")
+expand_icon = true
 
 [node name="Button2" type="Button" parent="InventoryControl/SortPanel/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(125, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
+theme_override_constants/icon_max_width = 50
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 42
 theme_override_styles/normal = SubResource("StyleBoxTexture_qe84s")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_xq228")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_gnvsm")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_88o8p")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_admsm")
 text = "Conveyors"
+icon = SubResource("AtlasTexture_onm3m")
+expand_icon = true
 
 [node name="Button3" type="Button" parent="InventoryControl/SortPanel/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(125, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
+theme_override_constants/icon_max_width = 50
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 42
 theme_override_styles/normal = SubResource("StyleBoxTexture_qe84s")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_xq228")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_gnvsm")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_88o8p")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_admsm")
 text = "Furnaces"
+icon = SubResource("AtlasTexture_gswuy")
+expand_icon = true
 
 [node name="Button4" type="Button" parent="InventoryControl/SortPanel/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(125, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
+theme_override_constants/icon_max_width = 50
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 42
 theme_override_styles/normal = SubResource("StyleBoxTexture_qe84s")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_xq228")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_gnvsm")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_88o8p")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_admsm")
 text = "Upgraders"
+icon = SubResource("AtlasTexture_31fy3")
+expand_icon = true
 
 [node name="RebirthControl" type="Control" parent="."]
 visible = false
@@ -984,56 +1015,68 @@ custom_minimum_size = Vector2(125, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
+theme_override_constants/icon_max_width = 50
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_v8lw0")
-theme_override_styles/hover = ExtResource("8_vdsdl")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4grdk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3ykhp")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_3vi6p")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_qj01j")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_6ist5")
 text = "Droppers"
+icon = SubResource("AtlasTexture_griqv")
+expand_icon = true
 
 [node name="Button2" type="Button" parent="ShopControl/SortPanel/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(125, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
+theme_override_constants/icon_max_width = 50
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 42
 theme_override_styles/normal = SubResource("StyleBoxTexture_qe84s")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_xq228")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_gnvsm")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_88o8p")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_admsm")
 text = "Conveyors"
+icon = SubResource("AtlasTexture_onm3m")
+expand_icon = true
 
 [node name="Button3" type="Button" parent="ShopControl/SortPanel/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(125, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
+theme_override_constants/icon_max_width = 50
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 42
 theme_override_styles/normal = SubResource("StyleBoxTexture_qe84s")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_xq228")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_gnvsm")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_88o8p")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_admsm")
 text = "Furnaces"
+icon = SubResource("AtlasTexture_gswuy")
+expand_icon = true
 
 [node name="Button4" type="Button" parent="ShopControl/SortPanel/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(125, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.921569, 0.945098, 0.956863, 1)
+theme_override_constants/icon_max_width = 50
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 42
 theme_override_styles/normal = SubResource("StyleBoxTexture_qe84s")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_xq228")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_gnvsm")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_88o8p")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_admsm")
 text = "Upgraders"
+icon = SubResource("AtlasTexture_31fy3")
+expand_icon = true
 
 [node name="BuyPanel" type="Panel" parent="ShopControl"]
 layout_mode = 2

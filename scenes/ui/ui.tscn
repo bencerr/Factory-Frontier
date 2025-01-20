@@ -22,22 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://bedqdowu8u2tq" path="res://sprites/tilesets/arrow.png" id="16_46i8i"]
 [ext_resource type="Script" path="res://scripts/AnimatedTextureRect.gd" id="16_lhlli"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f08t1"]
-bg_color = Color(0.129412, 0.172549, 0.203922, 1)
-shadow_color = Color(0.172549, 0.188235, 0.227451, 0.203922)
-shadow_size = 2
-shadow_offset = Vector2(2.08165e-12, -1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26qke"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-shadow_color = Color(0.172549, 0.188235, 0.227451, 0.203922)
-shadow_size = 2
-shadow_offset = Vector2(2.08165e-12, -1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_tvv45"]
 font = ExtResource("4_ptkkj")
 font_size = 38
@@ -388,6 +372,22 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f08t1"]
+bg_color = Color(0.129412, 0.172549, 0.203922, 1)
+shadow_color = Color(0.172549, 0.188235, 0.227451, 0.203922)
+shadow_size = 2
+shadow_offset = Vector2(2.08165e-12, -1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26qke"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color(0.172549, 0.188235, 0.227451, 0.203922)
+shadow_size = 2
+shadow_offset = Vector2(2.08165e-12, -1)
+
 [node name="UI" type="Control" node_paths=PackedStringArray("shop_panel", "inv_panel", "inv_container", "placement_control", "money_label", "shop_container", "buy_panel", "rebirth_control", "rebirth_price_label", "rebirth_label", "ore_limit_label", "buy_panel_subviewport", "rebirth_panel_button", "buff_container", "upgrade_control")]
 layout_mode = 3
 anchors_preset = 15
@@ -413,155 +413,6 @@ rebirth_panel_button = NodePath("TabControl/HBoxContainer/RebirthButton")
 buff_label_scene = ExtResource("8_rucfv")
 buff_container = NodePath("BuffControl/MarginContainer/VBoxContainer")
 upgrade_control = NodePath("UpgradeControl")
-
-[node name="TabControl" type="Control" parent="."]
-layout_mode = 1
-anchor_top = 0.886
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -0.0800476
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Panel" type="Panel" parent="TabControl"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_f08t1")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TabControl"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.052
-anchor_top = 0.194
-anchor_right = 0.948
-anchor_bottom = 0.749
-offset_left = -0.584001
-offset_top = -0.0210442
-offset_right = 0.583909
-offset_bottom = 0.130095
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 90
-alignment = 1
-
-[node name="ShopButton" type="TextureButton" parent="TabControl/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 7
-size_flags_vertical = 5
-texture_normal = ExtResource("1_lyyx3")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="Panel" type="Panel" parent="TabControl/HBoxContainer/ShopButton"]
-visible = false
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.165
-anchor_right = 1.0
-anchor_bottom = 1.217
-offset_top = -0.0128347
-offset_bottom = 0.0311766
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
-
-[node name="InventoryButton" type="TextureButton" parent="TabControl/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 7
-size_flags_vertical = 5
-texture_normal = ExtResource("2_862wk")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="Panel" type="Panel" parent="TabControl/HBoxContainer/InventoryButton"]
-visible = false
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.191
-anchor_right = 1.0
-anchor_bottom = 1.217
-offset_top = -3.99084
-offset_bottom = 0.0311766
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
-
-[node name="UpgradeButton" type="TextureButton" parent="TabControl/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 7
-size_flags_vertical = 5
-texture_normal = ExtResource("5_diqhm")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="Panel" type="Panel" parent="TabControl/HBoxContainer/UpgradeButton"]
-visible = false
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.191
-anchor_right = 1.0
-anchor_bottom = 1.217
-offset_top = -3.99084
-offset_bottom = 0.0311766
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
-
-[node name="RebirthButton" type="TextureButton" parent="TabControl/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 7
-size_flags_vertical = 5
-texture_normal = ExtResource("5_4jy3f")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="Panel" type="Panel" parent="TabControl/HBoxContainer/RebirthButton"]
-visible = false
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.191
-anchor_right = 1.0
-anchor_bottom = 1.217
-offset_top = -3.99084
-offset_bottom = 0.0311766
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
-
-[node name="DeleteButton" type="TextureButton" parent="TabControl/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 7
-size_flags_vertical = 5
-texture_normal = ExtResource("4_50lk6")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="Panel" type="Panel" parent="TabControl/HBoxContainer/DeleteButton"]
-visible = false
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.191
-anchor_right = 1.0
-anchor_bottom = 1.217
-offset_top = -3.99084
-offset_bottom = 0.0311766
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
 
 [node name="TabControl2" type="Control" parent="."]
 layout_mode = 1
@@ -701,8 +552,8 @@ layout_mode = 1
 anchor_top = 0.522
 anchor_right = 1.0
 anchor_bottom = 0.886
-offset_top = -0.160019
-offset_bottom = -0.0799713
+offset_top = -0.160029
+offset_bottom = -0.0798738
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -1408,11 +1259,155 @@ script = ExtResource("16_lhlli")
 sprites = SubResource("SpriteFrames_ow38x")
 auto_play = true
 
-[connection signal="pressed" from="TabControl/HBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
-[connection signal="pressed" from="TabControl/HBoxContainer/InventoryButton" to="." method="_on_inventory_button_pressed"]
-[connection signal="pressed" from="TabControl/HBoxContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
-[connection signal="pressed" from="TabControl/HBoxContainer/RebirthButton" to="." method="_on_rebirth_button_pressed"]
-[connection signal="pressed" from="TabControl/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
+[node name="TabControl" type="Control" parent="."]
+layout_mode = 1
+anchor_top = 0.886
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.0801179
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="TabControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_f08t1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.052
+anchor_top = 0.194
+anchor_right = 0.948
+anchor_bottom = 0.749
+offset_left = -0.584001
+offset_top = -0.0210442
+offset_right = 0.583909
+offset_bottom = 0.130095
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 90
+alignment = 1
+
+[node name="ShopButton" type="TextureButton" parent="TabControl/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 5
+texture_normal = ExtResource("1_lyyx3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="TabControl/HBoxContainer/ShopButton"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.165
+anchor_right = 1.0
+anchor_bottom = 1.217
+offset_top = -0.0128347
+offset_bottom = 0.0311766
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
+
+[node name="InventoryButton" type="TextureButton" parent="TabControl/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 5
+texture_normal = ExtResource("2_862wk")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="TabControl/HBoxContainer/InventoryButton"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.191
+anchor_right = 1.0
+anchor_bottom = 1.217
+offset_top = -3.99084
+offset_bottom = 0.0311766
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
+
+[node name="UpgradeButton" type="TextureButton" parent="TabControl/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 5
+texture_normal = ExtResource("5_diqhm")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="TabControl/HBoxContainer/UpgradeButton"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.191
+anchor_right = 1.0
+anchor_bottom = 1.217
+offset_top = -3.99084
+offset_bottom = 0.0311766
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
+
+[node name="RebirthButton" type="TextureButton" parent="TabControl/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 5
+texture_normal = ExtResource("5_4jy3f")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="TabControl/HBoxContainer/RebirthButton"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.191
+anchor_right = 1.0
+anchor_bottom = 1.217
+offset_top = -3.99084
+offset_bottom = 0.0311766
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
+
+[node name="DeleteButton" type="TextureButton" parent="TabControl/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 5
+texture_normal = ExtResource("4_50lk6")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="TabControl/HBoxContainer/DeleteButton"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.191
+anchor_right = 1.0
+anchor_bottom = 1.217
+offset_top = -3.99084
+offset_bottom = 0.0311766
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
+
 [connection signal="timeout" from="BuffControl/BuffTimer" to="." method="_on_buff_timer_timeout"]
 [connection signal="pressed" from="BuffControl/MarginContainer/VBoxContainer/2xMoneyButton" to="." method="_on_x_money_button_pressed"]
 [connection signal="pressed" from="InventoryControl/SortPanel/Panel/HBoxContainer/Button" to="." method="_on_button_pressed"]
@@ -1429,3 +1424,8 @@ auto_play = true
 [connection signal="pressed" from="ShopControl/BuyPanel/MarginContainer/VBoxContainer/Buy" to="." method="_on_buy_pressed"]
 [connection signal="pressed" from="ItemPlacementControl/Rotate" to="ItemPlacementControl" method="_on_rotate_pressed"]
 [connection signal="pressed" from="ItemPlacementControl/Close" to="ItemPlacementControl" method="_on_close_pressed"]
+[connection signal="pressed" from="TabControl/HBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="TabControl/HBoxContainer/InventoryButton" to="." method="_on_inventory_button_pressed"]
+[connection signal="pressed" from="TabControl/HBoxContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="TabControl/HBoxContainer/RebirthButton" to="." method="_on_rebirth_button_pressed"]
+[connection signal="pressed" from="TabControl/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]

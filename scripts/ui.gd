@@ -31,6 +31,7 @@ var icon_viewport_node: Node
 var shop_filter: ItemData.ITEMTYPE
 var inv_filter: ItemData.ITEMTYPE
 var item_selection_ui: Control
+var tab_tween: Tween
 
 @onready var input_handler: InputHandler = get_node("/root/Main/InputHandler")
 
@@ -101,6 +102,20 @@ func filter_inventory(item_type: ItemData.ITEMTYPE) -> void:
 		else:
 			ui_item.visible = false
 
+func switch_tab_vfx_in(control: Control) -> void:
+	if tab_tween:
+		return
+
+	var orginal_pos = control.position
+	control.position = Vector2(orginal_pos.x, self.size.y)
+	tab_tween = control.create_tween().set_trans(Tween.TRANS_SINE)
+
+	tab_tween.tween_property(control, "position", orginal_pos, .325)
+	tab_tween.tween_callback(func():
+		if tab_tween:
+			tab_tween = null)
+	tab_tween.play()
+
 func switch_tab(tab: UITAB) -> void:
 	if current_tab == tab:
 		current_tab = UITAB.NONE
@@ -126,6 +141,7 @@ func switch_tab(tab: UITAB) -> void:
 			rebirth_control.visible = false
 			upgrade_control.visible = false
 			input_handler.disable_placing()
+			switch_tab_vfx_in(shop_panel)
 			get_node("TabControl/HBoxContainer/ShopButton/Panel").visible = true
 		UITAB.INVENTORY:
 			shop_panel.visible = false
@@ -133,6 +149,7 @@ func switch_tab(tab: UITAB) -> void:
 			rebirth_control.visible = false
 			upgrade_control.visible = false
 			input_handler.disable_placing()
+			switch_tab_vfx_in(inv_panel)
 			get_node("TabControl/HBoxContainer/InventoryButton/Panel").visible = true
 		UITAB.REBIRTH:
 			rebirth_control.visible = true
@@ -140,6 +157,7 @@ func switch_tab(tab: UITAB) -> void:
 			inv_panel.visible = false
 			upgrade_control.visible = false
 			input_handler.disable_placing()
+			switch_tab_vfx_in(rebirth_control)
 			get_node("TabControl/HBoxContainer/RebirthButton/Panel").visible = true
 		UITAB.UPGRADE:
 			upgrade_control.visible = true
@@ -147,6 +165,7 @@ func switch_tab(tab: UITAB) -> void:
 			shop_panel.visible = false
 			inv_panel.visible = false
 			input_handler.disable_placing()
+			switch_tab_vfx_in(upgrade_control)
 			get_node("TabControl/HBoxContainer/UpgradeButton/Panel").visible = true
 
 func _on_rebirth_button_pressed() -> void:

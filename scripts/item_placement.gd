@@ -40,6 +40,10 @@ func _unhandled_input(event: InputEvent) -> void:
 				instance.position = tilemap.map_to_local(tile_pos)
 				instance.rotation = Player.item_rotation
 				get_node("/root/Main/PlacedItems").add_child(instance)
+				var t = instance.create_tween().set_trans(Tween.TRANS_QUAD)
+				t.tween_property(instance, "scale", Vector2(.875,.875), .125)
+				t.tween_property(instance, "scale", Vector2(1, 1), .125)
+
 				item_info.quantity -= 1
 				Player.update_inventory_item(inv_index, item_info)
 
@@ -68,5 +72,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			var item_info: PlayerItemInfo = Player.data.inventory[placed_item_data.item_index]
 			item_info.quantity += 1
 			Player.update_inventory_item(placed_item_data.item_index, item_info)
-			Player.data.placed_items[id].instance.queue_free()
-			Player.data.placed_items.remove_at(id)
+			var inst = Player.data.placed_items[id].instance
+			var t = inst.create_tween().set_trans(Tween.TRANS_QUAD)
+			t.tween_property(inst, "scale", Vector2(.01, .01), .08)
+			t.tween_callback(func():
+				inst.queue_free()
+				Player.data.placed_items.remove_at(id))

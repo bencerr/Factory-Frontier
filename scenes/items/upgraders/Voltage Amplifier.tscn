@@ -159,7 +159,6 @@ script = ExtResource("5_ll8ig")
 
 [node name="ItemHolder" type="Node2D" parent="."]
 script = ExtResource("6_a4ayt")
-speed = 32.0
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 z_index = 3

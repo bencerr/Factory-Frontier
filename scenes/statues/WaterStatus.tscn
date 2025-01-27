@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://crxv4brapdsp6"]
+
+[ext_resource type="Script" path="res://scripts/statuses/Water.gd" id="1_5ryrp"]
+
+[node name="WaterStatus" type="Node"]
+script = ExtResource("1_5ryrp")
+status_name = "Water"

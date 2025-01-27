@@ -1,80 +1,81 @@
-[gd_scene load_steps=30 format=3 uid="uid://cfmiok2nltiks"]
+[gd_scene load_steps=31 format=3 uid="uid://dgj21uigan1dp"]
 
-[ext_resource type="Script" path="res://scripts/upgrader.gd" id="1_1fihr"]
-[ext_resource type="Resource" uid="uid://d0me6jslfhtbw" path="res://scenes/items/data/Ore Washer.tres" id="2_lyllv"]
-[ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="3_6hr1d"]
-[ext_resource type="PackedScene" uid="uid://crxv4brapdsp6" path="res://scenes/statues/WaterStatus.tscn" id="3_rl3g0"]
-[ext_resource type="Script" path="res://scripts/item_holder.gd" id="4_2um7e"]
-[ext_resource type="Texture2D" uid="uid://dsvowh2gxsb40" path="res://sprites/tilesets/conveyor.png" id="4_fk4j7"]
-[ext_resource type="Texture2D" uid="uid://cp6nsmve6g5ak" path="res://sprites/tilesets/upgraders-layer-3.png" id="4_qfop4"]
-[ext_resource type="Script" path="res://scripts/conveyor_animation_loop.gd" id="5_hwlub"]
-[ext_resource type="Texture2D" uid="uid://bq7tbjciavufv" path="res://sprites/tilesets/upgraders-layer-2.png" id="6_d4vrv"]
+[ext_resource type="Script" path="res://scripts/upgrader.gd" id="1_bq0ac"]
+[ext_resource type="Resource" uid="uid://7emte8g36ft2" path="res://scenes/items/data/Water Upgrader.tres" id="2_hqaqn"]
+[ext_resource type="PackedScene" uid="uid://crxv4brapdsp6" path="res://scenes/statues/WaterStatus.tscn" id="3_tejc1"]
+[ext_resource type="PackedScene" uid="uid://cotn4ygsivl1t" path="res://scenes/detector.tscn" id="4_opwxh"]
+[ext_resource type="Texture2D" uid="uid://dsvowh2gxsb40" path="res://sprites/tilesets/conveyor.png" id="5_fvlpy"]
+[ext_resource type="Script" path="res://scripts/conveyor_animation_loop.gd" id="6_444k6"]
+[ext_resource type="Script" path="res://scripts/item_holder.gd" id="7_lbqaf"]
+[ext_resource type="Texture2D" uid="uid://bq7tbjciavufv" path="res://sprites/tilesets/upgraders-layer-2.png" id="8_qlul3"]
+[ext_resource type="Texture2D" uid="uid://cp6nsmve6g5ak" path="res://sprites/tilesets/upgraders-layer-3.png" id="9_36ej1"]
+[ext_resource type="Script" path="res://scripts/upgrade_beam_vfx.gd" id="10_0olp3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vc5ug"]
-atlas = ExtResource("4_fk4j7")
+atlas = ExtResource("5_fvlpy")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7uqqj"]
-atlas = ExtResource("4_fk4j7")
+atlas = ExtResource("5_fvlpy")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kd540"]
-atlas = ExtResource("4_fk4j7")
+atlas = ExtResource("5_fvlpy")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p1diy"]
-atlas = ExtResource("4_fk4j7")
+atlas = ExtResource("5_fvlpy")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqqb8"]
-atlas = ExtResource("4_fk4j7")
+atlas = ExtResource("5_fvlpy")
 region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6owj"]
-atlas = ExtResource("4_fk4j7")
+atlas = ExtResource("5_fvlpy")
 region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ioos"]
-atlas = ExtResource("4_fk4j7")
+atlas = ExtResource("5_fvlpy")
 region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_38uyv"]
-atlas = ExtResource("4_fk4j7")
+atlas = ExtResource("5_fvlpy")
 region = Rect2(112, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4yd8h"]
-atlas = ExtResource("4_fk4j7")
+atlas = ExtResource("5_fvlpy")
 region = Rect2(128, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8n5yi"]
-atlas = ExtResource("4_fk4j7")
+atlas = ExtResource("5_fvlpy")
 region = Rect2(144, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ac0rw"]
-atlas = ExtResource("4_fk4j7")
+atlas = ExtResource("5_fvlpy")
 region = Rect2(160, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nrojk"]
-atlas = ExtResource("4_fk4j7")
+atlas = ExtResource("5_fvlpy")
 region = Rect2(176, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vw400"]
-atlas = ExtResource("4_fk4j7")
+atlas = ExtResource("5_fvlpy")
 region = Rect2(192, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_crtjv"]
-atlas = ExtResource("4_fk4j7")
+atlas = ExtResource("5_fvlpy")
 region = Rect2(208, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3iie"]
-atlas = ExtResource("4_fk4j7")
+atlas = ExtResource("5_fvlpy")
 region = Rect2(224, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jdgn1"]
-atlas = ExtResource("4_fk4j7")
+atlas = ExtResource("5_fvlpy")
 region = Rect2(240, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_kyon2"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_7tdc7"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -130,46 +131,47 @@ animations = [{
 "speed": 16.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m3ldd"]
-atlas = ExtResource("6_d4vrv")
-region = Rect2(32, 40, 16, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6v2d"]
+atlas = ExtResource("8_qlul3")
+region = Rect2(68, 76, 8, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aiqqi"]
-atlas = ExtResource("4_qfop4")
-region = Rect2(32, 32, 16, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8dn4"]
+atlas = ExtResource("9_36ej1")
+region = Rect2(68, 76, 8, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k4ei5"]
 size = Vector2(4, 4)
 
 [node name="Upgrader" type="Area2D"]
-z_index = 1
 position = Vector2(2.08165e-12, 2.08165e-12)
 gravity_point_center = Vector2(2.08165e-12, -10)
 gravity_direction = Vector2(2.08165e-12, -10)
 gravity = 8.52651e-14
-script = ExtResource("1_1fihr")
-item_data = ExtResource("2_lyllv")
-multiplier = 2.0
-status = ExtResource("3_rl3g0")
+script = ExtResource("1_bq0ac")
+item_data = ExtResource("2_hqaqn")
+multiplier = 1.5
+upgrade_limit = 2
+status = ExtResource("3_tejc1")
 
-[node name="Detector" parent="." instance=ExtResource("3_6hr1d")]
+[node name="Detector" parent="." instance=ExtResource("4_opwxh")]
 
-[node name="Sprite2D4" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D3" type="AnimatedSprite2D" parent="."]
 position = Vector2(-4.1633e-12, 0)
-sprite_frames = SubResource("SpriteFrames_kyon2")
-script = ExtResource("5_hwlub")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(-2.08165e-12, 0)
-texture = SubResource("AtlasTexture_m3ldd")
+sprite_frames = SubResource("SpriteFrames_7tdc7")
+script = ExtResource("6_444k6")
 
 [node name="ItemHolder" type="Node2D" parent="."]
-script = ExtResource("4_2um7e")
+script = ExtResource("7_lbqaf")
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="."]
 z_index = 3
 position = Vector2(-2.08165e-12, 0)
-texture = SubResource("AtlasTexture_aiqqi")
+texture = SubResource("AtlasTexture_r6v2d")
+
+[node name="Beam" type="Sprite2D" parent="."]
+z_index = 3
+texture = SubResource("AtlasTexture_y8dn4")
+script = ExtResource("10_0olp3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, 0)

@@ -10,3 +10,4 @@ signal value_changed(change: float)
 		value_changed.emit(val)
 
 var upgrade_tags: Dictionary = {} # {tag_name: tag_count}
+var statuses: Dictionary = {} # {status_name: StatusObject}

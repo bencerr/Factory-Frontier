@@ -58,6 +58,10 @@ func get_item_stats(item_id: int) -> String:
 		s += "\nLimit: %s" % str(item.upgrade_limit)
 		if item.destroy_chance > 0:
 			s += "\nDestroy: %s%%" % str(item.destroy_chance * 100)
+		if item.status:
+			var temp = item.status.instantiate()
+			s += "\nApplies: %s" % str(temp.status_name)
+			temp.queue_free()
 	elif item is Furnace:
 		s = "Mult: %sx" % GameData.float_to_prefix(item.mult)
 

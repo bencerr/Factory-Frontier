@@ -33,10 +33,11 @@ font_size = 26
 shadow_color = Color(0, 0, 0, 0.443137)
 shadow_offset = Vector2(2.08165e-12, 1)
 
-[node name="ItemSelectionControl" type="Control" node_paths=PackedStringArray("name_label", "stat_label")]
+[node name="ItemSelectionControl" type="Control" node_paths=PackedStringArray("name_label", "stat_label", "panel")]
 top_level = true
 light_mask = 0
 z_index = 99
+clip_contents = true
 layout_mode = 3
 anchor_right = 0.355
 anchor_bottom = 0.072
@@ -46,10 +47,12 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(2.08165e-12, -12)
 script = ExtResource("1_sqwid")
-name_label = NodePath("MarginContainer/Control/VBoxContainer/NameLabel")
-stat_label = NodePath("MarginContainer/Control/VBoxContainer/StatLabel")
+name_label = NodePath("Panel/MarginContainer/Control/VBoxContainer/NameLabel")
+stat_label = NodePath("Panel/MarginContainer/Control/VBoxContainer/StatLabel")
+panel = NodePath("Panel")
 
 [node name="Panel" type="Panel" parent="."]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,7 +61,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6f36b")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,10 +73,10 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Control" type="Control" parent="MarginContainer"]
+[node name="Control" type="Control" parent="Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.641
@@ -83,7 +86,7 @@ offset_bottom = 6.0
 grow_vertical = 2
 theme_override_constants/separation = 8
 
-[node name="NameLabel" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+[node name="NameLabel" type="Label" parent="Panel/MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "item_name"
@@ -91,14 +94,14 @@ label_settings = SubResource("LabelSettings_hkcv6")
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="StatLabel" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+[node name="StatLabel" type="Label" parent="Panel/MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "stat1: 1"
 label_settings = SubResource("LabelSettings_yo5fr")
 autowrap_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -114,7 +117,7 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Rotate" type="TextureButton" parent="MarginContainer/Control/HBoxContainer"]
+[node name="Rotate" type="TextureButton" parent="Panel/MarginContainer/Control/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -123,7 +126,7 @@ texture_normal = ExtResource("2_5wfyr")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Close" type="TextureButton" parent="MarginContainer/Control/HBoxContainer"]
+[node name="Close" type="TextureButton" parent="Panel/MarginContainer/Control/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -132,5 +135,5 @@ texture_normal = ExtResource("3_svs8i")
 ignore_texture_size = true
 stretch_mode = 5
 
-[connection signal="pressed" from="MarginContainer/Control/HBoxContainer/Rotate" to="." method="_on_rotate_pressed"]
-[connection signal="pressed" from="MarginContainer/Control/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/Control/HBoxContainer/Rotate" to="." method="_on_rotate_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/Control/HBoxContainer/Close" to="." method="_on_close_pressed"]

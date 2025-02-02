@@ -6,6 +6,7 @@ func do_effect() -> void:
 	for st in self.ore.statuses.keys():
 		if self.ore.statuses[st] is FireStatus:
 			self.ore.statuses[st].remove_status()
+	self.remove_status()
 
 func _init() -> void:
 	super()

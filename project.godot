@@ -22,7 +22,7 @@ resources_spreadsheet_view/fold_docks=false
 [application]
 
 config/name="Factory Frontier"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/ui/loading_control.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 

@@ -1,0 +1,145 @@
+[gd_scene load_steps=15 format=3 uid="uid://ddwnxahpwjl4l"]
+
+[ext_resource type="Script" path="res://scripts/load_in_game.gd" id="1_vm32o"]
+[ext_resource type="StyleBox" uid="uid://h3625wn475mf" path="res://resources/style_box_2.tres" id="2_utqib"]
+[ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="3_4mbpm"]
+[ext_resource type="Texture2D" uid="uid://nhp28qq84bl3" path="res://sprites/background1.png" id="3_e7ise"]
+[ext_resource type="StyleBox" uid="uid://bbexbscjlpdwu" path="res://resources/button_filled.tres" id="4_wwt0v"]
+[ext_resource type="StyleBox" uid="uid://dw5ntbfolxxn0" path="res://resources/button_filled_pressed.tres" id="5_vc52i"]
+
+[sub_resource type="Gradient" id="Gradient_yri7k"]
+colors = PackedColorArray(0.0877217, 0.529342, 0.602802, 1, 0.267563, 0.520263, 0.401789, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m32tw"]
+gradient = SubResource("Gradient_yri7k")
+width = 256
+height = 256
+fill_from = Vector2(0.495726, 0.510684)
+fill_to = Vector2(0.5, 2.08165e-12)
+
+[sub_resource type="Gradient" id="Gradient_727dv"]
+colors = PackedColorArray(1, 1, 1, 0.0784314, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vorj5"]
+gradient = SubResource("Gradient_727dv")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.495726, 0.510684)
+fill_to = Vector2(0.104701, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_c8kfn"]
+base_font = ExtResource("3_4mbpm")
+variation_embolden = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_aq1o3"]
+font = SubResource("FontVariation_c8kfn")
+font_size = 128
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 16
+shadow_color = Color(0, 0, 0, 0.0745098)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iva67"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_juimj"]
+base_font = ExtResource("3_4mbpm")
+variation_embolden = 1.0
+
+[node name="LoadingControl" type="Control"]
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vm32o")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_utqib")
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+modulate = Color(1, 1, 1, 0.662745)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_e7ise")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="Panel"]
+modulate = Color(1, 1, 1, 0.117647)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_m32tw")
+
+[node name="TextureRect2" type="TextureRect" parent="Panel"]
+modulate = Color(1, 1, 1, 0.419608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_vorj5")
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -370.0
+offset_top = -370.0
+offset_right = 370.0
+offset_bottom = 370.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "Factory Frontier"
+label_settings = SubResource("LabelSettings_aq1o3")
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(600, 3)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iva67")
+
+[node name="Button" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(480, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = SubResource("FontVariation_juimj")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = ExtResource("4_wwt0v")
+theme_override_styles/hover = ExtResource("4_wwt0v")
+theme_override_styles/pressed = ExtResource("5_vc52i")
+text = "> Play"
+
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

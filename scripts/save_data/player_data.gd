@@ -8,3 +8,4 @@ extends Resource
 @export var ore_limit_index: int = 0
 @export var buffs: Array[Buff]
 @export var base_level: int = 0
+@export var new_player: bool = true

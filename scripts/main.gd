@@ -30,20 +30,31 @@ func _on_ad_failed_to_load(ad_error: LoadAdError) -> void:
 
 func load_rewarded() -> void:
 	var unit_id : String
-	if GameData.ad_mode == "TESTING":
-		unit_id = "ca-app-pub-3940256099942544/1712485313"
+	if OS.get_name() == "iOS":
+		if GameData.ad_mode == "TESTING":
+			unit_id = "ca-app-pub-3940256099942544/1712485313"
+		else:
+			unit_id = "ca-app-pub-2418850822211418/5028114360"
 	else:
-		unit_id = "ca-app-pub-2418850822211418/5028114360"
+		if GameData.ad_mode == "TESTING":
+			unit_id = "ca-app-pub-3940256099942544/5224354917"
+		else:
+			unit_id = "ca-app-pub-2418850822211418/7343015383"
 
 	RewardedAdLoader.new().load(unit_id, AdRequest.new(), rewarded_ad_load_callback)
 
 func load_interstitial() -> void:
 	var unit_id : String
-	#if OS.get_name() == "iOS":
-	if GameData.ad_mode == "TESTING":
-		unit_id = "ca-app-pub-3940256099942544/4411468910"
+	if OS.get_name() == "iOS":
+		if GameData.ad_mode == "TESTING":
+			unit_id = "ca-app-pub-3940256099942544/4411468910"
+		else:
+			unit_id = "ca-app-pub-2418850822211418/4257511065"
 	else:
-		unit_id = "ca-app-pub-2418850822211418/4257511065"
+		if GameData.ad_mode == "TESTING":
+			unit_id = "ca-app-pub-3940256099942544/1033173712"
+		else:
+			unit_id = "ca-app-pub-2418850822211418/7580423760"
 
 	InterstitialAdLoader.new().load(unit_id, AdRequest.new(), interstitial_ad_load_callback)
 

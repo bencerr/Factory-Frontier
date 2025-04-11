@@ -170,4 +170,8 @@ func _ready() -> void:
 	load_items()
 	load_base_level_upgrades()
 	load_ore_limit_upgrades()
+
+	if OS.get_name() == "Android":
+		ad_mode = "TESTING"
+
 	MobileAds.initialize()

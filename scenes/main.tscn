@@ -140,12 +140,12 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("3_qmwlc")]
-visible = false
 
 [node name="ItemSelectionControl" parent="CanvasLayer" instance=ExtResource("8_k483p")]
 visible = false
 
 [node name="Tutorial" parent="CanvasLayer" instance=ExtResource("5_ytiky")]
+visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)

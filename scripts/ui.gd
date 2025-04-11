@@ -223,6 +223,8 @@ func _ready() -> void:
 	else:
 		rebirth_panel_button.visible = true
 
+	_on_shop_selected_item_changed(hash("Conveyor"))
+
 func _on_money_change(_value: float) -> void:
 	money_label.text = "$" + GameData.float_to_prefix(Player.data.money)
 	if Player.data.rebirths == 0 and Player.data.money < GameData.calc_rebirth_price(0)/100000:

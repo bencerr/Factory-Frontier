@@ -75,7 +75,7 @@ func do_rebirth():
 		var item_info: PlayerItemInfo = Player.data.inventory[id]
 		var item_data: ItemData = GameData.items[id].item_data
 
-		if item_data.rarity == ItemData.RARITY.REBIRTH:
+		if item_data.rarity != ItemData.RARITY.COMMON:
 			item_info.quantity += 1
 			update_inventory_item(id, item_info)
 
@@ -84,7 +84,7 @@ func do_rebirth():
 	data.placed_items.clear()
 
 	for key in data.inventory.keys():
-		if GameData.items[key].item_data.rarity == ItemData.RARITY.REBIRTH: continue
+		if GameData.items[key].item_data.rarity != ItemData.RARITY.COMMON: continue
 		var item_info: PlayerItemInfo = data.inventory[key]
 		item_info.quantity = 0
 		update_inventory_item(key, item_info)
@@ -105,6 +105,8 @@ func _ready() -> void:
 			data.inventory[item_key] = PlayerItemInfo.new()
 			data.inventory[item_key].item_id = item_key
 			data.inventory[item_key].quantity = 0
+
+	data.inventory[2882322608].quantity = 4
 
 	for item_key in data.inventory.keys():
 		if not GameData.items.has(item_key):

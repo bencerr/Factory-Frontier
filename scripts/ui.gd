@@ -44,6 +44,10 @@ func _on_input_type_changed(input_typ: InputHandler.INPUTTYPE) -> void:
 			placement_control.visible = true
 
 func refresh_inventory() -> void:
+	for n in inv_container.get_children():
+		inv_container.remove_child(n)
+		n.queue_free()
+
 	var template: PackedScene = load("res://scenes/ui/item.tscn")
 	var sorted_inv: Array = []
 
@@ -68,7 +72,7 @@ func load_shop() -> void:
 
 	for key in GameData.items.keys():
 		# only load non-rebirth items
-		if GameData.items[key].item_data.rarity == ItemData.RARITY.REBIRTH: continue
+		if GameData.items[key].item_data.rarity != ItemData.RARITY.COMMON: continue
 
 		sorted_shop.append({"key": key, "price": GameData.items[key].item_data.price})
 
@@ -224,6 +228,7 @@ func _ready() -> void:
 		rebirth_panel_button.visible = true
 
 	_on_shop_selected_item_changed(hash("Conveyor"))
+	load_merge_items()
 
 func _on_money_change(_value: float) -> void:
 	money_label.text = "$" + GameData.float_to_prefix(Player.data.money)
@@ -379,6 +384,65 @@ func _on_buff_timer_timeout() -> void:
 
 	#if len(Player.data.buffs) == 0:
 		# todo
+
+func load_merge_items() -> void:
+	var root_path = "res://scenes/items/merge/"
+	var dir_contents = DirAccess.get_files_at(root_path)
+	var template = load("res://scenes/ui/merge_control.tscn")
+
+	for file_name in dir_contents:
+		if (file_name.get_extension() == "remap"):
+			file_name = file_name.replace('.remap', '')
+
+		var res: MergeData = load(root_path + file_name)
+
+		var merge_control = template.instantiate()
+
+		var item_template = load("res://scenes/ui/merge_item.tscn")
+
+		var item_data: ItemData = GameData.items[res.item_id].item_data
+		merge_control.get_node("ItemName").text = item_data.name
+		merge_control.get_node("Button").pressed.connect(_on_merge_button_pressed.bind(res))
+
+		for item_id in res.items:
+			var clone = item_template.instantiate()
+			merge_control.get_node("Panel2/MarginContainer/HBoxContainer").add_child(clone)
+
+			var vp: SubViewport = clone.get_node("TextureRect/SubViewport")
+			for c in vp.get_children():
+				c.queue_free()
+
+			var vp_node = GameData.items[item_id].duplicate()
+			vp_node.position = buy_panel_subviewport.size / 2
+			vp_node = GameData.strip_item_node(vp_node)
+			vp.add_child(vp_node)
+
+		rebirth_control.get_node(
+			"Panel/TabContainer/Merge/Control/VBoxContainer"
+		).add_child(merge_control)
+
+func _on_merge_button_pressed(merge_data: MergeData) -> void:
+	var quantities = {}
+
+	for id in merge_data.items:
+		if quantities.has(id):
+			quantities[id] += 1
+		else:
+			quantities[id] = 1
+
+	# check player has all items
+	for id in merge_data.items:
+		if Player.data.inventory[id].quantity < quantities[id]:
+			return
+
+	# remove items
+	for id in merge_data.items:
+		Player.data.inventory[id].quantity -= 1
+
+	# give merge item
+	Player.data.inventory[merge_data.item_id].quantity += 1
+
+	refresh_inventory()
 
 func _on_x_money_button_pressed() -> void:
 	get_node("/root/Main").play_rewarded_ad.emit()

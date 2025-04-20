@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr5mj5slqoxc3"]
+
+[ext_resource type="Theme" uid="uid://c5xy62mrsekem" path="res://resources/theme.tres" id="1_eu32x"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6nvsf"]
+viewport_path = NodePath("TextureRect/SubViewport")
+
+[node name="Panel" type="Panel"]
+custom_minimum_size = Vector2(100, 100)
+theme = ExtResource("1_eu32x")
+theme_type_variation = &"merge_item"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_6nvsf")
+
+[node name="SubViewport" type="SubViewport" parent="TextureRect"]
+transparent_bg = true
+size = Vector2i(32, 32)

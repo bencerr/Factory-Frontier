@@ -10,7 +10,8 @@ enum ITEMTYPE {
 
 enum RARITY {
 	COMMON,
-	REBIRTH
+	REBIRTH,
+	MERGE
 }
 
 @export var item_type: ITEMTYPE = ITEMTYPE.DROPPER

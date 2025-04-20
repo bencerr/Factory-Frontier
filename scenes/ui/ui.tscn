@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://5qesdudrl5ii"]
+[gd_scene load_steps=91 format=3 uid="uid://5qesdudrl5ii"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_hq2yj"]
 [ext_resource type="Texture2D" uid="uid://3hytavl1qmkd" path="res://sprites/store.png" id="1_lyyx3"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dcb1i5pm2ypno" path="res://scenes/ui/buff_label.tscn" id="8_rucfv"]
 [ext_resource type="Texture2D" uid="uid://bkm184u8djrhu" path="res://images/ui_icons.png" id="8_vddln"]
 [ext_resource type="StyleBox" uid="uid://bbexbscjlpdwu" path="res://resources/button_filled.tres" id="8_w3vcj"]
+[ext_resource type="Theme" uid="uid://c5xy62mrsekem" path="res://resources/theme.tres" id="9_kmo88"]
 [ext_resource type="StyleBox" uid="uid://dw5ntbfolxxn0" path="res://resources/button_filled_pressed.tres" id="9_nd335"]
 [ext_resource type="StyleBox" uid="uid://h3625wn475mf" path="res://resources/style_box_2.tres" id="12_6fc0u"]
 [ext_resource type="Script" path="res://scripts/ui/upgrade_control.gd" id="13_2rjmd"]
@@ -91,16 +92,6 @@ atlas = ExtResource("8_vddln")
 region = Rect2(48, 1, 16, 18)
 margin = Rect2(5, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sv8c4"]
-bg_color = Color(0.180392, 0.235294, 0.278431, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psnqo"]
-bg_color = Color(0.219608, 0.282353, 0.32549, 0.490196)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
 [sub_resource type="LabelSettings" id="LabelSettings_15sl3"]
 font = ExtResource("4_ptkkj")
 font_size = 64
@@ -118,6 +109,16 @@ shadow_color = Color(0, 0, 0, 0.752941)
 atlas = ExtResource("5_4jy3f")
 region = Rect2(2.08165e-12, 2.08165e-12, 96, 96)
 margin = Rect2(20, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sv8c4"]
+bg_color = Color(0.180392, 0.235294, 0.278431, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psnqo"]
+bg_color = Color(0.219608, 0.282353, 0.32549, 0.490196)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="FontVariation" id="FontVariation_5e2r7"]
 base_font = ExtResource("4_ptkkj")
@@ -424,7 +425,7 @@ money_label = NodePath("TabControl2/Panel/MarginContainer/VBoxContainer/MoneyLab
 shop_container = NodePath("ShopControl/MarginContainer/ScrollContainer/HFlowContainer")
 buy_panel = NodePath("ShopControl/BuyPanel")
 rebirth_control = NodePath("RebirthControl")
-rebirth_price_label = NodePath("RebirthControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer2/RebirthPrice")
+rebirth_price_label = NodePath("RebirthControl/Panel/TabContainer/Rebirth/Control/VBoxContainer2/RebirthPrice")
 rebirth_label = NodePath("TabControl2/Panel2/MarginContainer/RebirthLabel2")
 ore_limit_label = NodePath("TabControl2/Panel/MarginContainer/VBoxContainer/OreLimitLabel")
 buy_panel_subviewport = NodePath("ShopControl/BuyPanel/MarginContainer/VBoxContainer/TextureRect/SubViewport")
@@ -722,40 +723,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_sv8c4")
+theme_override_styles/panel = ExtResource("7_hssru")
 
-[node name="MarginContainer" type="MarginContainer" parent="RebirthControl/Panel"]
+[node name="TabContainer" type="TabContainer" parent="RebirthControl/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("9_kmo88")
+all_tabs_in_front = true
+
+[node name="Rebirth" type="MarginContainer" parent="RebirthControl/Panel/TabContainer"]
+layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Panel" type="Panel" parent="RebirthControl/Panel/MarginContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_psnqo")
-
-[node name="MarginContainer" type="MarginContainer" parent="RebirthControl/Panel/MarginContainer/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="Control" type="Control" parent="RebirthControl/Panel/MarginContainer/Panel/MarginContainer"]
+[node name="Control" type="Control" parent="RebirthControl/Panel/TabContainer/Rebirth"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="RebirthControl/Panel/MarginContainer/Panel/MarginContainer/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="RebirthControl/Panel/TabContainer/Rebirth/Control"]
 layout_mode = 2
 anchor_right = 1.0
 anchor_bottom = 0.46
@@ -763,7 +753,7 @@ offset_bottom = 0.0999965
 grow_horizontal = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="RebirthControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer"]
+[node name="Label" type="Label" parent="RebirthControl/Panel/TabContainer/Rebirth/Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Rebirth"
@@ -771,7 +761,7 @@ label_settings = SubResource("LabelSettings_15sl3")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="RebirthControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer"]
+[node name="Label2" type="Label" parent="RebirthControl/Panel/TabContainer/Rebirth/Control/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 0
@@ -780,7 +770,7 @@ label_settings = SubResource("LabelSettings_vo3sh")
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="RebirthControl/Panel/MarginContainer/Panel/MarginContainer/Control"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="RebirthControl/Panel/TabContainer/Rebirth/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.221
@@ -794,7 +784,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 10
 
-[node name="RebirthPrice" type="Label" parent="RebirthControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer2"]
+[node name="RebirthPrice" type="Label" parent="RebirthControl/Panel/TabContainer/Rebirth/Control/VBoxContainer2"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 0
@@ -804,7 +794,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="DoRebirthButton" type="Button" parent="RebirthControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer2"]
+[node name="DoRebirthButton" type="Button" parent="RebirthControl/Panel/TabContainer/Rebirth/Control/VBoxContainer2"]
 custom_minimum_size = Vector2(2.08165e-12, 120)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -816,6 +806,25 @@ theme_override_styles/hover = ExtResource("8_w3vcj")
 theme_override_styles/pressed = ExtResource("9_nd335")
 text = "Rebirth"
 icon = SubResource("AtlasTexture_yyee6")
+
+[node name="Merge" type="MarginContainer" parent="RebirthControl/Panel/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Control" type="Control" parent="RebirthControl/Panel/TabContainer/Merge"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RebirthControl/Panel/TabContainer/Merge/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="UpgradeControl" type="Control" parent="." node_paths=PackedStringArray("ore_limit_label", "ore_limit_button", "base_level_label", "base_level_button")]
 visible = false
@@ -1457,7 +1466,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
 [connection signal="pressed" from="InventoryControl/SortPanel/Panel/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="InventoryControl/SortPanel/Panel/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="InventoryControl/SortPanel/Panel/HBoxContainer/Button4" to="." method="_on_button_4_pressed"]
-[connection signal="pressed" from="RebirthControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer2/DoRebirthButton" to="." method="_on_do_rebirth_button_pressed"]
+[connection signal="pressed" from="RebirthControl/Panel/TabContainer/Rebirth/Control/VBoxContainer2/DoRebirthButton" to="." method="_on_do_rebirth_button_pressed"]
 [connection signal="pressed" from="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer/UpgradeButton" to="UpgradeControl" method="_on_upgrade_ore_limit_button_pressed"]
 [connection signal="pressed" from="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer2/UpgradeButton" to="UpgradeControl" method="_on_upgrade_base_level_button_pressed"]
 [connection signal="pressed" from="ShopControl/SortPanel/Panel/HBoxContainer/Button" to="." method="_on_button_pressed"]

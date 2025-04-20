@@ -1,0 +1,80 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt8mvepn1j0b3"]
+
+[ext_resource type="Theme" uid="uid://c5xy62mrsekem" path="res://resources/theme.tres" id="1_b5tnu"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(2.08165e-12, 200)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1037.0
+offset_bottom = 200.0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_b5tnu")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.693
+anchor_top = 0.125
+anchor_right = 0.983
+anchor_bottom = 0.88
+offset_left = 0.0139776
+offset_right = 0.433952
+offset_bottom = -1.09673e-05
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("1_b5tnu")
+text = "Craft"
+
+[node name="ItemName" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.017
+anchor_top = 0.037
+anchor_right = 0.274
+anchor_bottom = 0.298
+offset_left = -0.434001
+offset_top = 0.6
+offset_right = 479.652
+offset_bottom = 0.399998
+grow_vertical = 2
+size_flags_vertical = 0
+theme = ExtResource("1_b5tnu")
+text = "Basic Conveyor"
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.017
+anchor_top = 0.375
+anchor_right = 0.671
+anchor_bottom = 0.93
+offset_left = -0.434001
+offset_right = -0.542005
+offset_bottom = -1.33514e-05
+grow_vertical = 2
+theme = ExtResource("1_b5tnu")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20

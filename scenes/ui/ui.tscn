@@ -1466,6 +1466,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_26qke")
 [connection signal="pressed" from="InventoryControl/SortPanel/Panel/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="InventoryControl/SortPanel/Panel/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="InventoryControl/SortPanel/Panel/HBoxContainer/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="tab_selected" from="RebirthControl/Panel/TabContainer" to="." method="_on_tab_container_tab_selected"]
 [connection signal="pressed" from="RebirthControl/Panel/TabContainer/Rebirth/Control/VBoxContainer2/DoRebirthButton" to="." method="_on_do_rebirth_button_pressed"]
 [connection signal="pressed" from="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer/UpgradeButton" to="UpgradeControl" method="_on_upgrade_ore_limit_button_pressed"]
 [connection signal="pressed" from="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer2/UpgradeButton" to="UpgradeControl" method="_on_upgrade_base_level_button_pressed"]

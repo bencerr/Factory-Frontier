@@ -229,6 +229,8 @@ func _ready() -> void:
 
 	_on_shop_selected_item_changed(hash("Conveyor"))
 	load_merge_items()
+	Player.rebirthed.connect(refresh_merge_tab)
+	refresh_merge_tab()
 
 func _on_money_change(_value: float) -> void:
 	money_label.text = "$" + GameData.float_to_prefix(Player.data.money)
@@ -455,3 +457,14 @@ func _on_merge_button_pressed(merge_data: MergeData, btn: Button) -> void:
 
 func _on_x_money_button_pressed() -> void:
 	get_node("/root/Main").play_rewarded_ad.emit()
+
+func refresh_merge_tab(_id=0) -> void:
+	var merge_control = get_node("RebirthControl/Panel/TabContainer/Merge")
+	if Player.data.rebirths < 5:
+		merge_control.name = "<Locked 5 Rebirths>"
+	else:
+		merge_control.name = "Merge"
+
+func _on_tab_container_tab_selected(tab:int) -> void:
+	if tab == 1 and Player.data.rebirths < 5:
+		get_node("RebirthControl/Panel/TabContainer").current_tab = 0

@@ -106,7 +106,7 @@ func _ready() -> void:
 			data.inventory[item_key].item_id = item_key
 			data.inventory[item_key].quantity = 0
 
-	data.inventory[2882322608].quantity = 4
+	data.inventory[4222123733].quantity = 4
 
 	for item_key in data.inventory.keys():
 		if not GameData.items.has(item_key):

@@ -1,0 +1,104 @@
+[gd_scene load_steps=14 format=3 uid="uid://b0jldfwm3gmed"]
+
+[ext_resource type="Script" path="res://scripts/furnace.gd" id="1_w34hk"]
+[ext_resource type="Resource" uid="uid://8gl3tefpqh8c" path="res://scenes/items/data/Winter Wonder.tres" id="2_jjv5s"]
+[ext_resource type="PackedScene" uid="uid://kaam8tiwss0t" path="res://scenes/ore_value_ui.tscn" id="3_barag"]
+[ext_resource type="Texture2D" uid="uid://b3us48fbw44gk" path="res://sprites/tilesets/furnaces.png" id="4_lu773"]
+[ext_resource type="Script" path="res://scripts/item_holder.gd" id="5_3jloo"]
+[ext_resource type="AudioStream" uid="uid://c604nxr88w2w7" path="res://sfx/stop-13692.mp3" id="6_tsmjd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unhhq"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmymp"]
+atlas = ExtResource("4_lu773")
+region = Rect2(32, 2.08165e-12, 16, 16)
+
+[sub_resource type="Gradient" id="Gradient_k1ju7"]
+offsets = PackedFloat32Array(0, 0.209003, 0.983923, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.0894309, 0.0894309, 0.0894309, 0.0894309, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ms6go"]
+gradient = SubResource("Gradient_k1ju7")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.9)
+
+[sub_resource type="Curve" id="Curve_5c8g6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_tns06"]
+interpolation_mode = 1
+colors = PackedColorArray(0, 0.831373, 0.831373, 1, 0.0579096, 0.541653, 0.728594, 0)
+
+[sub_resource type="Gradient" id="Gradient_eb1v0"]
+interpolation_mode = 1
+colors = PackedColorArray(0, 0.831373, 0.831373, 1, 0.0579096, 0.541653, 0.728594, 0)
+
+[node name="Furnace" type="Area2D"]
+position = Vector2(27, 0)
+script = ExtResource("1_w34hk")
+item_data = ExtResource("2_jjv5s")
+label_scene = ExtResource("3_barag")
+mult = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_unhhq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0.831373, 0.831373, 1)
+texture = SubResource("AtlasTexture_mmymp")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0, 0.831373, 0.831373, 1)
+scale = Vector2(0.625, 0.625)
+texture = SubResource("AtlasTexture_mmymp")
+
+[node name="ItemHolder" type="Node2D" parent="."]
+script = ExtResource("5_3jloo")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.384314, 0.768627, 0.952941, 1)
+texture = SubResource("GradientTexture2D_ms6go")
+texture_scale = 0.25
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_tsmjd")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(5, 5)
+direction = Vector2(2.08165e-12, 2.08165e-12)
+spread = 180.0
+gravity = Vector2(2.08165e-12, 5)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_5c8g6")
+color_ramp = SubResource("Gradient_tns06")
+
+[node name="Ice" type="CPUParticles2D" parent="."]
+amount = 30
+lifetime = 2.0
+emission_shape = 3
+emission_rect_extents = Vector2(4, 4)
+direction = Vector2(2.08165e-12, -100)
+spread = 180.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = -129.55
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_5c8g6")
+color_ramp = SubResource("Gradient_eb1v0")
+
+[connection signal="item_held" from="ItemHolder" to="." method="_on_item_holder_item_held"]
+[connection signal="finished" from="CPUParticles2D" to="." method="_on_cpu_particles_2d_finished"]
+[connection signal="finished" from="Ice" to="." method="_on_cpu_particles_2d_finished"]

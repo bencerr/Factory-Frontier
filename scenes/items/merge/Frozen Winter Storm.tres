@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="MergeData" load_steps=2 format=3 uid="uid://bf1t505w5cwqe"]
+
+[ext_resource type="Script" path="res://scripts/merge_data.gd" id="1_egsti"]
+
+[resource]
+script = ExtResource("1_egsti")
+item_id = 2289011111
+items = [963703437, 963703437, 963703437]

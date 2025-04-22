@@ -4,7 +4,6 @@
 
 [resource]
 script = ExtResource("1_6gh6b")
-item_name = "Winter Wonder"
 item_type = 3
 price = 2.08165e-12
-rarity = 1
+rarity = 2

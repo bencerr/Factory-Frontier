@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://b4uod6lcb0plx"]
+
+[ext_resource type="Script" path="res://scripts/item_data.gd" id="1_3ipd8"]
+
+[resource]
+script = ExtResource("1_3ipd8")
+item_type = 2
+price = 2.08165e-12
+rarity = 2

@@ -402,7 +402,9 @@ func load_merge_items() -> void:
 
 		var item_data: ItemData = GameData.items[res.item_id].item_data
 		merge_control.get_node("ItemName").text = item_data.name
-		merge_control.get_node("Button").pressed.connect(_on_merge_button_pressed.bind(res))
+		merge_control.get_node("Button").pressed.connect(_on_merge_button_pressed.bind(
+			res, merge_control.get_node("Button"))
+		)
 
 		for item_id in res.items:
 			var clone = item_template.instantiate()
@@ -421,7 +423,7 @@ func load_merge_items() -> void:
 			"Panel/TabContainer/Merge/Control/VBoxContainer"
 		).add_child(merge_control)
 
-func _on_merge_button_pressed(merge_data: MergeData) -> void:
+func _on_merge_button_pressed(merge_data: MergeData, btn: Button) -> void:
 	var quantities = {}
 
 	for id in merge_data.items:
@@ -443,6 +445,9 @@ func _on_merge_button_pressed(merge_data: MergeData) -> void:
 	Player.data.inventory[merge_data.item_id].quantity += 1
 
 	refresh_inventory()
+	btn.text = "Crafted"
+	await get_tree().create_timer(1).timeout
+	btn.text = "Craft"
 
 func _on_x_money_button_pressed() -> void:
 	get_node("/root/Main").play_rewarded_ad.emit()

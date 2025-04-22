@@ -38,18 +38,6 @@ func get_placed_item_id(v: Vector2i) -> int:
 
 # Inventory
 
-func get_item_name(id: int) -> String:
-	return GameData.items[id].item_data.name
-
-func get_item_index(item_name: String) -> int:
-	for key in range(GameData.items.keys):
-		if get_item_name(key) == item_name:
-			return key
-	return -1
-
-func get_item_by_name(item_name: String) -> ItemData:
-	return data.inventory[get_item_index(item_name)]
-
 func update_inventory_item(item_id: int, item: PlayerItemInfo) -> bool:
 	if data.inventory.has(item_id):
 		data.inventory[item_id] = item

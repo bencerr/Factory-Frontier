@@ -150,6 +150,9 @@ func load_ore_limit_upgrades() -> void:
 	ore_limit_upgrades.sort_custom(func(a, b):
 		return a.index < b.index)
 
+func get_item_index(item_name: String) -> int:
+	return hash(item_name)
+
 func load_items() -> void:
 	var dirs := [
 		"res://scenes/items/conveyors",

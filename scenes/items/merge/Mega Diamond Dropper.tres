@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_otcb6")
-item_id = 2111694775
-items = [2882322608, 2882322608, 2882322608]
+item_name = "Mega Diamond Dropper"
+items = ["Giant Diamond Dropper", "Giant Diamond Dropper", "Giant Diamond Dropper"]

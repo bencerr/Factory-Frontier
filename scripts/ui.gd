@@ -400,13 +400,13 @@ func load_merge_items() -> void:
 
 		var item_template = load("res://scenes/ui/merge_item.tscn")
 
-		var item_data: ItemData = GameData.items[res.item_id].item_data
+		var item_data: ItemData = GameData.items[hash(res.item_name)].item_data
 		merge_control.get_node("ItemName").text = item_data.name
 		merge_control.get_node("Button").pressed.connect(_on_merge_button_pressed.bind(
 			res, merge_control.get_node("Button"))
 		)
 
-		for item_id in res.items:
+		for item_name in res.items:
 			var clone = item_template.instantiate()
 			merge_control.get_node("Panel2/MarginContainer/HBoxContainer").add_child(clone)
 
@@ -414,7 +414,7 @@ func load_merge_items() -> void:
 			for c in vp.get_children():
 				c.queue_free()
 
-			var vp_node = GameData.items[item_id].duplicate()
+			var vp_node = GameData.items[hash(item_name)].duplicate()
 			vp_node.position = buy_panel_subviewport.size / 2
 			vp_node = GameData.strip_item_node(vp_node)
 			vp.add_child(vp_node)
@@ -424,25 +424,29 @@ func load_merge_items() -> void:
 		).add_child(merge_control)
 
 func _on_merge_button_pressed(merge_data: MergeData, btn: Button) -> void:
+	if btn.text != "Craft": return
 	var quantities = {}
 
-	for id in merge_data.items:
+	for item_name in merge_data.items:
+		var id = hash(item_name)
 		if quantities.has(id):
 			quantities[id] += 1
 		else:
 			quantities[id] = 1
 
 	# check player has all items
-	for id in merge_data.items:
+	for item_name in merge_data.items:
+		var id = hash(item_name)
 		if Player.data.inventory[id].quantity < quantities[id]:
 			return
 
 	# remove items
-	for id in merge_data.items:
+	for item_name in merge_data.items:
+		var id = hash(item_name)
 		Player.data.inventory[id].quantity -= 1
 
 	# give merge item
-	Player.data.inventory[merge_data.item_id].quantity += 1
+	Player.data.inventory[hash(merge_data.item_name)].quantity += 1
 
 	refresh_inventory()
 	btn.text = "Crafted"

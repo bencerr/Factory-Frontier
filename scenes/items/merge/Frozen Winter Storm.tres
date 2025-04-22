@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_egsti")
-item_id = 2289011111
-items = [963703437, 963703437, 963703437]
+item_name = "Frozen Winter Storm"
+items = ["Winter Wonder", "Winter Wonder", "Winter Wonder", "Winter Wonder"]

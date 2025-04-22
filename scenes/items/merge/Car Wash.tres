@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_xkiue")
-item_id = 2283769518
-items = [4222123733, 4222123733]
+item_name = "Car Wash"
+items = ["Ore Washer", "Ore Washer"]

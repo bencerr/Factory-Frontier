@@ -1,3 +1,16 @@
-Factory Frontier - an ios/android mobile game by Ben Cerrone.
+# Factory Frontier
 
-Made using the Godot game engine.
+*An iOS/Android mobile game by Ben Cerrone*
+
+---
+
+## 🚀 Overview
+
+**Factory Frontier** is a fast-paced, resource-management mobile game built with the [Godot Engine](https://godotengine.org). Players design and optimize their own automated factories, balancing production speed and resource flow to achieve maximum efficiency.
+
+## 🎮 Features
+
+* **Cross-Platform**: Playable on both iOS and Android devices.
+* **Intuitive Controls**: Easy drag-and-drop mechanics for placing machinery and conveyors.
+* **Upgradeable Machines**: Unlock new droppers, upgraders, and furnaces.
+* **Interactive Tutorial**: Step-by-step guidance to get you started quickly.

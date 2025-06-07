@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/load_in_game.gd" id="1_vm32o"]
 [ext_resource type="StyleBox" uid="uid://h3625wn475mf" path="res://resources/style_box_2.tres" id="2_utqib"]
 [ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="3_4mbpm"]
-[ext_resource type="Texture2D" uid="uid://nhp28qq84bl3" path="res://sprites/background1.png" id="3_e7ise"]
+[ext_resource type="Texture2D" uid="uid://bkm184u8djrhu" path="res://images/ui_icons.png" id="3_pfv02"]
 [ext_resource type="StyleBox" uid="uid://bbexbscjlpdwu" path="res://resources/button_filled.tres" id="4_wwt0v"]
 [ext_resource type="StyleBox" uid="uid://dw5ntbfolxxn0" path="res://resources/button_filled_pressed.tres" id="5_vc52i"]
 
@@ -28,6 +28,10 @@ fill = 1
 fill_from = Vector2(0.495726, 0.510684)
 fill_to = Vector2(0.104701, 0)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gubb"]
+atlas = ExtResource("3_pfv02")
+region = Rect2(2, 1, 12, 18)
+
 [sub_resource type="FontVariation" id="FontVariation_c8kfn"]
 base_font = ExtResource("3_4mbpm")
 variation_embolden = 1.0
@@ -35,18 +39,15 @@ variation_embolden = 1.0
 [sub_resource type="LabelSettings" id="LabelSettings_aq1o3"]
 font = SubResource("FontVariation_c8kfn")
 font_size = 128
-outline_size = 5
+outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 16
 shadow_color = Color(0, 0, 0, 0.0745098)
 shadow_offset = Vector2(2, 2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iva67"]
-bg_color = Color(1, 1, 1, 1)
-
 [sub_resource type="FontVariation" id="FontVariation_juimj"]
 base_font = ExtResource("3_4mbpm")
-variation_embolden = 1.0
+variation_embolden = 0.2
 
 [node name="LoadingControl" type="Control"]
 top_level = true
@@ -67,17 +68,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_utqib")
 
-[node name="TextureRect" type="TextureRect" parent="Panel"]
-modulate = Color(1, 1, 1, 0.662745)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_e7ise")
-expand_mode = 2
-
 [node name="TextureRect3" type="TextureRect" parent="Panel"]
 modulate = Color(1, 1, 1, 0.117647)
 layout_mode = 1
@@ -89,7 +79,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_m32tw")
 
 [node name="TextureRect2" type="TextureRect" parent="Panel"]
-modulate = Color(1, 1, 1, 0.419608)
+modulate = Color(1, 1, 1, 0.105882)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,41 +88,48 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_vorj5")
 
-[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+[node name="TextureRect4" type="TextureRect" parent="Panel"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -370.0
-offset_top = -370.0
-offset_right = 370.0
-offset_bottom = 370.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 168.0
+offset_top = 878.0
+offset_right = -168.0
+offset_bottom = -877.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = SubResource("AtlasTexture_5gubb")
+stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
+[node name="Label" type="Label" parent="Panel"]
 layout_mode = 2
-theme_override_constants/separation = 60
-alignment = 1
-
-[node name="Label" type="Label" parent="Panel/CenterContainer/VBoxContainer"]
-layout_mode = 2
+anchor_left = 0.098
+anchor_top = 0.134
+anchor_right = 0.903
+anchor_bottom = 0.192
+offset_left = 0.283994
+offset_top = -0.512009
+offset_right = -0.52607
+offset_bottom = -0.256004
 size_flags_horizontal = 4
 size_flags_vertical = 1
 text = "Factory Frontier"
 label_settings = SubResource("LabelSettings_aq1o3")
+horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel" type="Panel" parent="Panel/CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(600, 3)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_iva67")
-
-[node name="Button" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Panel"]
 custom_minimum_size = Vector2(480, 120)
 layout_mode = 2
+anchor_left = 0.089
+anchor_top = 0.821
+anchor_right = 0.91
+anchor_bottom = 0.881
+offset_left = 0.461998
+offset_top = 0.571894
+offset_right = -0.220033
+offset_bottom = 0.491888
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/font = SubResource("FontVariation_juimj")
@@ -140,6 +137,6 @@ theme_override_font_sizes/font_size = 64
 theme_override_styles/normal = ExtResource("4_wwt0v")
 theme_override_styles/hover = ExtResource("4_wwt0v")
 theme_override_styles/pressed = ExtResource("5_vc52i")
-text = "> Play"
+text = "Get started"
 
-[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

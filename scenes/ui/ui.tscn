@@ -1,14 +1,10 @@
-[gd_scene load_steps=91 format=3 uid="uid://5qesdudrl5ii"]
+[gd_scene load_steps=98 format=3 uid="uid://5qesdudrl5ii"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_hq2yj"]
-[ext_resource type="Texture2D" uid="uid://3hytavl1qmkd" path="res://sprites/store.png" id="1_lyyx3"]
 [ext_resource type="StyleBox" uid="uid://ms2bw6my46sa" path="res://resources/stylebox_light_shadow.tres" id="2_6wbu6"]
-[ext_resource type="Texture2D" uid="uid://rdrht2vges1e" path="res://sprites/backpack.png" id="2_862wk"]
-[ext_resource type="Texture2D" uid="uid://b54wwcpqhhgj1" path="res://sprites/bin.png" id="4_50lk6"]
 [ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="4_ptkkj"]
 [ext_resource type="Script" path="res://scripts/ui/item_placement_control.gd" id="4_ptp1v"]
 [ext_resource type="Texture2D" uid="uid://ebpbcrw2s3c5" path="res://images/cycle_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" id="5_4jy3f"]
-[ext_resource type="Texture2D" uid="uid://cyuc6mti1xti5" path="res://images/upgrade_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" id="5_diqhm"]
 [ext_resource type="StyleBox" uid="uid://1mjmcishic3j" path="res://resources/stylebox_light_corner.tres" id="7_hssru"]
 [ext_resource type="PackedScene" uid="uid://dcb1i5pm2ypno" path="res://scenes/ui/buff_label.tscn" id="8_rucfv"]
 [ext_resource type="Texture2D" uid="uid://bkm184u8djrhu" path="res://images/ui_icons.png" id="8_vddln"]
@@ -22,6 +18,17 @@
 [ext_resource type="Texture2D" uid="uid://14jfiqg58y0w" path="res://images/close_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" id="14_ju1kl"]
 [ext_resource type="Texture2D" uid="uid://bedqdowu8u2tq" path="res://sprites/tilesets/arrow.png" id="16_46i8i"]
 [ext_resource type="Script" path="res://scripts/AnimatedTextureRect.gd" id="16_lhlli"]
+[ext_resource type="Texture2D" uid="uid://dhx7dxju0opv1" path="res://images/ui/storefront_256dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="19_ftbhs"]
+[ext_resource type="ButtonGroup" uid="uid://d4gpubtuu3y3l" path="res://resources/button_groups/menu_button_group.tres" id="19_r0nje"]
+[ext_resource type="Texture2D" uid="uid://cqecs20lykckd" path="res://images/ui/storefront_256dp_FFFFFF_FILL1_wght400_GRAD0_opsz48.png" id="20_qpnkl"]
+[ext_resource type="Texture2D" uid="uid://cflooiicdr1fb" path="res://images/ui/personal_bag_256dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="21_ynluq"]
+[ext_resource type="Texture2D" uid="uid://cem2kp4vrbg7s" path="res://images/ui/personal_bag_256dp_FFFFFF_FILL1_wght400_GRAD0_opsz48.png" id="22_g5xnv"]
+[ext_resource type="Texture2D" uid="uid://wigutmgkknlu" path="res://images/ui/shift_256dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="23_s5pnk"]
+[ext_resource type="Texture2D" uid="uid://b3p7jfxp1vl06" path="res://images/ui/shift_256dp_FFFFFF_FILL1_wght400_GRAD0_opsz48.png" id="24_28uj6"]
+[ext_resource type="Texture2D" uid="uid://4s0kdkyxevcj" path="res://images/ui/star_256dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="25_pbg7l"]
+[ext_resource type="Texture2D" uid="uid://bmkng7xvhdvft" path="res://images/ui/star_256dp_FFFFFF_FILL1_wght400_GRAD0_opsz48.png" id="26_hfsoe"]
+[ext_resource type="Texture2D" uid="uid://dungkski1qjg" path="res://images/ui/delete_256dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="27_1mdgw"]
+[ext_resource type="Texture2D" uid="uid://cgdbs4axqdry2" path="res://images/ui/delete_256dp_FFFFFF_FILL1_wght400_GRAD0_opsz48.png" id="28_sryg0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tvv45"]
 font = ExtResource("4_ptkkj")
@@ -555,12 +562,12 @@ theme_override_constants/separation = 5
 alignment = 2
 
 [node name="2xMoneyButton" type="Button" parent="BuffControl/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(220, 80)
+custom_minimum_size = Vector2(360, 120)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("4_ptkkj")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 64
 theme_override_styles/normal = ExtResource("8_w3vcj")
 theme_override_styles/hover = ExtResource("8_w3vcj")
 theme_override_styles/pressed = ExtResource("9_nd335")
@@ -1350,7 +1357,10 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 5
-texture_normal = ExtResource("1_lyyx3")
+toggle_mode = true
+button_group = ExtResource("19_r0nje")
+texture_normal = ExtResource("19_ftbhs")
+texture_pressed = ExtResource("20_qpnkl")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -1373,7 +1383,10 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 5
-texture_normal = ExtResource("2_862wk")
+toggle_mode = true
+button_group = ExtResource("19_r0nje")
+texture_normal = ExtResource("21_ynluq")
+texture_pressed = ExtResource("22_g5xnv")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -1396,7 +1409,10 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 5
-texture_normal = ExtResource("5_diqhm")
+toggle_mode = true
+button_group = ExtResource("19_r0nje")
+texture_normal = ExtResource("23_s5pnk")
+texture_pressed = ExtResource("24_28uj6")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -1419,7 +1435,10 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 5
-texture_normal = ExtResource("5_4jy3f")
+toggle_mode = true
+button_group = ExtResource("19_r0nje")
+texture_normal = ExtResource("25_pbg7l")
+texture_pressed = ExtResource("26_hfsoe")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -1442,7 +1461,10 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 5
-texture_normal = ExtResource("4_50lk6")
+toggle_mode = true
+button_group = ExtResource("19_r0nje")
+texture_normal = ExtResource("27_1mdgw")
+texture_pressed = ExtResource("28_sryg0")
 ignore_texture_size = true
 stretch_mode = 5
 

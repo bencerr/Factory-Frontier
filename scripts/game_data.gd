@@ -94,13 +94,14 @@ func float_to_prefix(number: float) -> String:
 func calc_rebirth_price(rebirth: int) -> float:
 	return 1e14 * (rebirth+1) * ((pow(10, floor(rebirth/100.0))))
 
-func strip_item_node(node: Node) -> Node:
+func strip_item_node(node: Node2D) -> Node:
 	for child in node.get_children():
 		if !(child is Sprite2D or child is AnimatedSprite2D):
 			child.queue_free()
 		else:
 			child.set_script(null)
 	node.set_script(null)
+	node.rotate(PI / 2)
 
 	return node
 

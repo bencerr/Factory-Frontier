@@ -9,7 +9,7 @@ viewport_path = NodePath("TextureRect/SubViewport")
 
 [sub_resource type="LabelSettings" id="LabelSettings_6h1s6"]
 font = ExtResource("3_s3pro")
-font_size = 32
+font_size = 40
 shadow_color = Color(0, 0, 0, 0.443137)
 shadow_offset = Vector2(2.08165e-12, 1)
 

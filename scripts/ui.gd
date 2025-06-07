@@ -172,6 +172,7 @@ func switch_tab(tab: UITAB) -> void:
 			switch_tab_vfx_in(upgrade_control)
 			get_node("TabControl/HBoxContainer/UpgradeButton/Panel").visible = true
 
+
 func _on_rebirth_button_pressed() -> void:
 	switch_tab(UITAB.REBIRTH)
 

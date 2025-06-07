@@ -6,5 +6,5 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-shadow_color = Color(0, 0, 0, 0.137255)
-shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.490196)
+shadow_size = 3

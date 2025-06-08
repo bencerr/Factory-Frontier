@@ -4,6 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://h3625wn475mf" path="res://resources/style_box_2.tres" id="2_utqib"]
 [ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="3_4mbpm"]
 [ext_resource type="Texture2D" uid="uid://bkm184u8djrhu" path="res://images/ui_icons.png" id="3_pfv02"]
+[ext_resource type="Texture2D" uid="uid://otqtytvsmxcd" path="res://images/ui/text_logo1.png" id="4_bmacn"]
 [ext_resource type="StyleBox" uid="uid://bbexbscjlpdwu" path="res://resources/button_filled.tres" id="4_wwt0v"]
 [ext_resource type="StyleBox" uid="uid://dw5ntbfolxxn0" path="res://resources/button_filled_pressed.tres" id="5_vc52i"]
 
@@ -32,22 +33,19 @@ fill_to = Vector2(0.104701, 0)
 atlas = ExtResource("3_pfv02")
 region = Rect2(2, 1, 12, 18)
 
-[sub_resource type="FontVariation" id="FontVariation_c8kfn"]
-base_font = ExtResource("3_4mbpm")
-variation_embolden = 1.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_aq1o3"]
-font = SubResource("FontVariation_c8kfn")
-font_size = 128
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 16
-shadow_color = Color(0, 0, 0, 0.0745098)
-shadow_offset = Vector2(2, 2)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2uvy"]
+bg_color = Color(0.129412, 0.172549, 0.203922, 1)
+corner_radius_top_left = 36
+corner_radius_top_right = 36
+corner_radius_bottom_right = 36
+corner_radius_bottom_left = 36
+shadow_color = Color(0.172549, 0.188235, 0.227451, 0.203922)
+shadow_size = 2
+shadow_offset = Vector2(2.08165e-12, -1)
 
 [sub_resource type="FontVariation" id="FontVariation_juimj"]
 base_font = ExtResource("3_4mbpm")
-variation_embolden = 0.2
+variation_embolden = 0.1
 
 [node name="LoadingControl" type="Control"]
 top_level = true
@@ -102,41 +100,73 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_5gubb")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="Panel"]
-layout_mode = 2
-anchor_left = 0.098
-anchor_top = 0.134
-anchor_right = 0.903
-anchor_bottom = 0.192
-offset_left = 0.283994
-offset_top = -0.512009
-offset_right = -0.52607
-offset_bottom = -0.256004
-size_flags_horizontal = 4
-size_flags_vertical = 1
-text = "Factory Frontier"
-label_settings = SubResource("LabelSettings_aq1o3")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="TextureRect5" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.057
+anchor_top = -0.048
+anchor_right = 1.058
+anchor_bottom = 0.407
+offset_left = -0.205995
+offset_top = 1.064
+offset_right = -0.036109
+offset_bottom = 1.12399
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_bmacn")
+stretch_mode = 5
 
-[node name="Button" type="Button" parent="Panel"]
+[node name="Panel2" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.153
+anchor_top = 0.745
+anchor_right = 0.847
+anchor_bottom = 0.952
+offset_left = -0.026015
+offset_top = 0.339828
+offset_right = 0.0259224
+offset_bottom = 0.0639415
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g2uvy")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Control" type="Control" parent="Panel/Panel2/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Panel2/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.085
+anchor_right = 0.915
+anchor_bottom = 1.0
+offset_left = 0.169999
+offset_right = -0.170017
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Play" type="Button" parent="Panel/Panel2/MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(480, 120)
 layout_mode = 2
-anchor_left = 0.089
-anchor_top = 0.821
-anchor_right = 0.91
-anchor_bottom = 0.881
-offset_left = 0.461998
-offset_top = 0.571894
-offset_right = -0.220033
-offset_bottom = 0.491888
-size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/font = SubResource("FontVariation_juimj")
 theme_override_font_sizes/font_size = 64
 theme_override_styles/normal = ExtResource("4_wwt0v")
 theme_override_styles/hover = ExtResource("4_wwt0v")
 theme_override_styles/pressed = ExtResource("5_vc52i")
-text = "Get started"
+text = "Play"
 
-[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/Panel2/MarginContainer/Control/VBoxContainer/Play" to="." method="_on_button_pressed"]

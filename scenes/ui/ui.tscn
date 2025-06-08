@@ -30,26 +30,25 @@
 [ext_resource type="Texture2D" uid="uid://dungkski1qjg" path="res://images/ui/delete_256dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="27_1mdgw"]
 [ext_resource type="Texture2D" uid="uid://cgdbs4axqdry2" path="res://images/ui/delete_256dp_FFFFFF_FILL1_wght400_GRAD0_opsz48.png" id="28_sryg0"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_tvv45"]
+[sub_resource type="LabelSettings" id="LabelSettings_vbqty"]
 font = ExtResource("4_ptkkj")
-font_size = 38
+font_size = 56
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_r1rc7"]
-font = ExtResource("4_ptkkj")
-font_size = 30
-outline_size = 3
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ohidb"]
-bg_color = Color(0.129412, 0.172549, 0.203922, 1)
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [sub_resource type="FontVariation" id="FontVariation_bqyr0"]
 base_font = ExtResource("4_ptkkj")
 variation_embolden = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_r1rc7"]
+font = ExtResource("4_ptkkj")
+font_size = 56
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_dx27v"]
+base_font = ExtResource("4_ptkkj")
+variation_embolden = 0.5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_reswu"]
 bg_color = Color(0, 0, 0, 0)
@@ -433,7 +432,7 @@ shop_container = NodePath("ShopControl/MarginContainer/ScrollContainer/HFlowCont
 buy_panel = NodePath("ShopControl/BuyPanel")
 rebirth_control = NodePath("RebirthControl")
 rebirth_price_label = NodePath("RebirthControl/Panel/TabContainer/Rebirth/Control/VBoxContainer2/RebirthPrice")
-rebirth_label = NodePath("TabControl2/Panel2/MarginContainer/RebirthLabel2")
+rebirth_label = NodePath("TabControl2/Panel/MarginContainer/VBoxContainer/RebirthLabel2")
 ore_limit_label = NodePath("TabControl2/Panel/MarginContainer/VBoxContainer/OreLimitLabel")
 buy_panel_subviewport = NodePath("ShopControl/BuyPanel/MarginContainer/VBoxContainer/TextureRect/SubViewport")
 rebirth_panel_button = NodePath("TabControl/HBoxContainer/RebirthButton")
@@ -446,10 +445,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -210.0
+offset_left = -591.0
 offset_top = 125.0
-offset_right = 210.0
-offset_bottom = 229.0
+offset_right = 591.0
+offset_bottom = 280.0
 grow_horizontal = 2
 
 [node name="Panel" type="Panel" parent="TabControl2"]
@@ -475,16 +474,28 @@ theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="HBoxContainer" parent="TabControl2/Panel/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 80
+theme_override_constants/separation = 100
 alignment = 1
 
 [node name="MoneyLabel" type="Label" parent="TabControl2/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 1
 text = "$$$$
 "
-label_settings = SubResource("LabelSettings_tvv45")
+label_settings = SubResource("LabelSettings_vbqty")
 vertical_alignment = 1
+
+[node name="RebirthLabel2" type="RichTextLabel" parent="TabControl2/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("4_ptkkj")
+theme_override_fonts/bold_font = SubResource("FontVariation_bqyr0")
+theme_override_font_sizes/normal_font_size = 56
+theme_override_font_sizes/bold_font_size = 56
+bbcode_enabled = true
+text = "[center][b] 0 [/b] rebirths[/center]"
+fit_content = true
 
 [node name="OreLimitLabel" type="Label" parent="TabControl2/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -493,43 +504,6 @@ size_flags_vertical = 1
 text = "0 / 50 ores"
 label_settings = SubResource("LabelSettings_r1rc7")
 vertical_alignment = 1
-
-[node name="Panel2" type="Panel" parent="TabControl2"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.16
-anchor_top = 0.99
-anchor_right = 0.84
-anchor_bottom = 1.692
-offset_left = -0.200005
-offset_top = 0.0399928
-offset_right = 0.199986
-offset_bottom = 0.0319967
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ohidb")
-
-[node name="MarginContainer" type="MarginContainer" parent="TabControl2/Panel2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="RebirthLabel2" type="RichTextLabel" parent="TabControl2/Panel2/MarginContainer"]
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("4_ptkkj")
-theme_override_fonts/bold_font = SubResource("FontVariation_bqyr0")
-theme_override_font_sizes/normal_font_size = 32
-theme_override_font_sizes/bold_font_size = 32
-bbcode_enabled = true
-text = "[center][b] 0 [/b] rebirths[/center]"
-fit_content = true
 
 [node name="BuffControl" type="Control" parent="."]
 layout_mode = 1
@@ -566,7 +540,7 @@ custom_minimum_size = Vector2(360, 120)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-theme_override_fonts/font = ExtResource("4_ptkkj")
+theme_override_fonts/font = SubResource("FontVariation_dx27v")
 theme_override_font_sizes/font_size = 64
 theme_override_styles/normal = ExtResource("8_w3vcj")
 theme_override_styles/hover = ExtResource("8_w3vcj")

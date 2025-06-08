@@ -14,12 +14,4 @@ func _on_button_pressed() -> void:
 	self.get_parent().remove_child(self)
 	main_node.get_node("CanvasLayer").add_child(self)
 
-	var tween := create_tween()
-	tween.set_parallel(true)
-	tween.tween_property($Panel, "modulate", Color.TRANSPARENT, 2)
-	#tween.tween_property($Panel, "position", Vector2($Panel.size.x, 0), 2)
-	tween.play()
-
-	await tween.finished
-
 	queue_free()

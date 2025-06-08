@@ -101,7 +101,6 @@ func strip_item_node(node: Node2D) -> Node:
 		else:
 			child.set_script(null)
 	node.set_script(null)
-	node.rotate(PI / 2)
 
 	return node
 

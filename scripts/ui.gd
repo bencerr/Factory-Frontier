@@ -133,6 +133,12 @@ func switch_tab(tab: UITAB) -> void:
 	get_node("TabControl/HBoxContainer/RebirthButton/Panel").visible = false
 	get_node("TabControl/HBoxContainer/UpgradeButton/Panel").visible = false
 
+	get_node("TabControl/HBoxContainer/InventoryButton").button_pressed = false
+	get_node("TabControl/HBoxContainer/ShopButton").button_pressed = false
+	get_node("TabControl/HBoxContainer/DeleteButton").button_pressed = false
+	get_node("TabControl/HBoxContainer/RebirthButton").button_pressed = false
+	get_node("TabControl/HBoxContainer/UpgradeButton").button_pressed = false
+
 	match current_tab:
 		UITAB.NONE:
 			shop_panel.visible = false
@@ -147,6 +153,7 @@ func switch_tab(tab: UITAB) -> void:
 			input_handler.disable_placing()
 			switch_tab_vfx_in(shop_panel)
 			get_node("TabControl/HBoxContainer/ShopButton/Panel").visible = true
+			get_node("TabControl/HBoxContainer/ShopButton").button_pressed = true
 		UITAB.INVENTORY:
 			shop_panel.visible = false
 			inv_panel.visible = true
@@ -155,6 +162,7 @@ func switch_tab(tab: UITAB) -> void:
 			input_handler.disable_placing()
 			switch_tab_vfx_in(inv_panel)
 			get_node("TabControl/HBoxContainer/InventoryButton/Panel").visible = true
+			get_node("TabControl/HBoxContainer/InventoryButton").button_pressed = true
 		UITAB.REBIRTH:
 			rebirth_control.visible = true
 			shop_panel.visible = false
@@ -163,6 +171,7 @@ func switch_tab(tab: UITAB) -> void:
 			input_handler.disable_placing()
 			switch_tab_vfx_in(rebirth_control)
 			get_node("TabControl/HBoxContainer/RebirthButton/Panel").visible = true
+			get_node("TabControl/HBoxContainer/RebirthButton").button_pressed = true
 		UITAB.UPGRADE:
 			upgrade_control.visible = true
 			rebirth_control.visible = false
@@ -171,6 +180,7 @@ func switch_tab(tab: UITAB) -> void:
 			input_handler.disable_placing()
 			switch_tab_vfx_in(upgrade_control)
 			get_node("TabControl/HBoxContainer/UpgradeButton/Panel").visible = true
+			get_node("TabControl/HBoxContainer/UpgradeButton").button_pressed = true
 
 
 func _on_rebirth_button_pressed() -> void:

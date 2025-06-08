@@ -150,6 +150,7 @@ shape = SubResource("RectangleShape2D_k4ei5")
 
 [node name="ItemHolder" type="Node2D" parent="."]
 script = ExtResource("5_ljlwv")
+speed = 16.0
 
 [connection signal="belt_detected" from="Detector" to="." method="_on_detector_belt_detected"]
 [connection signal="item_held" from="ItemHolder" to="." method="_on_item_holder_item_held"]

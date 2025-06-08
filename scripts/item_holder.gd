@@ -3,7 +3,7 @@ extends Node2D
 
 signal item_held
 
-@export var speed: float = 16
+@export var speed: float = 32
 
 var direction: Vector2 = Vector2.from_angle(rotation)
 var moving_item: bool = false

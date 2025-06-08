@@ -421,7 +421,7 @@ func load_merge_items() -> void:
 
 		for item_name in res.items:
 			var clone = item_template.instantiate()
-			merge_control.get_node("Panel2/MarginContainer/HBoxContainer").add_child(clone)
+			merge_control.get_node("HBoxContainer").add_child(clone)
 
 			var vp: SubViewport = clone.get_node("TextureRect/SubViewport")
 			for c in vp.get_children():
@@ -433,7 +433,7 @@ func load_merge_items() -> void:
 			vp.add_child(vp_node)
 
 		rebirth_control.get_node(
-			"Panel/TabContainer/Merge/Control/VBoxContainer"
+			"Panel/TabContainer/Merge/Control/ScrollContainer/VBoxContainer"
 		).add_child(merge_control)
 
 func _on_merge_button_pressed(merge_data: MergeData, btn: Button) -> void:

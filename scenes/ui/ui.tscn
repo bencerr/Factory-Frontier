@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://5qesdudrl5ii"]
+[gd_scene load_steps=99 format=3 uid="uid://5qesdudrl5ii"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_hq2yj"]
 [ext_resource type="StyleBox" uid="uid://ms2bw6my46sa" path="res://resources/stylebox_light_shadow.tres" id="2_6wbu6"]
@@ -115,6 +115,8 @@ shadow_color = Color(0, 0, 0, 0.752941)
 atlas = ExtResource("5_4jy3f")
 region = Rect2(2.08165e-12, 2.08165e-12, 96, 96)
 margin = Rect2(20, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s5do6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sv8c4"]
 bg_color = Color(0.180392, 0.235294, 0.278431, 1)
@@ -799,13 +801,20 @@ theme_override_constants/margin_bottom = 20
 [node name="Control" type="Control" parent="RebirthControl/Panel/TabContainer/Merge"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="RebirthControl/Panel/TabContainer/Merge/Control"]
+[node name="ScrollContainer" type="ScrollContainer" parent="RebirthControl/Panel/TabContainer/Merge/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_s5do6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RebirthControl/Panel/TabContainer/Merge/Control/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
 
 [node name="UpgradeControl" type="Control" parent="." node_paths=PackedStringArray("ore_limit_label", "ore_limit_button", "base_level_label", "base_level_button")]
 visible = false

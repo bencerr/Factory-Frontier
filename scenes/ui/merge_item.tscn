@@ -6,7 +6,12 @@
 viewport_path = NodePath("TextureRect/SubViewport")
 
 [node name="Panel" type="Panel"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(200, 200)
+anchors_preset = -1
+anchor_right = 0.161
+anchor_bottom = 0.075
+offset_right = -199.962
+offset_bottom = -200.1
 theme = ExtResource("1_eu32x")
 theme_type_variation = &"merge_item"
 

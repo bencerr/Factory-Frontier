@@ -62,7 +62,7 @@ func refresh_inventory() -> void:
 	for d in sorted_inv:
 		var control: UIItem = template.instantiate()
 		control.item_id = d["key"]
-		var cntrl_size: float = (inv_panel.size.x/4.0 - 15)
+		var cntrl_size: float = (inv_panel.size.x/3.0 - 15)
 		control.custom_minimum_size = Vector2(cntrl_size, cntrl_size)
 		inv_container.add_child(control)
 
@@ -80,7 +80,7 @@ func load_shop() -> void:
 		return a.price < b.price
 	)
 
-	var cntrl_size: float = (shop_panel.get_node("MarginContainer").size.x/3.0 - 15)
+	var cntrl_size: float = (shop_panel.get_node("MarginContainer").size.x/2.0 - 15)
 	for d in sorted_shop:
 		var control: ShopUIItem = template.instantiate()
 		control.item_id = d["key"]

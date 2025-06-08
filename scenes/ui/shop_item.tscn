@@ -75,21 +75,23 @@ layout_mode = 2
 
 [node name="Price" type="Label" parent="MarginContainer/Control"]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = -1
+anchor_top = 0.867
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -59.0
+offset_top = -0.056016
 grow_horizontal = 2
 grow_vertical = 0
 text = "$"
 label_settings = SubResource("LabelSettings_6h1s6")
+horizontal_alignment = 1
 
 [node name="ItemName" type="Label" parent="MarginContainer/Control"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = -1
 anchor_right = 1.0
-offset_bottom = 59.0
+anchor_bottom = 0.133
+offset_bottom = 0.0559995
 grow_horizontal = 2
 text = "name"
 label_settings = SubResource("LabelSettings_uqhff")

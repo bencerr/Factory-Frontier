@@ -3,7 +3,7 @@ extends Control
 
 signal shop_selected_item_changed(item_id: int)
 
-enum UITAB {NONE,SHOP,INVENTORY,REBIRTH,UPGRADE}
+enum UITAB {NONE,SHOP,INVENTORY,REBIRTH,UPGRADE,QUEST}
 
 @export var shop_panel: Control
 @export var inv_panel: Control
@@ -21,6 +21,7 @@ enum UITAB {NONE,SHOP,INVENTORY,REBIRTH,UPGRADE}
 @export var buff_label_scene: PackedScene
 @export var buff_container: VBoxContainer
 @export var upgrade_control: Control
+@export var quest_control: Control
 
 var shop_item_id: int = -1
 var current_tab: UITAB = UITAB.NONE
@@ -127,17 +128,12 @@ func switch_tab(tab: UITAB) -> void:
 		current_tab = tab
 
 	if item_selection_ui: item_selection_ui.hide()
-	get_node("TabControl/HBoxContainer/InventoryButton/Panel").visible = false
-	get_node("TabControl/HBoxContainer/ShopButton/Panel").visible = false
-	get_node("TabControl/HBoxContainer/DeleteButton/Panel").visible = false
-	get_node("TabControl/HBoxContainer/RebirthButton/Panel").visible = false
-	get_node("TabControl/HBoxContainer/UpgradeButton/Panel").visible = false
-
 	get_node("TabControl/HBoxContainer/InventoryButton").button_pressed = false
 	get_node("TabControl/HBoxContainer/ShopButton").button_pressed = false
 	get_node("TabControl/HBoxContainer/DeleteButton").button_pressed = false
 	get_node("TabControl/HBoxContainer/RebirthButton").button_pressed = false
 	get_node("TabControl/HBoxContainer/UpgradeButton").button_pressed = false
+	get_node("TabControl/HBoxContainer/QuestButton").button_pressed = false
 
 	match current_tab:
 		UITAB.NONE:
@@ -145,43 +141,52 @@ func switch_tab(tab: UITAB) -> void:
 			inv_panel.visible = false
 			rebirth_control.visible = false
 			upgrade_control.visible = false
+			quest_control.visible = false
 		UITAB.SHOP:
 			shop_panel.visible = true
 			inv_panel.visible = false
 			rebirth_control.visible = false
 			upgrade_control.visible = false
+			quest_control.visible = false
 			input_handler.disable_placing()
 			switch_tab_vfx_in(shop_panel)
-			get_node("TabControl/HBoxContainer/ShopButton/Panel").visible = true
 			get_node("TabControl/HBoxContainer/ShopButton").button_pressed = true
 		UITAB.INVENTORY:
 			shop_panel.visible = false
 			inv_panel.visible = true
 			rebirth_control.visible = false
 			upgrade_control.visible = false
+			quest_control.visible = false
 			input_handler.disable_placing()
 			switch_tab_vfx_in(inv_panel)
-			get_node("TabControl/HBoxContainer/InventoryButton/Panel").visible = true
 			get_node("TabControl/HBoxContainer/InventoryButton").button_pressed = true
 		UITAB.REBIRTH:
 			rebirth_control.visible = true
 			shop_panel.visible = false
 			inv_panel.visible = false
 			upgrade_control.visible = false
+			quest_control.visible = false
 			input_handler.disable_placing()
 			switch_tab_vfx_in(rebirth_control)
-			get_node("TabControl/HBoxContainer/RebirthButton/Panel").visible = true
 			get_node("TabControl/HBoxContainer/RebirthButton").button_pressed = true
 		UITAB.UPGRADE:
 			upgrade_control.visible = true
 			rebirth_control.visible = false
 			shop_panel.visible = false
 			inv_panel.visible = false
+			quest_control.visible = false
 			input_handler.disable_placing()
 			switch_tab_vfx_in(upgrade_control)
-			get_node("TabControl/HBoxContainer/UpgradeButton/Panel").visible = true
 			get_node("TabControl/HBoxContainer/UpgradeButton").button_pressed = true
-
+		UITAB.QUEST:
+			quest_control.visible = true
+			rebirth_control.visible = false
+			shop_panel.visible = false
+			inv_panel.visible = false
+			upgrade_control.visible = false
+			input_handler.disable_placing()
+			switch_tab_vfx_in(upgrade_control)
+			get_node("TabControl/HBoxContainer/QuestButton").button_pressed = true
 
 func _on_rebirth_button_pressed() -> void:
 	switch_tab(UITAB.REBIRTH)
@@ -195,15 +200,16 @@ func _on_shop_button_pressed() -> void:
 func _on_upgrade_button_pressed() -> void:
 	switch_tab(UITAB.UPGRADE)
 
+func _on_quest_button_pressed() -> void:
+	switch_tab(UITAB.QUEST)
+
 func _on_delete_button_pressed() -> void:
 	if get_node("/root/Main/InputHandler").current_input_type == InputHandler.INPUTTYPE.DELETE:
 		input_handler.disable_deleting()
-		get_node("TabControl/HBoxContainer/DeleteButton/Panel").visible = false
 	else:
 		input_handler.enable_deleting()
 		placement_control.visible = false
 		switch_tab(UITAB.NONE)
-		get_node("TabControl/HBoxContainer/DeleteButton/Panel").visible = true
 
 func _ready() -> void:
 	sort_button_style = load("res://resources/sort_button_selected.tres")
@@ -428,7 +434,7 @@ func load_merge_items() -> void:
 				c.queue_free()
 
 			var vp_node = GameData.items[hash(item_name)].duplicate()
-			vp_node.position = buy_panel_subviewport.size / 2
+			vp_node.position = Vector2(16, 16)
 			vp_node = GameData.strip_item_node(vp_node)
 			vp.add_child(vp_node)
 

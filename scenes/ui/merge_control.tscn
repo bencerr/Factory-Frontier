@@ -11,6 +11,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1202.0
 offset_bottom = 309.0
+mouse_filter = 1
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(2.08165e-12, 309)

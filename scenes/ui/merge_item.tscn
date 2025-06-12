@@ -23,6 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("ViewportTexture_6nvsf")
+stretch_mode = 5
 
 [node name="SubViewport" type="SubViewport" parent="TextureRect"]
 transparent_bg = true

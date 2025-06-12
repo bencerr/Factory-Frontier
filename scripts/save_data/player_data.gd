@@ -9,3 +9,6 @@ extends Resource
 @export var buffs: Array[Buff]
 @export var base_level: int = 0
 @export var new_player: bool = true
+@export var gems: int = 0;
+@export var quest_assigned_date: Dictionary
+@export var quests: Array[Quest] = []

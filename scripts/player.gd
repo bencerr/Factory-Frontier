@@ -5,6 +5,7 @@ signal rebirthed(id: int)
 signal tile_map_loaded(tm: TileMap)
 signal buffs_changed()
 signal main_loaded()
+signal quest_changed(quest: Quest)
 
 var data: PlayerData
 var item_rotation: float = 0;
@@ -104,6 +105,13 @@ func _ready() -> void:
 		await main_loaded
 	get_node("/root/Main").load_base()
 	load_placed_items()
+	load_quests()
+
+func load_quests() -> void:
+	var quests = QuestManager.generate_quests(data.rebirths, 3)
+	data.quests = quests
+	for q in data.quests:
+		quest_changed.emit(q)
 
 func _on_tile_map_loaded(tm: TileMap) -> void:
 	_tilemap = tm

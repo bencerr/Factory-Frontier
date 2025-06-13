@@ -6,6 +6,7 @@ signal tile_map_loaded(tm: TileMap)
 signal buffs_changed()
 signal main_loaded()
 signal quest_changed(quest: Quest)
+signal gems_changed(amount: int)
 
 var data: PlayerData
 var item_rotation: float = 0;
@@ -58,6 +59,10 @@ func add_money(amount: float) -> void:
 		if quest.type == QuestManager.QUESTTYPE.REACH_MONEY:
 			quest.update_progress(quest.progress + (amount/quest.goal))
 			quest_changed.emit(quest)
+
+func add_gems(amount: float) -> void:
+	data.gems += int(amount)
+	gems_changed.emit(amount)
 
 func do_rebirth():
 	data.money = 0

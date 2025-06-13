@@ -35,7 +35,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_vbqty"]
 font = ExtResource("4_ptkkj")
-font_size = 56
+font_size = 40
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
@@ -45,7 +45,7 @@ variation_embolden = 1.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_r1rc7"]
 font = ExtResource("4_ptkkj")
-font_size = 56
+font_size = 40
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
@@ -409,7 +409,7 @@ shadow_color = Color(0.172549, 0.188235, 0.227451, 0.203922)
 shadow_size = 2
 shadow_offset = Vector2(2.08165e-12, -1)
 
-[node name="UI" type="Control" node_paths=PackedStringArray("shop_panel", "inv_panel", "inv_container", "placement_control", "money_label", "shop_container", "buy_panel", "rebirth_control", "rebirth_price_label", "rebirth_label", "ore_limit_label", "buy_panel_subviewport", "rebirth_panel_button", "buff_container", "upgrade_control", "quest_control")]
+[node name="UI" type="Control" node_paths=PackedStringArray("shop_panel", "inv_panel", "inv_container", "placement_control", "money_label", "shop_container", "buy_panel", "rebirth_control", "rebirth_price_label", "rebirth_label", "ore_limit_label", "buy_panel_subviewport", "rebirth_panel_button", "buff_container", "upgrade_control", "quest_control", "gems_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -435,6 +435,7 @@ buff_label_scene = ExtResource("8_rucfv")
 buff_container = NodePath("BuffControl/MarginContainer/VBoxContainer")
 upgrade_control = NodePath("UpgradeControl")
 quest_control = NodePath("QuestControl")
+gems_label = NodePath("TabControl2/Panel/MarginContainer/VBoxContainer/GemsLabel")
 
 [node name="TabControl2" type="Control" parent="."]
 layout_mode = 1
@@ -487,11 +488,19 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/normal_font = ExtResource("4_ptkkj")
 theme_override_fonts/bold_font = SubResource("FontVariation_bqyr0")
-theme_override_font_sizes/normal_font_size = 56
-theme_override_font_sizes/bold_font_size = 56
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
 bbcode_enabled = true
 text = "[center][b] 0 [/b] rebirths[/center]"
 fit_content = true
+
+[node name="GemsLabel" type="Label" parent="TabControl2/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+text = "0 gems"
+label_settings = SubResource("LabelSettings_r1rc7")
+vertical_alignment = 1
 
 [node name="OreLimitLabel" type="Label" parent="TabControl2/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -955,6 +964,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="QuestControl" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchor_top = 0.629
 anchor_right = 1.0

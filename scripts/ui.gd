@@ -22,6 +22,7 @@ enum UITAB {NONE,SHOP,INVENTORY,REBIRTH,UPGRADE,QUEST}
 @export var buff_container: VBoxContainer
 @export var upgrade_control: Control
 @export var quest_control: Control
+@export var gems_label: Label
 
 var shop_item_id: int = -1
 var current_tab: UITAB = UITAB.NONE
@@ -248,6 +249,7 @@ func _ready() -> void:
 	load_merge_items()
 	Player.rebirthed.connect(refresh_merge_tab)
 	refresh_merge_tab()
+	_on_gems_changed(0)
 
 func _on_money_change(_value: float) -> void:
 	money_label.text = "$" + GameData.float_to_prefix(Player.data.money)
@@ -485,3 +487,6 @@ func refresh_merge_tab(_id=0) -> void:
 func _on_tab_container_tab_selected(tab:int) -> void:
 	if tab == 1 and Player.data.rebirths < 5:
 		get_node("RebirthControl/Panel/TabContainer").current_tab = 0
+
+func _on_gems_changed(_value: int) -> void:
+	gems_label.text = str(Player.data.gems) + " gems"

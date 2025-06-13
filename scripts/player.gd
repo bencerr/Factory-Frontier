@@ -54,6 +54,10 @@ func add_money(amount: float) -> void:
 				amount = GameData.buffs[buff_name].call(amount)
 	data.money += amount
 	money_changed.emit(amount)
+	for quest in data.quests:
+		if quest.type == QuestManager.QUESTTYPE.REACH_MONEY:
+			quest.update_progress(quest.progress + (amount/quest.goal))
+			quest_changed.emit(quest)
 
 func do_rebirth():
 	data.money = 0
@@ -87,6 +91,23 @@ func do_rebirth():
 	update_inventory_item(winner, item_updated)
 	rebirthed.emit(winner)
 	SaveHandler.save_data(data)
+
+	for quest in data.quests:
+		if quest.type == QuestManager.QUESTTYPE.REBIRTH:
+			quest.update_progress(1)
+			quest_changed.emit(quest)
+		elif quest.type == QuestManager.QUESTTYPE.REBIRTH_TIME:
+			var prog = quest.goal - data.time_in_rebirth
+			print("rebirth time quest progress: %s" % prog)
+			if prog < 0:
+				prog = 0
+			else:
+				prog = 1
+
+			quest.update_progress(prog)
+			quest_changed.emit(quest)
+
+	data.time_in_rebirth = 0.0
 
 func _ready() -> void:
 	for item_key in GameData.items.keys():

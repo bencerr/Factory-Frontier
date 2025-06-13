@@ -12,3 +12,4 @@ extends Resource
 @export var gems: int = 0;
 @export var quest_assigned_date: Dictionary
 @export var quests: Array[Quest] = []
+@export var time_in_rebirth: float = 0.0

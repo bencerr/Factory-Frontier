@@ -122,3 +122,12 @@ func _on_ad_timer_timeout() -> void:
 func _on_play_rewarded_ad() -> void:
 	print("playing reward ad")
 	play_reward_ad()
+
+func _on_play_time_timer_timeout() -> void:
+	Player.data.time_in_rebirth += 1
+	for quest in Player.data.quests:
+		if quest.type == QuestManager.QUESTTYPE.PLAY_TIME:
+			quest.update_progress(quest.progress + (1 / quest.goal))
+			Player.quest_changed.emit(quest)
+		elif quest.type == QuestManager.QUESTTYPE.REBIRTH_TIME:
+			Player.quest_changed.emit(quest)

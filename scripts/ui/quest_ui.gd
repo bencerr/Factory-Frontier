@@ -28,17 +28,25 @@ func _on_quests_changed(quest: Quest) -> void:
 	if quest in quest_mapping:
 		var qc = quest_mapping[quest]
 		qc.get_node("MarginContainer/Control/Progress").value = quest.progress * 100
-		qc.get_node("MarginContainer/Control/Name").text = quest.get_quest_name()
+		qc.get_node("MarginContainer/Control/Name").text = quest.get_quest_name(
+			Player.data.time_in_rebirth
+		)
 		qc.get_node("MarginContainer/Control/Reward").text = str(quest.reward) + " gems"
+		qc.get_node("MarginContainer/Control/Complete").disabled = !quest.is_completed()
 	else:
 		var qc = quest_control.instantiate()
-		qc.get_node("MarginContainer/Control/Name").text = quest.get_quest_name()
+		qc.get_node("MarginContainer/Control/Name").text = quest.get_quest_name(
+			Player.data.time_in_rebirth
+		)
 		qc.get_node("MarginContainer/Control/Progress").value = quest.progress * 100
 		qc.get_node("MarginContainer/Control/Reward").text = str(quest.reward) + " gems"
+
 		quest_mapping[quest] = qc
 		quest_mapping[qc] = quest
 
+		qc.get_node("MarginContainer/Control/Complete").disabled = !quest.is_completed()
 		qc.get_node("MarginContainer/Control/Complete").pressed.connect(
 			_on_complete_quest_click.bind(quest)
 		)
 		$Panel/MarginContainer/Control/ScrollContainer/VBoxContainer.add_child(qc)
+

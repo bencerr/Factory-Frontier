@@ -6,7 +6,7 @@ extends Resource
 @export var type: int
 @export var reward: float
 @export var progress: float = 0.0
-@export var goal: int
+@export var goal: float = 0.0
 
 # Initialize the quest with given parameters
 func _init(t: int, r: float, g: int = 0):
@@ -14,7 +14,6 @@ func _init(t: int, r: float, g: int = 0):
 	self.reward = r
 	self.progress = 0.0
 	self.goal = g
-	# self.id = randi() % 1000000  # Random ID for the quest
 
 # Check if the quest is completed
 func is_completed() -> bool:
@@ -22,13 +21,21 @@ func is_completed() -> bool:
 
 # Update quest progress
 func update_progress(value: float):
-	progress = clamp(progress + value, 0.0, 1.0)
+	progress = clamp(value, 0.0, 1.0)
 
-func get_quest_name() -> String:
+func get_quest_name(time_elapsed: float = 0) -> String:
+	var minutes = time_elapsed / 60
+	var seconds = fmod(time_elapsed, 60)
 	match type:
 		1: return "Rebirth %s times" % (self.goal)
 		2: return "Reach $%s" % (GameData.float_to_prefix(self.goal))
-		3: return "Rebirth in %s minutes" % (self.goal)
-		4: return "Play for %s minutes" % ( GameData.float_to_prefix(self.goal / 60.0) )
+		3: return "Rebirth in %.0f minutes (%s)" % [
+			self.goal / 60,
+			"%02d:%02d" % [minutes, seconds]
+		]
+		4: return "Play for %s minutes (%s)" % [
+			GameData.float_to_prefix(self.goal / 60.0),
+			"%02d:%02d" % [minutes, seconds]
+		]
 
 	return "Unknown Quest"

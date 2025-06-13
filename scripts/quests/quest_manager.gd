@@ -13,7 +13,7 @@ static var quest_templates = [
 	{"type": QUESTTYPE.PLAY_TIME, "reward": 5.0, "goal": 600},
 	{"type": QUESTTYPE.REBIRTH, "reward": 10.0, "goal": 1},
 	{"type": QUESTTYPE.REACH_MONEY, "reward": 20.0, "goal": 1e9},
-	{"type": QUESTTYPE.REBIRTH_TIME, "reward": 25.0, "goal": 5},
+	{"type": QUESTTYPE.REBIRTH_TIME, "reward": 25.0, "goal": 600},
 ]
 
 # Generate quests based on templates and current rebirth

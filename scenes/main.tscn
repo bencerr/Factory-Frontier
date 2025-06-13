@@ -168,6 +168,9 @@ autostart = true
 wait_time = 300.0
 autostart = true
 
+[node name="PlayTimeTimer" type="Timer" parent="."]
+autostart = true
+
 [node name="ConveyorAnimationSync" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("SpriteFrames_f80a0")
@@ -176,3 +179,4 @@ frame_progress = 0.811531
 [connection signal="play_rewarded_ad" from="." to="." method="_on_play_rewarded_ad"]
 [connection signal="timeout" from="SaveTimer" to="." method="_on_save_timer_timeout"]
 [connection signal="timeout" from="AdTimer" to="." method="_on_ad_timer_timeout"]
+[connection signal="timeout" from="PlayTimeTimer" to="." method="_on_play_time_timer_timeout"]

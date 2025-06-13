@@ -8,13 +8,6 @@ extends Resource
 @export var progress: float = 0.0
 @export var goal: float = 0.0
 
-# Initialize the quest with given parameters
-func _init(t: int, r: float, g: int = 0):
-	self.type = t
-	self.reward = r
-	self.progress = 0.0
-	self.goal = g
-
 # Check if the quest is completed
 func is_completed() -> bool:
 	return progress >= 1.0

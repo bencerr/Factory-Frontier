@@ -34,6 +34,7 @@ var shop_filter: ItemData.ITEMTYPE
 var inv_filter: ItemData.ITEMTYPE
 var item_selection_ui: Control
 var tab_tween: Tween
+var merge_price: float = 100
 
 @onready var input_handler: InputHandler = get_node("/root/Main/InputHandler")
 
@@ -460,6 +461,12 @@ func _on_merge_button_pressed(merge_data: MergeData, btn: Button) -> void:
 		var id = hash(item_name)
 		if Player.data.inventory[id].quantity < quantities[id]:
 			return
+
+	# check player has enough gems
+	if Player.data.gems < merge_price:
+		return
+
+	Player.set_gems(Player.data.gems - merge_price)
 
 	# remove items
 	for item_name in merge_data.items:

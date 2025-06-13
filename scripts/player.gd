@@ -60,8 +60,8 @@ func add_money(amount: float) -> void:
 			quest.update_progress(quest.progress + (amount/quest.goal))
 			quest_changed.emit(quest)
 
-func add_gems(amount: float) -> void:
-	data.gems += int(amount)
+func set_gems(amount: float) -> void:
+	data.gems = int(amount)
 	gems_changed.emit(amount)
 
 func do_rebirth():
@@ -134,8 +134,16 @@ func _ready() -> void:
 	load_quests()
 
 func load_quests() -> void:
-	var quests = QuestManager.generate_quests(data.rebirths, 3)
-	data.quests = quests
+	if (data.quest_assigned_date.size() == 0) or (
+	(data.quest_assigned_date["day"] != Time.get_date_dict_from_system()["day"]) or (
+	data.quest_assigned_date["month"] != Time.get_date_dict_from_system()["month"]) or (
+	data.quest_assigned_date["year"] != Time.get_date_dict_from_system()["year"])
+	):
+			data.quest_assigned_date = Time.get_date_dict_from_system()
+			data.quests.clear()
+			var quests = QuestManager.generate_quests(data.rebirths, 3)
+			data.quests = quests
+
 	for q in data.quests:
 		quest_changed.emit(q)
 

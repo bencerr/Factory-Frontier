@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _on_complete_quest_click(quest: Quest) -> void:
 	if quest.is_completed():
-		Player.add_gems(int(quest.reward))
+		Player.set_gems(Player.data.gems + int(quest.reward))
 		Player.data.quests.erase(quest)
 		SaveHandler.save_data(Player.data)
 		var qc = quest_mapping[quest]

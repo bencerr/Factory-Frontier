@@ -1,12 +1,7 @@
 class_name QuestManager
 extends Node
 
-enum QUESTTYPE {
-	REBIRTH = 1,
-	REACH_MONEY = 2,
-	REBIRTH_TIME = 3,
-	PLAY_TIME = 4
-}
+enum QUESTTYPE { REBIRTH = 1, REACH_MONEY = 2, REBIRTH_TIME = 3, PLAY_TIME = 4 }
 
 # Quest templates
 static var quest_templates = [
@@ -15,6 +10,7 @@ static var quest_templates = [
 	{"type": QUESTTYPE.REACH_MONEY, "reward": 20.0, "goal": 1e9},
 	{"type": QUESTTYPE.REBIRTH_TIME, "reward": 25.0, "goal": 600},
 ]
+
 
 # Generate quests based on templates and current rebirth
 static func generate_quests(rebirth_count: int, quest_count: int = 3) -> Array[Quest]:
@@ -34,18 +30,23 @@ static func generate_quests(rebirth_count: int, quest_count: int = 3) -> Array[Q
 		var modifier = 1.0
 
 		if template["type"] == QUESTTYPE.REBIRTH:
-			modifier = 1 + rebirth_count * 0.1 # Increase difficulty with rebirths
+			modifier = 1 + rebirth_count * 0.1  # Increase difficulty with rebirths
 		elif template["type"] == QUESTTYPE.REACH_MONEY:
-			modifier = 1 + rebirth_count * 0.2 # Increase money goal with rebirths
+			modifier = 1 + rebirth_count * 0.2  # Increase money goal with rebirths
 		elif template["type"] == QUESTTYPE.REBIRTH_TIME:
-			modifier = 1 + rebirth_count * 0.05 # Decrease time allowed with rebirths
+			modifier = 1 + rebirth_count * 0.05  # Decrease time allowed with rebirths
 		elif template["type"] == QUESTTYPE.PLAY_TIME:
-			modifier = 1 + rebirth_count * 0.02 # Increase play time with rebirths
+			modifier = 1 + rebirth_count * 0.02  # Increase play time with rebirths
 
-		var quest = Quest.new(template["type"], template["reward"], template['goal'] * modifier)
+		var quest = Quest.new()
+		quest.type = template["type"]
+		quest.reward = template["reward"] * modifier
+		quest.goal = template["goal"] * modifier
+		quest.progress = 0.0  # Start with no progress
 		result.append(quest)
 
 	return result
+
 
 # Update progress for a specific quest type
 func update_quest_progress(quest_type: int, value: float):

@@ -9,7 +9,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_12nm7"]
 atlas = ExtResource("6_jxqyi")
-region = Rect2(2.08165e-12, 36, 16, 22)
+region = Rect2(2, 47, 12, 15)
 
 [node name="Giant Diamond Dropper" type="Node2D"]
 script = ExtResource("1_s2dwy")
@@ -21,7 +21,6 @@ wait_time = 3.0
 autostart = true
 
 [node name="Detector" parent="." instance=ExtResource("4_a1tmg")]
-position = Vector2(10, 2.08165e-12)
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.431373)
@@ -31,8 +30,8 @@ texture = ExtResource("5_2ww5b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(1.19209e-07, -4)
-scale = Vector2(0.8125, 0.8125)
+position = Vector2(7.10543e-15, 0)
+rotation = -1.5708
 texture = SubResource("AtlasTexture_12nm7")
 
 [node name="Hold" type="Node2D" parent="."]

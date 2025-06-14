@@ -479,8 +479,7 @@ func _on_merge_button_pressed(merge_data: MergeData, btn: Button) -> void:
 	btn.text = "Craft"
 
 func _on_x_money_button_pressed() -> void:
-	# get_node("/root/Main").play_rewarded_ad.emit()
-	Player.data.buffs.append(Buff.new("2x", 20))
+	get_node("/root/Main").play_rewarded_ad.emit()
 
 func refresh_merge_tab(_id=0) -> void:
 	var merge_control = get_node("RebirthControl/Panel/TabContainer/Merge")

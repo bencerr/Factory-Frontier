@@ -58,6 +58,12 @@ func upgrade(ore: Ore) -> void:
 
 	var ore_value: float = ore.value
 	ore.value = (ore_value * multiplier)
+
+	if len(Player.data.buffs) >= 1:
+		for buff_name in GameData.buffs.keys():
+			if len(Player.data.buffs.filter(func(buff: Buff): return buff.name == buff_name)) > 0:
+				ore.value = GameData.buffs[buff_name].call(ore.value)
+
 	process_ore.emit(ore)
 
 func _ready() -> void:

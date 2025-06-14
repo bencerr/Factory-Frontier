@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://5qesdudrl5ii"]
+[gd_scene load_steps=100 format=3 uid="uid://5qesdudrl5ii"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_hq2yj"]
 [ext_resource type="StyleBox" uid="uid://ms2bw6my46sa" path="res://resources/stylebox_light_shadow.tres" id="2_6wbu6"]
@@ -48,10 +48,6 @@ font = ExtResource("4_ptkkj")
 font_size = 40
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="FontVariation" id="FontVariation_dx27v"]
-base_font = ExtResource("4_ptkkj")
-variation_embolden = 0.5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_reswu"]
 bg_color = Color(0, 0, 0, 0)
@@ -540,18 +536,6 @@ layout_mode = 2
 theme_override_constants/separation = 5
 alignment = 2
 
-[node name="2xMoneyButton" type="Button" parent="BuffControl/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(360, 120)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_fonts/font = SubResource("FontVariation_dx27v")
-theme_override_font_sizes/font_size = 64
-theme_override_styles/normal = ExtResource("8_w3vcj")
-theme_override_styles/hover = ExtResource("8_w3vcj")
-theme_override_styles/pressed = ExtResource("9_nd335")
-text = "2x Money"
-
 [node name="InventoryControl" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -947,6 +931,37 @@ theme_override_styles/hover = ExtResource("8_w3vcj")
 theme_override_styles/pressed = ExtResource("9_nd335")
 theme_override_styles/disabled = ExtResource("14_4jlfn")
 text = "($100T) Upgrade"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("4_ptkkj")
+theme_override_fonts/bold_font = SubResource("FontVariation_5e2r7")
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+bbcode_enabled = true
+text = "2x Money (Ad)"
+
+[node name="UpgradeButton" type="Button" parent="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_ptkkj")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("8_w3vcj")
+theme_override_styles/hover = ExtResource("8_w3vcj")
+theme_override_styles/pressed = ExtResource("9_nd335")
+theme_override_styles/disabled = ExtResource("14_4jlfn")
+text = "Watch"
 
 [node name="Label2" type="Label" parent="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control"]
 custom_minimum_size = Vector2(1, 1)
@@ -1461,7 +1476,6 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [connection signal="timeout" from="BuffControl/BuffTimer" to="." method="_on_buff_timer_timeout"]
-[connection signal="pressed" from="BuffControl/MarginContainer/VBoxContainer/2xMoneyButton" to="." method="_on_x_money_button_pressed"]
 [connection signal="pressed" from="InventoryControl/SortPanel/Panel/HBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="InventoryControl/SortPanel/Panel/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="InventoryControl/SortPanel/Panel/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]
@@ -1470,6 +1484,7 @@ stretch_mode = 5
 [connection signal="pressed" from="RebirthControl/Panel/TabContainer/Rebirth/Control/VBoxContainer2/DoRebirthButton" to="." method="_on_do_rebirth_button_pressed"]
 [connection signal="pressed" from="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer/UpgradeButton" to="UpgradeControl" method="_on_upgrade_ore_limit_button_pressed"]
 [connection signal="pressed" from="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer2/UpgradeButton" to="UpgradeControl" method="_on_upgrade_base_level_button_pressed"]
+[connection signal="pressed" from="UpgradeControl/Panel/MarginContainer/Panel/MarginContainer/Control/VBoxContainer/HBoxContainer3/UpgradeButton" to="." method="_on_x_money_button_pressed"]
 [connection signal="pressed" from="ShopControl/SortPanel/Panel/HBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="ShopControl/SortPanel/Panel/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="ShopControl/SortPanel/Panel/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]

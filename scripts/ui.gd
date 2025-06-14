@@ -404,9 +404,6 @@ func _on_buff_timer_timeout() -> void:
 			buff_container.move_child(buff.buff_label_instance, 0)
 		buff.buff_label_instance.text = "%s: %s" % [buff.name, time_string]
 
-	#if len(Player.data.buffs) == 0:
-		# todo
-
 func load_merge_items() -> void:
 	var root_path = "res://scenes/items/merge/"
 	var dir_contents = DirAccess.get_files_at(root_path)
@@ -482,7 +479,8 @@ func _on_merge_button_pressed(merge_data: MergeData, btn: Button) -> void:
 	btn.text = "Craft"
 
 func _on_x_money_button_pressed() -> void:
-	get_node("/root/Main").play_rewarded_ad.emit()
+	# get_node("/root/Main").play_rewarded_ad.emit()
+	Player.data.buffs.append(Buff.new("2x", 20))
 
 func refresh_merge_tab(_id=0) -> void:
 	var merge_control = get_node("RebirthControl/Panel/TabContainer/Merge")

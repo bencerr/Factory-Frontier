@@ -34,6 +34,14 @@ func shake_vfx() -> void:
 	)
 
 func upgrade(ore: Ore) -> void:
+	if not ore:
+		return
+
+	if randf() < destroy_chance:
+		GameData.ore_count -= 1
+		ore.free()
+		return
+
 	if ore.upgrade_tags.has(item_data.name):
 		if ore.upgrade_tags[item_data.name] >= upgrade_limit:
 			shake_vfx()
@@ -73,20 +81,16 @@ func _ready() -> void:
 	if status:
 		status_template = status.instantiate()
 
-func can_recieve_item() -> bool:
-	return item_holder.get_child_count() == 0
-
 func recieve_item(ore: Ore) -> void:
 	item_holder.recieve_item(ore)
 
 func _on_detector_belt_detected(area: Area2D) -> void:
-	var ore = item_holder.offload_item()
-	upgrade(ore)
-	if randf() < destroy_chance:
-		GameData.ore_count -= 1
-		ore.free()
-		return
-	area.recieve_item(ore)
+	print("Detected area: ", area.name)
+	var ores = item_holder.offload_items()
+	for ore in ores:
+		if ore is Ore:
+			area.recieve_item(ore)
 
-func _on_item_holder_item_held(_ore: Ore) -> void:
+func _on_item_holder_item_held(ore: Ore) -> void:
+	upgrade(ore)
 	detector.detect()

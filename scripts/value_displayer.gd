@@ -8,6 +8,8 @@ var item_holder: ItemHolder
 var detector: Detector
 
 func display_ore_data(ore: Ore) -> void:
+	if ore.has_node("Label"):
+		return
 	var lbl: Label = value_display_ui.instantiate()
 	lbl.position.y -= 10
 	lbl.text = GameData.float_to_prefix(ore.value)
@@ -21,16 +23,15 @@ func _ready() -> void:
 	item_holder = $ItemHolder
 	detector = $Detector
 
-func can_recieve_item() -> bool:
-	return item_holder.get_child_count() == 0
-
 func recieve_item(ore: Ore) -> void:
 	item_holder.recieve_item(ore)
 
 func _on_detector_belt_detected(area: Area2D) -> void:
-	var ore = item_holder.offload_item()
-	display_ore_data(ore)
-	area.recieve_item(ore)
+	var items = item_holder.offload_items()
+	for item in items:
+		if item is Ore:
+			area.recieve_item(item)
 
-func _on_item_holder_item_held(_ore: Ore) -> void:
+func _on_item_holder_item_held(ore: Ore) -> void:
+	display_ore_data(ore)
 	detector.detect()

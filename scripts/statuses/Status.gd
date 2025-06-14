@@ -8,7 +8,7 @@ var vfx: Array;
 func remove_status() -> void:
 	for effect in vfx:
 		effect.free()
-	ore.statuses.erase(self)
+	ore.statuses.erase(status_name)
 	self.queue_free()
 
 func _init() -> void:

@@ -9,6 +9,7 @@ func do_vfx() -> void:
 
 func do_effect() -> void:
 	self.ore.queue_free()
+	GameData.ore_count -= 1
 
 func _on_timer_timeout() -> void:
 	do_effect()

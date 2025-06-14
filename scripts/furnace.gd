@@ -27,9 +27,6 @@ func process_item(ore: Ore) -> void:
 	GameData.ore_count -= 1
 	ore.queue_free()
 
-func can_recieve_item() -> bool:
-	return true
-
 func recieve_item(ore: Ore) -> void:
 	$ItemHolder.recieve_item(ore)
 

@@ -132,7 +132,6 @@ func switch_tab(tab: UITAB) -> void:
 	if item_selection_ui: item_selection_ui.hide()
 	get_node("TabControl/HBoxContainer/InventoryButton").button_pressed = false
 	get_node("TabControl/HBoxContainer/ShopButton").button_pressed = false
-	get_node("TabControl/HBoxContainer/DeleteButton").button_pressed = false
 	get_node("TabControl/HBoxContainer/RebirthButton").button_pressed = false
 	get_node("TabControl/HBoxContainer/UpgradeButton").button_pressed = false
 	get_node("TabControl/HBoxContainer/QuestButton").button_pressed = false

@@ -465,13 +465,17 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="HBoxContainer" parent="TabControl2/Panel/MarginContainer"]
+[node name="VBoxContainer" type="Control" parent="TabControl2/Panel/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 100
-alignment = 1
 
 [node name="MoneyLabel" type="Label" parent="TabControl2/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+anchor_left = 0.024
+anchor_top = 0.304
+anchor_right = 0.144
+anchor_bottom = 0.696
+offset_left = 0.352
+offset_right = 0.11199
 text = "$$$$
 "
 label_settings = SubResource("LabelSettings_vbqty")
@@ -480,6 +484,12 @@ vertical_alignment = 1
 [node name="RebirthLabel2" type="RichTextLabel" parent="TabControl2/Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(350, 2.08165e-12)
 layout_mode = 2
+anchor_left = 0.201
+anchor_top = 0.304
+anchor_right = 0.505
+anchor_bottom = 0.696
+offset_left = 0.447994
+offset_right = 0.240005
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/normal_font = ExtResource("4_ptkkj")
@@ -492,18 +502,32 @@ fit_content = true
 
 [node name="GemsLabel" type="Label" parent="TabControl2/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+anchor_left = 0.556
+anchor_top = 0.304
+anchor_right = 0.748
+anchor_bottom = 0.696
+offset_left = 0.487938
+offset_right = 0.30397
 size_flags_horizontal = 8
 size_flags_vertical = 1
 text = "0 gems"
 label_settings = SubResource("LabelSettings_r1rc7")
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="OreLimitLabel" type="Label" parent="TabControl2/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+anchor_left = 0.788
+anchor_top = 0.304
+anchor_right = 0.997
+anchor_bottom = 0.696
+offset_left = 0.223946
+offset_right = 0.455956
 size_flags_horizontal = 8
 size_flags_vertical = 1
-text = "0 / 50 ores"
+text = "00 / 50 ores"
 label_settings = SubResource("LabelSettings_r1rc7")
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BuffControl" type="Control" parent="."]

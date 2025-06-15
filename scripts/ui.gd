@@ -250,6 +250,7 @@ func _ready() -> void:
 	Player.rebirthed.connect(refresh_merge_tab)
 	refresh_merge_tab()
 	_on_gems_changed(0)
+	Player.gems_changed.connect(_on_gems_changed)
 
 func _on_money_change(_value: float) -> void:
 	money_label.text = "$" + GameData.float_to_prefix(Player.data.money)

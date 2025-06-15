@@ -2,10 +2,17 @@
 
 [ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="1_bcagv"]
 [ext_resource type="Script" path="res://scripts/ui/item_selection_ui.gd" id="1_sqwid"]
-[ext_resource type="StyleBox" uid="uid://1mjmcishic3j" path="res://resources/stylebox_light_corner.tres" id="2_no8p0"]
 [ext_resource type="Texture2D" uid="uid://vkxhxnbemwso" path="res://images/ui/refresh_256dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="3_5iy88"]
 [ext_resource type="Texture2D" uid="uid://14jfiqg58y0w" path="res://images/close_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" id="3_svs8i"]
 [ext_resource type="Texture2D" uid="uid://dfp7hlffs31fa" path="res://images/ui/open_with_256dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="4_cnqov"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l88dr"]
+bg_color = Color(0.133333, 0.176471, 0.211765, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.121569, 0.141176, 0.141176, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hkcv6"]
 font = ExtResource("1_bcagv")
@@ -45,7 +52,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = ExtResource("2_no8p0")
+theme_override_styles/panel = SubResource("StyleBoxFlat_l88dr")
 
 [node name="NameLabel" type="Label" parent="Panel"]
 custom_minimum_size = Vector2(50, 0)

@@ -83,5 +83,4 @@ func _unhandled_input(event: InputEvent) -> void:
 				item_placed.emit(item_info)
 		InputHandler.INPUTTYPE.DELETE:
 			var mouse_pos: Vector2 = get_global_mouse_position()
-			var tile_pos: Vector2i = tilemap.local_to_map(tilemap.to_local(mouse_pos))
-			delete_item(tile_pos)
+			delete_item(mouse_pos)

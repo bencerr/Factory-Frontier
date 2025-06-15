@@ -85,7 +85,6 @@ func recieve_item(ore: Ore) -> void:
 	item_holder.recieve_item(ore)
 
 func _on_detector_belt_detected(area: Area2D) -> void:
-	print("Detected area: ", area.name)
 	var ores = item_holder.offload_items()
 	for ore in ores:
 		if ore is Ore:

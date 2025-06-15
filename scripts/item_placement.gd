@@ -8,6 +8,26 @@ var inv_index: int
 @onready var place_particles_scene = preload("res://scenes/particles/place_particles.tscn")
 @onready var item_selection_ui: Control
 
+# returns the item index of the placed item at the given tile position (and deletes node)
+func delete_item(pos: Vector2) -> int:
+	var tile_pos: Vector2i = tilemap.local_to_map(tilemap.to_local(pos))
+	var id: int = Player.get_placed_item_id(tile_pos)
+	if id == -1: return -1
+
+	var placed_item_data: PlacedItemData = Player.data.placed_items[id]
+	var item_info: PlayerItemInfo = Player.data.inventory[placed_item_data.item_index]
+	item_info.quantity += 1
+	Player.update_inventory_item(placed_item_data.item_index, item_info)
+	var inst = Player.data.placed_items[id].instance
+	var t = inst.create_tween().set_trans(Tween.TRANS_QUAD)
+	t.tween_property(inst, "scale", Vector2(.01, .01), .08)
+	t.tween_callback(func():
+		inst.queue_free()
+		Player.data.placed_items.remove_at(id))
+
+	return placed_item_data.item_index
+
+
 func _ready() -> void:
 	item_selection_ui = get_node("/root/Main/CanvasLayer/ItemSelectionControl")
 
@@ -64,17 +84,4 @@ func _unhandled_input(event: InputEvent) -> void:
 		InputHandler.INPUTTYPE.DELETE:
 			var mouse_pos: Vector2 = get_global_mouse_position()
 			var tile_pos: Vector2i = tilemap.local_to_map(tilemap.to_local(mouse_pos))
-			var id: int = Player.get_placed_item_id(tile_pos)
-
-			if id == -1: return
-
-			var placed_item_data: PlacedItemData = Player.data.placed_items[id]
-			var item_info: PlayerItemInfo = Player.data.inventory[placed_item_data.item_index]
-			item_info.quantity += 1
-			Player.update_inventory_item(placed_item_data.item_index, item_info)
-			var inst = Player.data.placed_items[id].instance
-			var t = inst.create_tween().set_trans(Tween.TRANS_QUAD)
-			t.tween_property(inst, "scale", Vector2(.01, .01), .08)
-			t.tween_callback(func():
-				inst.queue_free()
-				Player.data.placed_items.remove_at(id))
+			delete_item(tile_pos)

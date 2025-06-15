@@ -42,3 +42,13 @@ func _on_rotate_pressed() -> void:
 		placed_item_id
 	].rotation
 
+func _on_move_pressed() -> void:
+	var input_handler: InputHandler = get_node("/root/Main/InputHandler")
+	var item_pos = Player.data.placed_items[placed_item_id].instance.position
+	var inv_index = input_handler.item_placement.delete_item(
+		item_pos
+	)
+	if inv_index == -1:
+		return
+	input_handler.enable_placing(inv_index)
+	get_node("/root/Main/CanvasLayer/UI").switch_tab(MainInterface.UITAB.NONE)

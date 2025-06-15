@@ -1,35 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://h8ceeqmx61i7"]
+[gd_scene load_steps=9 format=3 uid="uid://h8ceeqmx61i7"]
 
 [ext_resource type="FontFile" uid="uid://cyiv5u0h8rkyq" path="res://fonts/Inter-VariableFont_slnt,wght.ttf" id="1_bcagv"]
 [ext_resource type="Script" path="res://scripts/ui/item_selection_ui.gd" id="1_sqwid"]
-[ext_resource type="Texture2D" uid="uid://mlqgastpkscl" path="res://images/rotate_right_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" id="2_5wfyr"]
+[ext_resource type="StyleBox" uid="uid://1mjmcishic3j" path="res://resources/stylebox_light_corner.tres" id="2_no8p0"]
+[ext_resource type="Texture2D" uid="uid://vkxhxnbemwso" path="res://images/ui/refresh_256dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="3_5iy88"]
 [ext_resource type="Texture2D" uid="uid://14jfiqg58y0w" path="res://images/close_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" id="3_svs8i"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6f36b"]
-bg_color = Color(0.129412, 0.172549, 0.203922, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.0705882, 0.101961, 0.12549, 1)
-border_blend = true
-corner_radius_top_left = 35
-corner_radius_top_right = 35
-corner_radius_bottom_right = 35
-corner_radius_bottom_left = 35
-shadow_color = Color(0.172549, 0.188235, 0.227451, 0.203922)
-shadow_size = 2
-shadow_offset = Vector2(2.08165e-12, 1)
+[ext_resource type="Texture2D" uid="uid://dfp7hlffs31fa" path="res://images/ui/open_with_256dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="4_cnqov"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hkcv6"]
 font = ExtResource("1_bcagv")
-font_size = 30
+font_size = 40
 shadow_color = Color(0, 0, 0, 0.443137)
 shadow_offset = Vector2(2.08165e-12, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_yo5fr"]
 font = ExtResource("1_bcagv")
-font_size = 26
+font_size = 36
 shadow_color = Color(0, 0, 0, 0.443137)
 shadow_offset = Vector2(2.08165e-12, 1)
 
@@ -39,16 +25,16 @@ light_mask = 0
 z_index = 99
 clip_contents = true
 layout_mode = 3
-anchor_right = 0.355
+anchor_right = 0.371
 anchor_bottom = 0.072
-offset_right = 0.0899763
+offset_right = 0.217973
 offset_bottom = -0.0960116
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(2.08165e-12, -12)
 script = ExtResource("1_sqwid")
-name_label = NodePath("Panel/MarginContainer/Control/VBoxContainer/NameLabel")
-stat_label = NodePath("Panel/MarginContainer/Control/VBoxContainer/StatLabel")
+name_label = NodePath("Panel/NameLabel")
+stat_label = NodePath("Panel/MarginContainer/Control/VBoxContainer/ScrollContainer/StatLabel")
 panel = NodePath("Panel")
 
 [node name="Panel" type="Panel" parent="."]
@@ -59,7 +45,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_6f36b")
+theme_override_styles/panel = ExtResource("2_no8p0")
+
+[node name="NameLabel" type="Label" parent="Panel"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.255
+offset_bottom = 0.0399952
+grow_horizontal = 2
+text = "item_name"
+label_settings = SubResource("LabelSettings_hkcv6")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 1
@@ -79,61 +79,66 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.641
-anchor_bottom = 1.0
-offset_right = -10.729
-offset_bottom = 6.0
+anchor_top = 0.306
+anchor_right = 0.464
+anchor_bottom = 1.037
+offset_top = 0.0399961
+offset_right = -0.0560071
+offset_bottom = 0.0799904
 grow_vertical = 2
 theme_override_constants/separation = 8
 
-[node name="NameLabel" type="Label" parent="Panel/MarginContainer/Control/VBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/Control/VBoxContainer"]
 layout_mode = 2
-text = "item_name"
-label_settings = SubResource("LabelSettings_hkcv6")
-vertical_alignment = 1
-autowrap_mode = 3
+size_flags_vertical = 3
 
-[node name="StatLabel" type="Label" parent="Panel/MarginContainer/Control/VBoxContainer"]
+[node name="StatLabel" type="Label" parent="Panel/MarginContainer/Control/VBoxContainer/ScrollContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "stat1: 1"
 label_settings = SubResource("LabelSettings_yo5fr")
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/Control"]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
+anchors_preset = -1
+anchor_left = 0.487
+anchor_top = 0.281
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -219.0
-offset_top = -50.0
-offset_right = 1.0
-offset_bottom = 50.0
+anchor_bottom = 0.719
+offset_left = 0.0769921
+offset_top = 5.04
+offset_bottom = -5.04001
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 5
 alignment = 1
 
 [node name="Rotate" type="TextureButton" parent="Panel/MarginContainer/Control/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 5
-texture_normal = ExtResource("2_5wfyr")
+texture_normal = ExtResource("3_5iy88")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Move" type="TextureButton" parent="Panel/MarginContainer/Control/HBoxContainer"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("4_cnqov")
 ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Close" type="TextureButton" parent="Panel/MarginContainer/Control/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 5
 texture_normal = ExtResource("3_svs8i")
 ignore_texture_size = true
 stretch_mode = 5
 
 [connection signal="pressed" from="Panel/MarginContainer/Control/HBoxContainer/Rotate" to="." method="_on_rotate_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/Control/HBoxContainer/Move" to="." method="_on_move_pressed"]
 [connection signal="pressed" from="Panel/MarginContainer/Control/HBoxContainer/Close" to="." method="_on_close_pressed"]
